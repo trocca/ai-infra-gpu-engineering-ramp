@@ -1,0 +1,32 @@
+# Layer 9 — the Workload-API CRD. The third and last thing the developer writes.
+#
+# ~25 lines of intent: how many nodes, which image, what command, how many GPUs.
+# Everything else (headless Service, MASTER_ADDR/RANK/WORLD_SIZE injection,
+# JobSet rendering, gang placement) is done by the operator + scheduler.
+#
+# Requires: Kubeflow Trainer v2 (+ JobSet) and the torch-distributed
+# ClusterTrainingRuntime shipped with the release.
+apiVersion: trainer.kubeflow.org/v1alpha1
+kind: TrainJob
+metadata:
+  name: tinygpt-ddp
+spec:
+  runtimeRef:
+    name: torch-distributed
+    apiGroup: trainer.kubeflow.org
+    kind: ClusterTrainingRuntime
+  trainer:
+    numNodes: 2
+    image: <YOUR_REGISTRY>/k8s-ai-stack-demo/train:latest
+    command:
+      - torchrun
+      - /workspace/train.py
+      - --steps=200
+    env:
+      # The single most useful debug flag in this stack: makes NCCL print
+      # the topology it detected and the transport it chose (NVLink vs NET/IB).
+      - name: NCCL_DEBUG
+        value: INFO
+    resourcesPerNode:
+      limits:
+        nvidia.com/gpu: 1

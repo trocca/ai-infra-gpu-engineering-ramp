@@ -1,0 +1,61 @@
+# Helm values for kube-prometheus-stack (chart: prometheus-community/kube-prometheus-stack).
+# Mostly COMPLETE — the marked TODO sections (scrape config + PromQL) are the learning payload.
+#
+# Install (see scripts/01-gpu-operator.sh section 2):
+#   helm install monitoring prometheus-community/kube-prometheus-stack \
+#     -n monitoring --create-namespace -f k8s/monitoring-values.yaml
+
+grafana:
+  adminPassword: gpu-lab            # single-user lab box; rotate if exposed
+  service:
+    type: NodePort
+    nodePort: 30300
+  # Dashboard auto-provisioning: exported JSON in the repo gets loaded as a ConfigMap.
+  sidecar:
+    dashboards:
+      enabled: true
+      label: grafana_dashboard
+
+prometheus:
+  prometheusSpec:
+    retention: 2d                    # ephemeral lab node — keep it small
+    # Pick up ServiceMonitors/PodMonitors from ALL namespaces (dcgm-exporter
+    # lives in gpu-operator, your app in serving):
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+
+    additionalScrapeConfigs:
+      # ------------------------------------------------------------------
+      # TODO(you) Day 3: dcgm-exporter scrape.
+      # The GPU Operator deploys dcgm-exporter with its own ServiceMonitor
+      # IF you enabled `dcgmExporter.serviceMonitor.enabled=true` at
+      # operator install (the install script does). VERIFY it is being
+      # scraped: Prometheus UI -> Status -> Targets. If not, write a
+      # static scrape config here against the dcgm-exporter service
+      # (port 9400, path /metrics) — and document which route you used.
+      # ------------------------------------------------------------------
+      []
+
+# ---------------------------------------------------------------------------
+# TODO(you) Day 3: the PromQL for your dashboard panels. Writing these is
+# the exercise — fill them in, test in the Grafana Explore tab, then build
+# the dashboard and export it to k8s/grafana-dashboard.json.
+#
+#  GPU utilization:        DCGM_FI_DEV_GPU_UTIL{...}                -> TODO refine labels
+#  GPU memory used (GiB):  DCGM_FI_DEV_FB_USED{...} / 1024          -> TODO
+#  TTFT p95:               histogram_quantile(0.95, ...)            -> TODO: your ttft histogram
+#  Queue depth:            <your gauge name>                        -> TODO
+#  Tokens/sec:             rate(<your counter>[1m])                 -> TODO
+# ---------------------------------------------------------------------------
+
+# Trim components meaningless on a single-node lab cluster:
+alertmanager:
+  enabled: false
+kubeEtcd:
+  enabled: false      # k3s embeds etcd/sqlite; endpoints not scrapable the standard way
+kubeControllerManager:
+  enabled: false
+kubeScheduler:
+  enabled: false
+kubeProxy:
+  enabled: false

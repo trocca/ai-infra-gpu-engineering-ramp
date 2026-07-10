@@ -1,0 +1,16 @@
+<!-- Render ```mermaid fenced blocks on GitHub Pages (GitHub.com renders them natively;
+     Jekyll emits them as <pre><code class="language-mermaid">, which this converts). -->
+<script type="module">
+  const blocks = document.querySelectorAll("pre > code.language-mermaid");
+  if (blocks.length > 0) {
+    const { default: mermaid } = await import("https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs");
+    for (const code of blocks) {
+      const holder = document.createElement("pre");
+      holder.className = "mermaid";
+      holder.textContent = code.textContent;
+      code.closest("pre").replaceWith(holder);
+    }
+    mermaid.initialize({ startOnLoad: false, theme: "neutral", securityLevel: "loose" });
+    await mermaid.run();
+  }
+</script>

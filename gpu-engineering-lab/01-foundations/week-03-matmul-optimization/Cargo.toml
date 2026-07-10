@@ -1,0 +1,16 @@
+# Week 03 workspace. COMPLETE — do not edit (except deliberate pin bumps).
+# Reuses week-02's gpu-bench crate by path: one benchmark methodology,
+# repo-wide.
+
+[workspace]
+resolver = "2"
+members = ["kernels", "runner"]
+
+[workspace.dependencies]
+cudarc = { version = "=0.16.4", features = ["cuda-12080", "cublas", "nvrtc"] }
+# Same pins as week 02 — keep the two files in sync when you bump.
+cuda_std = { git = "https://github.com/Rust-GPU/Rust-CUDA", rev = "PIN-ME-DAY-1" }
+cuda_builder = { git = "https://github.com/Rust-GPU/Rust-CUDA", rev = "PIN-ME-DAY-1" }
+
+[profile.release]
+debug = true   # symbols for nsys/ncu

@@ -1,0 +1,14 @@
+# Namespaces for the week-11 stack. COMPLETE — configuration, not learning payload.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: serving
+  labels:
+    app.kubernetes.io/part-of: gpu-engineering-lab
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: training
+  labels:
+    app.kubernetes.io/part-of: gpu-engineering-lab

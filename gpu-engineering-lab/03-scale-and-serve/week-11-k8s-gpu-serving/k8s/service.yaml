@@ -1,0 +1,17 @@
+# COMPLETE — plain ClusterIP; use `kubectl port-forward svc/ferrum-serve 8000:80 -n serving`
+# for testing, or switch to NodePort if load-testing from outside the node.
+apiVersion: v1
+kind: Service
+metadata:
+  name: ferrum-serve
+  namespace: serving
+  labels:
+    app: ferrum-serve
+spec:
+  type: ClusterIP
+  selector:
+    app: ferrum-serve
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

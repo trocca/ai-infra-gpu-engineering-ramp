@@ -1,0 +1,46 @@
+# SCENE 6a — single-GPU serving with vLLM: an OpenAI-compatible endpoint.
+#
+# Small model on purpose (fits an L4). Talking points while it loads:
+# PagedAttention (KV cache in 16-token blocks — OS-style paging, zero
+# fragmentation) and continuous batching (new requests injected every
+# forward pass, GPU never idles).
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vllm
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: vllm }
+  template:
+    metadata:
+      labels: { app: vllm }
+    spec:
+      containers:
+        - name: vllm
+          image: vllm/vllm-openai:latest   # pin a tag before a live demo
+          args:
+            - --model=Qwen/Qwen2.5-0.5B-Instruct
+          ports:
+            - containerPort: 8000
+          resources:
+            limits: { nvidia.com/gpu: 1 }
+          readinessProbe:
+            httpGet: { path: /health, port: 8000 }
+            initialDelaySeconds: 30
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vllm
+spec:
+  selector: { app: vllm }
+  ports:
+    - port: 8000
+      targetPort: 8000
+# Test:
+#   kubectl port-forward svc/vllm 8000:8000 &
+#   curl -s http://localhost:8000/v1/completions -H 'Content-Type: application/json' \
+#     -d '{"model":"Qwen/Qwen2.5-0.5B-Instruct","prompt":"NVLink in one sentence:","max_tokens":64}'

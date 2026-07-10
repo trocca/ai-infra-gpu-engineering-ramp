@@ -1,0 +1,3 @@
+# target is build output; results/ (JSON + charts) is small and COMMITTED —
+# published numbers must live in the repo.
+/target

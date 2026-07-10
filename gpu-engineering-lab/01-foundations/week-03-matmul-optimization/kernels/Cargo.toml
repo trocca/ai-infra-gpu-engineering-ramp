@@ -1,0 +1,14 @@
+# week-03 GPU kernels crate — the six SGEMM rungs, compiled to PTX by
+# cuda_builder (see ../runner/build.rs). Also compiles host-side as an rlib
+# so the runner can share the tile constants.
+
+[package]
+name = "sgemm-kernels"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+cuda_std = { workspace = true }

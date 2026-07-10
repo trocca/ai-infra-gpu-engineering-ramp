@@ -1,0 +1,14 @@
+# Week 04 workspace. COMPLETE — same pins as weeks 02/03; keep in sync.
+
+[workspace]
+resolver = "2"
+members = ["kernels", "ext"]
+
+[workspace.dependencies]
+cudarc = { version = "=0.16.4", features = ["cuda-12080", "nvrtc"] }
+pyo3 = { version = "=0.23.4" }
+cuda_std = { git = "https://github.com/Rust-GPU/Rust-CUDA", rev = "PIN-ME-DAY-1" }
+cuda_builder = { git = "https://github.com/Rust-GPU/Rust-CUDA", rev = "PIN-ME-DAY-1" }
+
+[profile.release]
+debug = true   # symbols for nsys/ncu

@@ -1,0 +1,15 @@
+# week-02 exercise binaries — host plumbing (COMPLETE) around your kernels.
+
+[package]
+name = "exercises"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+cudarc = { workspace = true }
+gpu-bench = { path = "../common" }
+# Host-side rlib view of the kernel crate (for shared consts like BLOCK).
+kernels = { path = "../kernels" }
+
+[build-dependencies]
+cuda_builder = { workspace = true }

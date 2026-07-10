@@ -1,0 +1,8 @@
+# Pinned nightly required by Rust-CUDA (rustc_codegen_nvvm).
+# Day 1 task: verify this matches the pin currently required by
+# https://github.com/Rust-GPU/Rust-CUDA (their repo carries the authoritative
+# rust-toolchain.toml) and update BOTH this file and the git `rev` pins in
+# Cargo.toml together.
+[toolchain]
+channel = "nightly-2025-11-03"
+components = ["rustfmt", "clippy", "rust-src", "rustc-dev", "llvm-tools"]

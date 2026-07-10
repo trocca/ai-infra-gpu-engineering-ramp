@@ -1,0 +1,43 @@
+# python
+__pycache__/
+*.pyc
+.venv/
+venvs/
+*.egg-info/
+dist/
+build/
+
+# data & models — never commit weights or datasets
+data/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.gguf
+checkpoints/
+wandb/
+
+# rust
+target/
+# Cargo.lock IS committed (binaries + reproducibility contract)
+
+# cuda
+*.o
+*.so
+*.cubin
+*.ptx
+cmake-build-*/
+
+# profiler artifacts
+*.nsys-rep
+*.ncu-rep
+*.sqlite
+
+# benchmark raw output is committed as JSON on purpose — keep plots too
+# (bench/results/*.json and *.png are tracked)
+
+# os / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

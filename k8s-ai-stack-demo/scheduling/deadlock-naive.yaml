@@ -1,0 +1,54 @@
+# SCENE 5a — the partial-gang deadlock, reproduced with the DEFAULT scheduler.
+#
+# Setup: a cluster with 8 allocatable GPUs (adjust `parallelism` and the
+# GPU limit to your cluster: each job must need MORE than half the GPUs).
+#
+# Each "worker" simulates a distributed trainer: it grabs a GPU and blocks,
+# exactly like a real rank blocking on its first NCCL all-reduce until ALL
+# peers exist. With no gang scheduling, Job A places 6 pods, Job B places 2,
+# both wait forever: 8 GPUs "allocated", zero forward progress.
+#
+# Watch it happen:  kubectl get pods -l demo=deadlock -w
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-a-naive
+  labels: { demo: deadlock }
+spec:
+  completions: 8
+  parallelism: 8          # needs ALL 8 GPUs at once
+  backoffLimit: 0
+  template:
+    metadata:
+      labels: { demo: deadlock, job: a }
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: worker
+          image: nvcr.io/nvidia/cuda:13.3.0-base-ubuntu24.04
+          # Block "waiting for peers" — a stand-in for a rank stuck in all-reduce.
+          command: ["bash", "-c", "echo waiting for my gang...; sleep 3600"]
+          resources:
+            limits: { nvidia.com/gpu: 1 }
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-b-naive
+  labels: { demo: deadlock }
+spec:
+  completions: 8
+  parallelism: 8          # ALSO needs all 8 GPUs at once
+  backoffLimit: 0
+  template:
+    metadata:
+      labels: { demo: deadlock, job: b }
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: worker
+          image: nvcr.io/nvidia/cuda:13.3.0-base-ubuntu24.04
+          command: ["bash", "-c", "echo waiting for my gang...; sleep 3600"]
+          resources:
+            limits: { nvidia.com/gpu: 1 }

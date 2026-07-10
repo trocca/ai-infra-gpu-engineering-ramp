@@ -1,0 +1,83 @@
+{
+  "_comment": "Source of truth for the README 'Tech Reference' table. Entries with a 'detect' block are auto-resolved from repo files by scripts/refresh_readme.py on every push; the 'version' field is the fallback if detection finds nothing. Manual entries: just edit 'version' here.",
+  "entries": [
+    {
+      "name": "Rust (stable)",
+      "area": "Language",
+      "version": "stable (rustup default)",
+      "source": "Book 3rd ed. targets edition 2024; lab crates pin per-project"
+    },
+    {
+      "name": "Rust nightly (Rust-CUDA)",
+      "area": "GPU kernels",
+      "version": "nightly",
+      "detect": { "glob": "gpu-engineering-lab/**/rust-toolchain.toml", "pattern": "channel = \"([^\"]+)\"" },
+      "source": "Pinned by rustc_codegen_nvvm — see week-02 rust-toolchain.toml"
+    },
+    {
+      "name": "Rust edition",
+      "area": "Language",
+      "version": "2021",
+      "detect": { "glob": "gpu-engineering-lab/**/Cargo.toml", "pattern": "edition = \"(\\d{4})\"" },
+      "source": "Lab crates"
+    },
+    {
+      "name": "Python",
+      "area": "Language",
+      "version": ">=3.10",
+      "detect": { "glob": "gpu-engineering-lab/**/pyproject.toml", "pattern": "requires-python = \"([^\"]+)\"" },
+      "source": "week-04 pyproject.toml"
+    },
+    {
+      "name": "PyTorch",
+      "area": "ML framework",
+      "version": ">=2.7",
+      "detect": { "glob": "gpu-engineering-lab/**/pyproject.toml", "pattern": "\"torch(>=[^\"]+)\"" },
+      "source": "week-04 custom ops (rusty-kernels)"
+    },
+    {
+      "name": "candle",
+      "area": "Inference (Rust)",
+      "version": "0.9",
+      "detect": { "glob": "gpu-engineering-lab/**/ferrum-serve/Cargo.toml", "pattern": "candle-core = \"([^\"]+)\"" },
+      "source": "week-08 ferrum-serve"
+    },
+    {
+      "name": "tokio",
+      "area": "Async runtime (Rust)",
+      "version": "1.x",
+      "detect": { "glob": "gpu-engineering-lab/**/ferrum-serve/Cargo.toml", "pattern": "tokio = \\{ version = \"([^\"]+)\"" },
+      "source": "week-08 ferrum-serve"
+    },
+    {
+      "name": "CUDA Toolkit",
+      "area": "GPU platform",
+      "version": "12.8+ (Blackwell minimum)",
+      "source": "RTX 5090 on WSL2 — verify with `nvcc --version`"
+    },
+    {
+      "name": "GPU / driver",
+      "area": "Hardware",
+      "version": "RTX 5090 (Blackwell), WSL2 + Ubuntu",
+      "source": "Local rig"
+    },
+    {
+      "name": "Triton (language)",
+      "area": "GPU kernels (Python)",
+      "version": "3.x",
+      "source": "Week 7 quantization + kernels"
+    },
+    {
+      "name": "Kubernetes",
+      "area": "Orchestration",
+      "version": "v1.34 (DRA GA)",
+      "source": "04_stack_reference_verified.md — DRA core GA v1.34"
+    },
+    {
+      "name": "NVIDIA GPU Operator",
+      "area": "K8s GPU stack",
+      "version": "v25.10+",
+      "source": "Required for nvidia-dra-driver-gpu (see stack reference)"
+    }
+  ]
+}

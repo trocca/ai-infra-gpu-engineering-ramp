@@ -1,0 +1,17 @@
+# rusty_kernels._rusty — the PyO3 extension crate. COMPLETE.
+
+[package]
+name = "rusty-kernels-ext"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "_rusty"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { workspace = true }
+cudarc = { workspace = true }
+
+[build-dependencies]
+cuda_builder = { workspace = true }

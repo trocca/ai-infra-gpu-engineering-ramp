@@ -1,0 +1,68 @@
+# CI for gpu-engineering-lab — copy this file to the REPO ROOT as
+# .github/workflows/ci.yml during Week 4 Day 5.
+#
+# GitHub-hosted runners have no GPU (and no NVVM backend), so CI does what
+# it honestly can:
+#   python job: ruff lint + Week 01's full pure-Python test suite + Week 04
+#               test collection (GPU tests must skip, not error)
+#   rust job:   cargo fmt --check + clippy + the CPU-safe gpu-bench unit
+#               tests, with SKIP_PTX=1 so build.rs skips kernel compilation
+# GPU tests and benchmarks remain a local, pre-push responsibility — that's
+# what the Makefiles are for.
+
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install ruff
+        run: pip install ruff
+      - name: Lint all Python
+        run: ruff check . --exclude "**/results"
+      - name: Install CPU torch + pytest
+        run: |
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install pytest numpy
+      - name: Week 01 — full test suite (pure Python, runs everywhere)
+        working-directory: 01-foundations/week-01-autograd-from-scratch
+        run: pytest tests/ -q --ignore=tests/test_rust_hello.py
+      - name: Week 04 — collect tests (GPU tests must skip, not error)
+        working-directory: 01-foundations/week-04-pytorch-custom-ops
+        run: pytest tests/ -q --collect-only
+
+  rust:
+    runs-on: ubuntu-latest
+    env:
+      SKIP_PTX: "1"   # build.rs writes stub PTX; no NVVM backend in CI
+    steps:
+      - uses: actions/checkout@v4
+      # Installs the toolchain pinned by each week's rust-toolchain.toml.
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - name: Week 02 — fmt + clippy + CPU-safe unit tests
+        working-directory: 01-foundations/week-02-cuda-basics
+        run: |
+          cargo fmt --all --check
+          cargo clippy --workspace --all-targets
+          cargo test -p gpu-bench
+      - name: Week 03 — fmt + clippy
+        working-directory: 01-foundations/week-03-matmul-optimization
+        run: |
+          cargo fmt --all --check
+          cargo clippy --workspace --all-targets
+      - name: Week 04 — fmt + clippy
+        working-directory: 01-foundations/week-04-pytorch-custom-ops
+        run: |
+          cargo fmt --all --check
+          cargo clippy --workspace --all-targets

@@ -1,0 +1,45 @@
+# READ-ALONG MANIFEST — ComputeDomains on GB200 NVL72 (needs actual
+# MNNVL hardware to run; in the demo you EXPLAIN this one, field by field).
+#
+# The story: a GB200 NVL72 rack is 72 GPUs across 18 nodes wired into ONE
+# NVLink fabric — GPUs in different nodes can do direct memory load/stores
+# (Multi-Node NVLink). IMEX is the driver service that enables and
+# access-controls that sharing. This CRD asks the NVIDIA DRA driver to
+# provision ONE isolated IMEX domain for THIS workload — a secure,
+# per-job memory boundary over a shared physical fabric — and tear it
+# down when the job ends. The old device-plugin model could not express
+# this at all. That's the whole DRA argument in one object.
+#
+# NOTE ▸ verify apiVersion against the current nvidia-dra-driver-gpu docs;
+# the API is young and moves (v1beta1 at time of writing).
+---
+apiVersion: resource.nvidia.com/v1beta1
+kind: ComputeDomain
+metadata:
+  name: train-cd
+spec:
+  numNodes: 4                       # nodes whose GPUs may share memory
+  channel:
+    resourceClaimTemplate:
+      name: train-cd-claims         # generated; pods reference it below
+---
+# Each pod of the distributed job references the generated claim template.
+# The DRA driver starts the IMEX daemons, wires the channel, and the
+# scheduler co-places pods on one NVLink partition via the
+# nvidia.com/gpu.clique node label.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cd-worker-example
+spec:
+  restartPolicy: Never
+  containers:
+    - name: trainer
+      image: nvcr.io/nvidia/pytorch:26.04-py3
+      command: ["bash", "-c", "nvidia-smi topo -m; sleep 60"]
+      resources:
+        claims:
+          - name: cd
+  resourceClaims:
+    - name: cd
+      resourceClaimTemplateName: train-cd-claims

@@ -1,0 +1,34 @@
+# BONUS — KAI fractional GPU sharing: two pods on ONE physical GPU.
+#
+# KAI's fractional sharing is a soft, scheduler-level mechanism using
+# reservation pods (namespace kai-resource-reservation). Honest caveat to
+# say out loud in the demo: there is NO memory isolation by default —
+# for hard multi-tenant isolation use MIG (hardware) or add HAMi.
+#
+# Verify annotation keys against current KAI docs (docs/gpu-sharing).
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: half-gpu-a
+  annotations:
+    gpu-fraction: "0.5"
+spec:
+  schedulerName: kai-scheduler
+  containers:
+    - name: work
+      image: nvcr.io/nvidia/cuda:13.3.0-base-ubuntu24.04
+      command: ["bash", "-c", "nvidia-smi; sleep 600"]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: half-gpu-b
+  annotations:
+    gpu-fraction: "0.5"
+spec:
+  schedulerName: kai-scheduler
+  containers:
+    - name: work
+      image: nvcr.io/nvidia/cuda:13.3.0-base-ubuntu24.04
+      command: ["bash", "-c", "nvidia-smi; sleep 600"]

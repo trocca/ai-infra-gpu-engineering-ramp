@@ -1,0 +1,13 @@
+# week-04 GPU kernels crate — fused softmax + LayerNorm, compiled to PTX by
+# cuda_builder (see ../ext/build.rs).
+
+[package]
+name = "rusty-kernels-gpu"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+cuda_std = { workspace = true }

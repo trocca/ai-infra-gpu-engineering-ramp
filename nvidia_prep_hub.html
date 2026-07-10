@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NVIDIA Dev Evangelist — Interview Prep Hub</title>
+<style>
+  :root{
+    --bg:#0b0f0c; --panel:#121814; --panel2:#171f19; --edge:#243026;
+    --ink:#e8f0ea; --mut:#9fb3a6; --grn:#76b900; --grn2:#a4e017; --warn:#e0b400; --blu:#5cc8ff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  header{padding:34px 22px 22px;border-bottom:1px solid var(--edge);background:linear-gradient(180deg,#101710,#0b0f0c)}
+  header h1{margin:0 0 6px;font-size:26px;letter-spacing:.2px}
+  header h1 b{color:var(--grn2)}
+  header p{margin:0;color:var(--mut);max-width:820px}
+  .wrap{max-width:1120px;margin:0 auto;padding:22px}
+  nav.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 6px}
+  nav.tabs button{background:var(--panel);color:var(--mut);border:1px solid var(--edge);border-radius:999px;padding:8px 16px;cursor:pointer;font-size:14px;transition:.15s}
+  nav.tabs button:hover{color:var(--ink);border-color:var(--grn)}
+  nav.tabs button.on{background:var(--grn);color:#0b0f0c;font-weight:700;border-color:var(--grn)}
+  section{display:none;animation:f .25s ease}
+  section.on{display:block}
+  @keyframes f{from{opacity:0;transform:translateY(4px)}to{opacity:1}}
+  h2{font-size:20px;margin:26px 0 12px;color:var(--grn2)}
+  h3{font-size:16px;margin:20px 0 8px}
+  .grid{display:grid;gap:14px}
+  @media(min-width:760px){.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}}
+  .card{background:var(--panel);border:1px solid var(--edge);border-radius:12px;padding:16px 18px}
+  .card h4{margin:0 0 8px;font-size:15px;color:var(--ink)}
+  .mut{color:var(--mut)}
+  .pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;background:#1d2a1f;color:var(--grn2);border:1px solid #2c3d2e;margin:2px 4px 2px 0}
+  .pill.w{background:#2a2410;color:var(--warn);border-color:#3d3512}
+  .pill.b{background:#0f2733;color:var(--blu);border-color:#164055}
+  code{background:#0e130f;border:1px solid var(--edge);padding:1px 6px;border-radius:5px;color:var(--grn2);font-size:13px}
+  /* stack */
+  .stack{display:flex;flex-direction:column;gap:4px;margin:8px 0}
+  .layer{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--edge);border-left:4px solid var(--edge);border-radius:8px;padding:9px 12px;cursor:pointer;transition:.12s}
+  .layer:hover{border-color:var(--grn);background:var(--panel2)}
+  .layer .n{font-weight:700;color:var(--mut);text-align:center}
+  .layer .t{font-size:14px}
+  .layer .t small{color:var(--mut)}
+  .layer .tag{font-size:11px;color:#0b0f0c;background:var(--grn2);padding:2px 8px;border-radius:999px;font-weight:700;white-space:nowrap}
+  .layer.dev{border-left-color:var(--grn)}
+  .layer.auto{border-left-color:#39503d}
+  .det{display:none;background:var(--panel2);border:1px solid var(--edge);border-radius:8px;padding:12px 14px;margin:-2px 0 4px;color:var(--mut);font-size:13.5px}
+  .det.on{display:block}
+  .det b{color:var(--ink)}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin:6px 0 2px;font-size:13px;color:var(--mut)}
+  .swatch{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:middle;margin-right:6px}
+  ul.tight{margin:6px 0;padding-left:18px}ul.tight li{margin:4px 0}
+  .fact{border-left:3px solid var(--grn);padding:2px 0 2px 12px;margin:10px 0}
+  .fact b{color:var(--grn2)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:8px 0}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--edge);vertical-align:top}
+  th{color:var(--grn2);font-size:12px;text-transform:uppercase;letter-spacing:.4px}
+  .ck{list-style:none;padding:0}.ck li{padding:7px 0;border-bottom:1px solid var(--edge)}
+  .ck input{margin-right:10px;accent-color:var(--grn)}
+  footer{color:var(--mut);font-size:12px;padding:24px 22px;border-top:1px solid var(--edge);text-align:center}
+  .quote{border-left:3px solid var(--warn);padding-left:14px;color:var(--ink);font-style:italic;margin:12px 0}
+</style>
+</head>
+<body>
+<header>
+  <h1>NVIDIA Dev Evangelist — <b>Interview Prep Hub</b></h1>
+  <p>The full Kubernetes-AI stack, the pitch, and the interview — one place. Click any layer to see the facts that matter. Everything here is cross-verified against NVIDIA docs, Kubernetes KEPs, and framework sources as of mid-2026. <span class="mut">Version numbers move fast — verify before quoting live.</span></p>
+</header>
+
+<div class="wrap">
+<nav class="tabs">
+  <button class="on" data-t="stack">The Stack</button>
+  <button data-t="facts">Killer Facts</button>
+  <button data-t="pitch">The Pitch</button>
+  <button data-t="obj">Objections</button>
+  <button data-t="plan">8-Week Plan</button>
+  <button data-t="check">Readiness</button>
+</nav>
+
+<!-- ================= STACK ================= -->
+<section class="on" id="stack">
+  <h2>The 16-layer stack — what you write vs. what's automatic</h2>
+  <div class="legend">
+    <span><span class="swatch" style="background:var(--grn)"></span>Developer writes this</span>
+    <span><span class="swatch" style="background:#39503d"></span>Automatic — installed once by platform/admin</span>
+    <span class="mut">· click a layer for the interview facts</span>
+  </div>
+  <div class="stack" id="stackList"></div>
+</section>
+
+<!-- ================= FACTS ================= -->
+<section id="facts">
+  <h2>Killer facts — the numbers & names to know cold</h2>
+  <div class="grid g2">
+    <div class="card"><h4>KAI Scheduler</h4><p class="mut">Open-sourced Run:ai scheduler. <b class="mut">Apache 2.0</b>, <code>github.com/NVIDIA/KAI-Scheduler</code>. Launched <b class="mut">KubeCon EU, Apr 1 2025</b>. Run:ai acquired ~$700M, closed Dec 30 2024. Runs <b class="mut">alongside</b> kube-scheduler.</p><span class="pill">gang scheduling</span><span class="pill">DRF fair-share</span><span class="pill">fractional GPU</span></div>
+    <div class="card"><h4>Dynamic Resource Allocation</h4><p class="mut">Replaced the device-plugin <b class="mut">integer count</b> model. alpha v1.26 → beta v1.32 → <b class="mut">core GA v1.34</b> (<code>resource.k8s.io/v1</code>). Four objects: ResourceClaim, ResourceClaimTemplate, DeviceClass, ResourceSlice.</p><span class="pill w">say "GA v1.34"</span></div>
+    <div class="card"><h4>ComputeDomains (GB200)</h4><p class="mut">GB200 NVL72 = <b class="mut">72 GPUs / 18 nodes / 9 NVLink switches</b>, ~1.8 TB/s per-GPU. <b class="mut">IMEX</b> = the driver memory-exchange service; a ComputeDomain CRD provisions <b class="mut">one isolated IMEX domain per workload</b>. Placement via <code>nvidia.com/gpu.clique</code>.</p></div>
+    <div class="card"><h4>NVIDIA Dynamo</h4><p class="mut">GTC Mar 2025, <b class="mut">1.0 GA Mar 2026</b>. Disaggregated prefill/decode. 4 parts: <b class="mut">Smart Router</b> (KV-aware), <b class="mut">Planner</b>, <b class="mut">KVBM</b> (HBM→DRAM→SSD→object), <b class="mut">NIXL</b>. Engine-agnostic. 30× on DeepSeek-R1 / GB200.</p><span class="pill b">successor to Triton</span></div>
+    <div class="card"><h4>Workload APIs</h4><p class="mut"><b class="mut">Kubeflow Trainer / TrainJob v2</b> — GA Jul 21 2025, one unified CRD on JobSet. <b class="mut">LWS</b> — leader+workers as one unit (multi-node vLLM). <b class="mut">Grove</b> — multi-component disaggregated inference, open-sourced Nov 10 2025.</p></div>
+    <div class="card"><h4>PyTorch parallelism</h4><p class="mut"><b class="mut">DDP</b> (fits 1 GPU) → <b class="mut">FSDP</b> (ZeRO-3) → <b class="mut">FSDP2</b> (<code>fully_shard</code>, DTensor, composes w/ TP) → <b class="mut">Megatron-Core</b> TP×PP×CP×EP×DP (5D) → <b class="mut">NeMo 2.0</b>.</p></div>
+    <div class="card"><h4>NCCL</h4><p class="mut">Collectives (AllReduce…). Ring vs Tree vs NVLS. Transports auto-picked: NVLink intra-node → IB/RoCE + <b class="mut">GPUDirect RDMA</b> inter-node. <b class="mut">SHARP</b> = in-network reduction (2.27, ≤6 SMs). <code>nvidia_peermem</code> enables GDR.</p></div>
+    <div class="card"><h4>NGC container</h4><p class="mut">Tag <code>YY.MM-pyN</code> = calendar build (e.g. <code>26.04-py3</code> = Apr 2026). Monthly ABI-matched stack. <b class="mut">libcuda</b> (driver) vs <b class="mut">libcudart</b> (toolkit/container). CUDA 13.x needs driver ≥580.</p></div>
+    <div class="card"><h4>GPU sharing — 3 ways</h4><p class="mut"><b class="mut">MIG</b> = HW partition, hard mem+fault isolation. <b class="mut">Time-slicing</b> = SW round-robin, <b class="mut">no</b> isolation. <b class="mut">MPS</b> = concurrent contexts, weak isolation. KAI fractional on top (no mem isolation by default → +MIG/HAMi).</p></div>
+  </div>
+</section>
+
+<!-- ================= PITCH ================= -->
+<section id="pitch">
+  <h2>The abstraction pitch — your "teach us something" talk</h2>
+  <div class="quote">"Training frontier models used to need a team of distributed-systems PhDs. Today a developer writes <code>train.py</code>, a <code>Dockerfile</code>, and ~30 lines of YAML — everything underneath is automatic. That line, between intent and mechanism, is the product."</div>
+  <div class="grid g2">
+    <div class="card"><h4>1 · "Here's all you write" (L15,10,9)</h4><p class="mut">Three code blocks on one slide: a 20-line <code>train.py</code>, a 4-line Dockerfile, a ~30-line TrainJob. "Nothing below this slide is written by the ML engineer."</p></div>
+    <div class="card"><h4>2 · The operator makes distributed "just work" (L8)</h4><p class="mut">Headless Service → stable pod DNS. Operator injects <code>MASTER_ADDR</code>/<code>RANK</code>/<code>WORLD_SIZE</code>. torchrun reads them, spawns one proc/GPU. Dev wrote none of it.</p></div>
+    <div class="card"><h4>3 · The scheduler wins the GPU dollars (L7–5)</h4><p class="mut">Gang scheduling (draw the deadlock!) + fractional sharing + topology placement + DRA ComputeDomains. "A cluster at 30% is a cluster you're 3× overpaying for."</p></div>
+    <div class="card"><h4>4 · The node just becomes a GPU node (L4–0)</h4><p class="mut">One Helm chart (GPU Operator) → driver, toolkit, DCGM, MIG. CDI injects <code>/dev/nvidia*</code>. "You never SSH into a node."</p></div>
+  </div>
+  <h3>Three whiteboard set-pieces (draw from memory)</h3>
+  <ul class="tight mut">
+    <li><b>Partial-gang deadlock:</b> Job A grabs 6/8 GPUs & waits, Job B grabs 2 & waits → deadlock. Gang scheduling = all-or-nothing → forward progress.</li>
+    <li><b>Disaggregated serving:</b> prefill (compute-bound, low TP) vs decode (bandwidth-bound, high TP) → split into independent pools → 30× throughput.</li>
+    <li><b>Compatibility line:</b> libcuda (driver, bottom) vs libcudart (container, top); forward-compat lets new CUDA run on old driver.</li>
+  </ul>
+  <h3>Always translate tech → money</h3>
+  <p class="mut">Gang scheduling → no deadlocked GPU-hours. Fractional+fair-share → 30%→70% utilization = 2× fewer GPUs. Topology → faster time-to-model. Abstraction → fewer specialist hires. Open-source (KAI/Dynamo/DRA) → no lock-in. AI Enterprise → supported path to prod.</p>
+</section>
+
+<!-- ================= OBJECTIONS ================= -->
+<section id="obj">
+  <h2>Pre-sales objection handling</h2>
+  <table>
+    <tr><th>Objection</th><th>Crisp answer</th></tr>
+    <tr><td>"Our GPUs sit at 25%."</td><td>KAI fair-share queues + fractional GPU + bin-packing + preemption; separate training/inference pools; MIG for guaranteed inference QoS.</td></tr>
+    <tr><td>"How do we share GPUs safely?"</td><td>MIG (HW, hard isolation) vs time-slicing (no isolation) vs MPS (weak); + KAI fractional & quotas. Know the trade-offs.</td></tr>
+    <tr><td>"What's the ROI?"</td><td>AI-factory math: tokens/sec/$ & utilization; software sub vs hardware TCO; DGX Cloud for burst.</td></tr>
+    <tr><td>"1000-GPU jobs fail — then what?"</td><td>Gang scheduling avoids partial placement; NeMo checkpoint/restart; torchrun elasticity; DCGM health-evict; auto-requeue.</td></tr>
+    <tr><td>"Observability?"</td><td>DCGM + DCGM-Exporter → Prometheus/Grafana; per-workload GPU metrics; Run:ai dashboards; NVLink telemetry.</td></tr>
+    <tr><td>"Vendor lock-in?"</td><td>KAI (Apache 2.0), Dynamo (open), DRA/CDI/LWS upstream, Nemotron open models. AI Enterprise is the <i>supported</i> option, not the only one.</td></tr>
+    <tr><td>"Networking bottleneck at scale?"</td><td>Spectrum-X / Quantum IB + GPUDirect RDMA + rail-optimized topology + SHARP; scheduler topology-awareness cuts cross-rack traffic.</td></tr>
+  </table>
+  <h3>Correct these misconceptions cleanly</h3>
+  <ul class="tight mut">
+    <li>KAI runs <b>alongside</b> kube-scheduler, doesn't replace it.</li>
+    <li>DRA core is <b>GA (v1.34)</b>, not experimental.</li>
+    <li>Time-slicing does <b>not</b> isolate memory — only MIG does.</li>
+    <li>ComputeDomains ≠ NVLink; they isolate per-workload IMEX domains on top of it.</li>
+    <li>GPUDirect RDMA (NIC↔GPU, inter-node) ≠ NVLink (GPU↔GPU, intra-rack).</li>
+    <li>Don't run device plugin + DRA GPU driver on the same GPUs.</li>
+  </ul>
+</section>
+
+<!-- ================= PLAN ================= -->
+<section id="plan">
+  <h2>8-week plan (bottom-up to understand, top-down to pitch)</h2>
+  <div class="grid g2">
+    <div class="card"><h4>Wk 1 · Iron, drivers, cluster floor</h4><p class="mut">L0–4. GPU Operator, CDI, driver, GB200 basics. → Lab 1.</p></div>
+    <div class="card"><h4>Wk 2 · DRA & topology</h4><p class="mut">L5–6. DRA versions/objects, ComputeDomains/IMEX, Topograph labels. → Lab 5.</p></div>
+    <div class="card"><h4>Wk 3 · KAI Scheduler</h4><p class="mut">L7. Gang scheduling, queues, fair-share, fractional GPU, the deadlock story. → Lab 4.</p></div>
+    <div class="card"><h4>Wk 4 · Workload APIs</h4><p class="mut">L8–9. TrainJob v2, LWS, Grove; env-var injection + headless Service. → Lab 3.</p></div>
+    <div class="card"><h4>Wk 5 · Container, CUDA, NCCL</h4><p class="mut">L10–12. NGC tags, libcuda vs libcudart, cuBLAS/cuDNN/TE, NCCL deep. → Lab 2.</p></div>
+    <div class="card"><h4>Wk 6 · PyTorch & launchers</h4><p class="mut">L13–15. torchrun/c10d, DDP/FSDP2, Megatron 5D, NeMo. → Lab 6 warm-up.</p></div>
+    <div class="card"><h4>Wk 7 · Inference at scale</h4><p class="mut">vLLM, Dynamo (4 components), NIM/Triton/TRT-LLM, LWS/Grove. → Labs 6–7.</p></div>
+    <div class="card"><h4>Wk 8 · Pitch & mocks</h4><p class="mut">Product landscape, the abstraction talk, objections, 8 STAR stories, 2 mock interviews, record the demo.</p></div>
+  </div>
+  <h3>Milestones</h3>
+  <ul class="tight mut">
+    <li><b>Wk1:</b> trace silicon → <code>nvidia-smi</code> in a pod, naming each automatic step.</li>
+    <li><b>Wk3:</b> whiteboard the gang deadlock + KAI/DRA/Topograph placement from memory.</li>
+    <li><b>Wk4:</b> hand-write a TrainJob v2 and an LWS manifest.</li>
+    <li><b>Wk7:</b> explain disaggregated serving + Dynamo's 4 components, no notes.</li>
+    <li><b>Wk8:</b> deliver a recorded 25-min talk + live demo; field all 7 objections cold.</li>
+  </ul>
+</section>
+
+<!-- ================= CHECK ================= -->
+<section id="check">
+  <h2>Readiness checklist</h2>
+  <p class="mut">Tick these off — progress is saved in this page for your session.</p>
+  <ul class="ck" id="ckList"></ul>
+</section>
+
+</div>
+<footer>Built for Tiziano's NVIDIA Developer Evangelist prep · facts verified mid-2026 · verify fast-moving version numbers before quoting live.</footer>
+
+<script>
+const LAYERS=[
+ {n:15,t:"User application code",s:"train.py / serve.py",dev:1,d:"<b>You write this.</b> The model + training/serving loop. Key call: <code>torch.distributed.init_process_group()</code>. Reads MASTER_ADDR/PORT/RANK/WORLD_SIZE from env; uses LOCAL_RANK to pick the GPU."},
+ {n:14,t:"Distributed launcher",s:"torchrun / mpirun",dev:0,d:"<b>Automatic wiring.</b> torchrun (superset of the deprecated torch.distributed.launch) adds elasticity (--nnodes=1:4), fault tolerance (--max-restarts) and c10d rendezvous (TCPStore on rank 0). Injects RANK/LOCAL_RANK/WORLD_SIZE/MASTER_ADDR. mpirun = HPC alternative (OMPI_COMM_WORLD_*)."},
+ {n:13,t:"PyTorch / framework",s:"DDP · FSDP2 · Megatron-LM · vLLM",dev:0,d:"<b>The parallelism engine.</b> DDP (fits 1 GPU, all-reduce grads) → FSDP (ZeRO-3 shard) → FSDP2 (fully_shard, DTensor, composes w/ TP) → Megatron-Core (TP×PP×CP×EP×DP, 5D) → NeMo 2.0. Serving: vLLM (PagedAttention, continuous batching)."},
+ {n:12,t:"CUDA libraries",s:"cuBLAS · cuDNN · NCCL",dev:0,d:"<b>Called by the framework.</b> cuBLAS/cuBLASLt = GEMM (+FP8 fusion). cuDNN = attention/Flash-Attn. NCCL = collectives over NVLink/IB with GPUDirect RDMA; Ring/Tree/NVLS; SHARP in-network reduction."},
+ {n:11,t:"CUDA runtime",s:"libcudart.so (+ libcuda.so)",dev:0,d:"<b>libcudart</b> = Runtime API (cudaMalloc), ships in the toolkit/container, linked into the framework. <b>libcuda</b> = Driver API (cuLaunchKernel), ships with the driver. CUDA 13.x needs driver ≥580; cuda-compat enables forward-compat."},
+ {n:10,t:"Container image",s:"Dockerfile · FROM nvcr.io/nvidia/pytorch",dev:1,d:"<b>You write this.</b> Tag YY.MM-pyN = calendar build (26.04 = Apr 2026), a monthly ABI-matched stack (PyTorch a0 build + CUDA + cuDNN + NCCL + TransformerEngine). Beats pip: pre-validated + NVIDIA extras."},
+ {n:9,t:"Workload-API CRD",s:"TrainJob v2 / LWS / Grove YAML",dev:1,d:"<b>You write this (~30 lines).</b> numNodes, image, command, GPUs. TrainJob v2 (training, GA Jul 2025, one unified CRD on JobSet), LWS (multi-node inference, leader+workers), Grove (disaggregated multi-component inference, Nov 2025)."},
+ {n:8,t:"Workload-API operator",s:"kubeflow/trainer · LWS controller",dev:0,d:"<b>Automatic (installed once).</b> Renders the CRD, creates a headless Service for stable pod DNS, injects MASTER_ADDR = rank-0 DNS + per-pod RANK/WORLD_SIZE. This is what makes torchrun rendezvous 'just work'."},
+ {n:7,t:"Scheduler",s:"KAI scheduler (Run:ai)",dev:0,d:"<b>Automatic (installed once).</b> Gangs, topology-aware placement, hierarchical queues, DRF fair-share, Allocate→Consolidate→Reclaim→Preempt, fractional GPU. Open-sourced Apr 2025, Apache 2.0, runs alongside kube-scheduler. Grove emits PodGang → KAI schedules it."},
+ {n:6,t:"Topology source",s:"Topograph publishes node labels",dev:0,d:"<b>Admin-installed.</b> Discovers network topology, publishes network.topology.nvidia.com/{accelerator,leaf,spine,core} labels (from cloud APIs or IB fabric). Schedulers consume them for rail-optimized, same-leaf-first placement."},
+ {n:5,t:"DRA driver",s:"nvidia-dra-driver-gpu · ResourceClaims · ComputeDomains",dev:0,d:"<b>Admin-installed.</b> DRA (GA v1.34) replaces the device-plugin integer count with attribute-based ResourceClaims the stock scheduler allocates. NVIDIA's driver adds ComputeDomains: per-workload isolated IMEX NVLink memory domains for GB200 MNNVL."},
+ {n:4,t:"Kubelet + containerd",s:"pulls image · injects /dev/nvidia* via CDI",dev:0,d:"<b>Kernel-level automatic.</b> Pulls the image, starts the container. CDI (Container Device Interface) is the runtime-agnostic spec (/var/run/cdi/nvidia.yaml) that injects /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm + driver libs — no --device flags."},
+ {n:3,t:"Pod-to-pod networking",s:"CoreDNS · headless Services · RDMA",dev:0,d:"<b>Cluster admin-configured.</b> Headless Services (clusterIP:None) give stable pod DNS. Inter-node NCCL rides RDMA (RoCE/InfiniBand) NICs; Network Operator manages MLNX_OFED, SR-IOV/RDMA device plugins, Multus."},
+ {n:2,t:"NVIDIA GPU driver",s:"GPU Operator · kernel modules · fabric manager",dev:0,d:"<b>Admin-installed via GPU Operator.</b> One Helm chart DaemonSets driver, container toolkit, device plugin, NFD/GFD, DCGM telemetry, MIG Manager, Fabric Manager (NVSwitch). Driver branches: 580.x (CUDA 13), 575.x."},
+ {n:1,t:"Kubernetes control plane",s:"api-server · etcd · controller-manager",dev:0,d:"<b>Cluster admin.</b> Standard K8s control plane. The scheduler plugs in here; DRA APIs live in the api-server (resource.k8s.io)."},
+ {n:0,t:"Hardware (physical)",s:"H100 · GB200 · NVLink · IB · Ethernet",dev:0,d:"<b>Physical.</b> GB200 NVL72 = 72 Blackwell GPUs / 36 Grace CPUs / 18 nodes / 9 NVLink switches, ~1.8 TB/s per-GPU NVLink, >130 TB/s aggregate — acts like one giant GPU (Multi-Node NVLink)."},
+];
+const sl=document.getElementById('stackList');
+LAYERS.forEach(L=>{
+  const row=document.createElement('div');
+  row.className='layer '+(L.dev?'dev':'auto');
+  row.innerHTML=`<div class="n">${L.n}</div><div class="t">${L.t} <small>· ${L.s}</small></div>`+(L.dev?`<div class="tag">YOU WRITE</div>`:`<div class="pill" style="margin:0">auto</div>`);
+  const det=document.createElement('div');det.className='det';det.innerHTML=L.d;
+  row.onclick=()=>det.classList.toggle('on');
+  sl.appendChild(row);sl.appendChild(det);
+});
+document.querySelectorAll('nav.tabs button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('section').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+const CK=["Can you draw the partial-gang deadlock from memory?","Name the 4 DRA objects (ResourceClaim, ...Template, DeviceClass, ResourceSlice)?","Name the 4 Dynamo components (Smart Router, Planner, KVBM, NIXL)?","State the DRA GA version (v1.34) and KAI open-source date/license (Apr 2025, Apache 2.0)?","Deliver the 3-min, 10-min and 25-min abstraction pitch?","Public GitHub repo + a recorded demo, linkable?","8 STAR stories, each with a number in the Result?","Field all 7 pre-sales objections cold?","Explain disaggregated serving (prefill vs decode) without notes?","Explain libcuda vs libcudart + the compatibility floor?","Explain MIG vs time-slicing vs MPS trade-offs?","Explain what the operator injects to make torchrun rendezvous work?"];
+const ck=document.getElementById('ckList');
+const saved={};
+CK.forEach((q,i)=>{
+  const li=document.createElement('li');
+  li.innerHTML=`<label><input type="checkbox" data-i="${i}">${q}</label>`;
+  ck.appendChild(li);
+});
+ck.addEventListener('change',e=>{ saved[e.target.dataset.i]=e.target.checked; });
+</script>
+</body>
+</html>
