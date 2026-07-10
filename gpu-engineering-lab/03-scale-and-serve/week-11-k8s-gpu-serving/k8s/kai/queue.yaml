@@ -1,0 +1,62 @@
+# KAI Scheduler queue hierarchy — COMPLETE (configuration, not learning payload).
+# KAI requires leaf queues to have a parent; quotas here are deliberately
+# simple: serving gets priority via over-quota weight, training scavenges.
+# Docs: https://github.com/NVIDIA/KAI-Scheduler (see docs/queues)
+apiVersion: scheduling.run.ai/v2
+kind: Queue
+metadata:
+  name: default
+spec:
+  resources:
+    gpu:
+      quota: -1            # -1 = no hard quota at the root
+      limit: -1
+      overQuotaWeight: 1
+    cpu:
+      quota: -1
+      limit: -1
+      overQuotaWeight: 1
+    memory:
+      quota: -1
+      limit: -1
+      overQuotaWeight: 1
+---
+apiVersion: scheduling.run.ai/v2
+kind: Queue
+metadata:
+  name: serve
+spec:
+  parentQueue: default
+  resources:
+    gpu:
+      quota: 1             # the serving slot (one time-sliced replica)
+      limit: -1
+      overQuotaWeight: 2   # wins contested capacity over `train`
+    cpu:
+      quota: -1
+      limit: -1
+      overQuotaWeight: 2
+    memory:
+      quota: -1
+      limit: -1
+      overQuotaWeight: 2
+---
+apiVersion: scheduling.run.ai/v2
+kind: Queue
+metadata:
+  name: train
+spec:
+  parentQueue: default
+  resources:
+    gpu:
+      quota: 1             # the training slot
+      limit: -1
+      overQuotaWeight: 1
+    cpu:
+      quota: -1
+      limit: -1
+      overQuotaWeight: 1
+    memory:
+      quota: -1
+      limit: -1
+      overQuotaWeight: 1

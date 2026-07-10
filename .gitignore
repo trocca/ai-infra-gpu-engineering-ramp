@@ -1,0 +1,33 @@
+# Archives — k8s-ai-stack-demo/ is already tracked unzipped
+*.zip
+
+# Local backups of nested git metadata before folding folders into this repo
+.local-git-backups/
+
+# Rust
+target/
+Cargo.lock.bak
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# ML artifacts — keep heavyweight weights/checkpoints out of git
+*.pt
+*.pth
+*.safetensors
+*.gguf
+checkpoints/
+
+# Jekyll / GitHub Pages local build
+_site/
+.jekyll-cache/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp

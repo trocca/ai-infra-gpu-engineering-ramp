@@ -1,0 +1,33 @@
+# GPU time-slicing config for the device plugin (via GPU Operator).
+# COMPLETE except the replica-count decision.
+#
+# Apply, then point the ClusterPolicy at it (script section 3 does this):
+#   kubectl apply -f k8s/timeslicing-config.yaml
+#   kubectl patch clusterpolicies.nvidia.com/cluster-policy -n gpu-operator \
+#     --type merge -p '{"spec":{"devicePlugin":{"config":{"name":"time-slicing-config","default":"l4-shared"}}}}'
+#
+# Verify: kubectl describe node | grep nvidia.com/gpu   -> capacity jumps to <replicas>.
+#
+# HONESTY NOTE for the writeup: time-slicing gives NO memory or fault
+# isolation — both pods see the whole 24 GB and can OOM each other. You
+# will measure the latency interference on Day 4. Contrast with MIG
+# (hardware isolation, but L4 has no MIG) and MPS in your writeup, and
+# cross-link your demo repo's MIG/time-slicing/MPS comparison.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: time-slicing-config
+  namespace: gpu-operator
+data:
+  l4-shared: |-
+    version: v1
+    flags:
+      migStrategy: none
+    sharing:
+      timeSlicing:
+        resources:
+          - name: nvidia.com/gpu
+            # TODO(you): pick the replica count. 2 = one serve + one train
+            # slot. More replicas = more oversubscription = worse TTFT
+            # tails. Justify your choice with the Day-4 measurement.
+            replicas: 2

@@ -1,0 +1,20 @@
+# rusty-kernels packaging — COMPLETE. Build: `maturin develop --release`.
+
+[build-system]
+requires = ["maturin>=1.7,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "rusty-kernels"
+version = "0.1.0"
+description = "Fused softmax + LayerNorm GPU kernels for PyTorch — Rust host, Rust kernels (learning project)"
+requires-python = ">=3.10"
+dependencies = ["torch>=2.7"]
+
+[tool.maturin]
+# Mixed Rust/Python project: the Python package lives in ./rusty_kernels,
+# the extension crate in ./ext, compiled in as rusty_kernels._rusty.
+manifest-path = "ext/Cargo.toml"
+module-name = "rusty_kernels._rusty"
+python-source = "."
+features = ["pyo3/extension-module"]

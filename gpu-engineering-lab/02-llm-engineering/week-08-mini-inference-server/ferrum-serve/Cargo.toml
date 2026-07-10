@@ -1,0 +1,46 @@
+# ferrum-serve — COMPLETE manifest, do not edit (except to add stretch-goal deps).
+#
+# Version policy (setup/rust-cuda-toolchain.md): minor versions pinned here,
+# exact versions locked by Cargo.lock — COMMIT Cargo.lock, it is part of the
+# repo's reproducibility contract.
+#
+# Features: `cargo test` runs CPU-only (fast red→green on the pure-logic
+# modules). Build the real server with `--features cuda`.
+
+[package]
+name = "ferrum-serve"
+version = "0.1.0"
+edition = "2021"
+description = "Mini LLM inference server: paged KV cache + continuous batching, in Rust"
+license = "MIT"
+
+[features]
+default = []
+cuda = ["candle-core/cuda", "candle-nn/cuda", "candle-transformers/cuda"]
+
+[dependencies]
+# --- inference ---------------------------------------------------------------
+candle-core = "0.9"
+candle-nn = "0.9"
+candle-transformers = "0.9"          # ships qwen2 + llama implementations
+hf-hub = { version = "0.4", features = ["tokio"] }   # safetensors download
+tokenizers = "0.21"
+
+# --- async server ------------------------------------------------------------
+tokio = { version = "1.45", features = ["full"] }
+tokio-stream = "0.1"                 # ReceiverStream: mpsc -> SSE stream
+axum = "0.8"
+futures = "0.3"
+
+# --- glue --------------------------------------------------------------------
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+anyhow = "1.0"
+clap = { version = "4.5", features = ["derive"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+rand = "0.9"
+
+[profile.release]
+debug = true        # keep symbols: nsys/ncu profile Rust binaries just fine
+                    # (strip a COPY of the binary for the size metric, not this)

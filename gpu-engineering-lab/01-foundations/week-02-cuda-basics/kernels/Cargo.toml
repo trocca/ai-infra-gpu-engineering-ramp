@@ -1,0 +1,14 @@
+# week-02 GPU kernels crate — compiled to PTX by cuda_builder (see
+# exercises/build.rs). Also compiles for the host as a plain rlib, which is
+# how `cargo check`/clippy stay useful without the NVVM backend.
+
+[package]
+name = "kernels"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+cuda_std = { workspace = true }

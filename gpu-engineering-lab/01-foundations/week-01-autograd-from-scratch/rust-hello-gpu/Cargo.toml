@@ -1,0 +1,18 @@
+# rust-hello-gpu — Week 01 Day 5. COMPLETE — do not edit.
+#
+# cudarc loads libcuda.so at runtime (no CUDA needed at *build* time). The
+# feature flag selects the CUDA API version the bindings target — match your
+# toolkit (see ../../setup/rust-cuda-toolchain.md).
+
+[package]
+name = "rust-hello-gpu"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Pinned per repo contract. If this exact version has vanished, bump the pin
+# deliberately and note it in RESULTS.md.
+cudarc = { version = "=0.16.4", features = ["cuda-12080"] }
+
+[profile.release]
+debug = true  # keep symbols so nsys/ncu show readable names (repo convention)

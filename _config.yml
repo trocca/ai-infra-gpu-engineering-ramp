@@ -1,0 +1,26 @@
+title: "NVIDIA Ramp-Up — a 12-week curriculum"
+description: "Certifications + GPU engineering projects + a Kubernetes-AI demo: a self-built, reusable path onto the NVIDIA Kubernetes-AI stack."
+theme: jekyll-theme-cayman
+
+# Rewrites links between .md files to their rendered .html pages
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+  collections: true
+
+# Render every markdown file, even without front matter
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+include:
+  - MASTER-PLAN.md
+
+exclude:
+  - k8s-ai-stack-demo.zip
+  - claude_code_prompt_cert_plan.md
+  - Gemfile
+  - Gemfile.lock

@@ -1,0 +1,80 @@
+# ferrum-serve serving Deployment — structure COMPLETE, the GPU-specific
+# sections are TODOs because they ARE the learning payload this week.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ferrum-serve
+  namespace: serving
+  labels:
+    app: ferrum-serve
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ferrum-serve
+  strategy:
+    type: Recreate   # single GPU: RollingUpdate would deadlock waiting for a 2nd GPU. Explain this in your writeup.
+  template:
+    metadata:
+      labels:
+        app: ferrum-serve
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8000"
+        prometheus.io/path: "/metrics"
+    spec:
+      # ------------------------------------------------------------------
+      # TODO(you) 1: runtimeClassName.
+      # The GPU Operator (containerd/k3s) creates a RuntimeClass that
+      # routes this pod through nvidia-container-runtime. Without it (in
+      # non-default-runtime setups) the container sees no GPU. Find the
+      # class name on your cluster:  kubectl get runtimeclass
+      # ------------------------------------------------------------------
+      # runtimeClassName: <TODO>
+
+      containers:
+        - name: server
+          image: ferrum-serve:dev   # TODO(you): your built/pushed tag; for k3s use `docker save | k3s ctr images import` or a registry
+          ports:
+            - containerPort: 8000
+              name: http
+          env:
+            - name: MODEL_PATH
+              value: /models   # TODO(you): match your weight-delivery decision (see Dockerfile)
+
+          # ----------------------------------------------------------------
+          # TODO(you) 2: resources.
+          # * GPU: request/limit nvidia.com/gpu. NOTE for Day 4: once
+          #   time-slicing is enabled the resource stays nvidia.com/gpu
+          #   but the node advertises N replicas — document how that
+          #   changes (or doesn't) this stanza.
+          # * CPU/memory: measure with `kubectl top pod` after a load
+          #   test, then set requests ~= observed and a sane limit.
+          #   Rule you should be able to defend: GPU pods usually set
+          #   memory limit == request (no overcommit surprise OOMKills
+          #   while holding a GPU).
+          # ----------------------------------------------------------------
+          resources: {}  # TODO(you): replace
+
+          # ----------------------------------------------------------------
+          # TODO(you) 3: probes.
+          # * startupProbe: model load takes minutes — give it
+          #   failureThreshold * periodSeconds > worst-case load time,
+          #   or the pod crash-loops before ever becoming ready.
+          # * readinessProbe: must hit an endpoint that returns 200 only
+          #   when the model is LOADED and the engine loop is running
+          #   (week-08 /healthz should do this — verify, fix it if it is
+          #   just a static 200).
+          # * livenessProbe: cheap TCP or HTTP; deliberately laxer than
+          #   readiness. Killing a pod that is merely slow re-loads the
+          #   model for minutes — explain when liveness restarts help vs hurt.
+          # ----------------------------------------------------------------
+          # startupProbe: {}   # TODO(you)
+          # readinessProbe: {} # TODO(you)
+          # livenessProbe: {}  # TODO(you)
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+
+      terminationGracePeriodSeconds: 60  # drain in-flight requests; requires the server to handle SIGTERM (see Dockerfile tini note)

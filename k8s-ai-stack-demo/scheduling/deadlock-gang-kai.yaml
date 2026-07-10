@@ -1,0 +1,77 @@
+# SCENE 5b — the same two jobs, gang-scheduled by KAI. No deadlock.
+#
+# With gang scheduling the PodGroup is atomic: KAI places ALL 8 pods of a
+# job or NONE. Job A runs to completion while Job B waits cleanly Pending,
+# then runs. Guaranteed forward progress; zero deadlocked GPU-hours.
+#
+# NOTE ▸ KAI moves fast. Before a live demo, verify against the current
+# docs at github.com/NVIDIA/KAI-Scheduler:
+#   - the PodGroup apiVersion (scheduling.run.ai/v2alpha2 at time of writing)
+#   - the label that binds a pod to its PodGroup
+#   - queue setup (a default queue may need to exist)
+# KAI's "podgrouper" also AUTO-creates PodGroups for known workload kinds
+# (Kubeflow jobs, RayJobs) — shown here explicitly for teaching value.
+---
+apiVersion: scheduling.run.ai/v2alpha2
+kind: PodGroup
+metadata:
+  name: gang-a
+spec:
+  minMember: 8            # the whole gang, or nothing
+  queue: default
+---
+apiVersion: scheduling.run.ai/v2alpha2
+kind: PodGroup
+metadata:
+  name: gang-b
+spec:
+  minMember: 8
+  queue: default
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-a-gang
+  labels: { demo: gang }
+spec:
+  completions: 8
+  parallelism: 8
+  backoffLimit: 0
+  template:
+    metadata:
+      labels: { demo: gang, job: a }
+      annotations:
+        pod-group-name: gang-a          # bind to the PodGroup (verify key)
+    spec:
+      schedulerName: kai-scheduler      # opt IN — KAI runs alongside kube-scheduler
+      restartPolicy: Never
+      containers:
+        - name: worker
+          image: nvcr.io/nvidia/cuda:13.3.0-base-ubuntu24.04
+          command: ["bash", "-c", "echo gang assembled, working...; sleep 120"]
+          resources:
+            limits: { nvidia.com/gpu: 1 }
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-b-gang
+  labels: { demo: gang }
+spec:
+  completions: 8
+  parallelism: 8
+  backoffLimit: 0
+  template:
+    metadata:
+      labels: { demo: gang, job: b }
+      annotations:
+        pod-group-name: gang-b
+    spec:
+      schedulerName: kai-scheduler
+      restartPolicy: Never
+      containers:
+        - name: worker
+          image: nvcr.io/nvidia/cuda:13.3.0-base-ubuntu24.04
+          command: ["bash", "-c", "echo gang assembled, working...; sleep 120"]
+          resources:
+            limits: { nvidia.com/gpu: 1 }

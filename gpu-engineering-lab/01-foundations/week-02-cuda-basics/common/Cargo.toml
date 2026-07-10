@@ -1,0 +1,10 @@
+# gpu-bench — the repo's shared benchmark harness. COMPLETE — do not edit.
+# Weeks 3 and 4 depend on this crate by path; keep it dependency-light.
+
+[package]
+name = "gpu-bench"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+cudarc = { workspace = true }

@@ -1,0 +1,20 @@
+# week-03 runner — COMPLETE host: correctness vs cuBLAS, bench sweep, JSON.
+
+[package]
+name = "sgemm-runner"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "sgemm_ladder"
+path = "src/main.rs"
+
+[dependencies]
+cudarc = { workspace = true }
+# Week-02's harness: one benchmark methodology repo-wide.
+gpu-bench = { path = "../../week-02-cuda-basics/common" }
+# Host-side rlib view of the kernel crate (tile constants).
+sgemm-kernels = { path = "../kernels" }
+
+[build-dependencies]
+cuda_builder = { workspace = true }

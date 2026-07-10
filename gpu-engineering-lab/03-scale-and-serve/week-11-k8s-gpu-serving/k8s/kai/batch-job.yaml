@@ -1,0 +1,51 @@
+# Batch LoRA fine-tune Job, scheduled by KAI alongside the serving pod.
+# Structure COMPLETE — the scheduler wiring is TODO because it IS the
+# Day-4 learning payload. Cross-reference: your KAI demo repo has worked
+# examples of exactly these fields.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: lora-finetune
+  namespace: training
+spec:
+  backoffLimit: 1
+  template:
+    metadata:
+      labels:
+        app: lora-finetune
+        # ------------------------------------------------------------------
+        # TODO(you) 1: queue assignment. KAI selects the queue from a pod
+        # label — find the current label key in the KAI docs/your demo repo
+        # (kai.scheduler/queue: train) and set it to the `train` queue.
+        # ------------------------------------------------------------------
+        # kai.scheduler/queue: <TODO>
+      # --------------------------------------------------------------------
+      # TODO(you) 2: gang scheduling. For this single-pod Job gang size is
+      # 1 — trivially satisfied — but wire it anyway and write in the
+      # README what a partial-allocation deadlock looks like for a
+      # multi-pod torchrun job (rank 0 scheduled, rank 1 pending forever,
+      # GPU held idle). KAI groups pods into a PodGroup: check whether
+      # your installed version auto-creates PodGroups per pod-grouper
+      # config or expects a pod-group annotation, and configure whichever
+      # applies.
+      # --------------------------------------------------------------------
+      # annotations:
+      #   pod-group-name: <TODO if required by your KAI version>
+    spec:
+      # ----------------------------------------------------------------
+      # TODO(you) 3: hand this pod to KAI instead of the default scheduler.
+      # ----------------------------------------------------------------
+      # schedulerName: kai-scheduler
+      restartPolicy: Never
+      # runtimeClassName: <same TODO as deployment.yaml>
+      containers:
+        - name: trainer
+          # NOTE: the ferrum-serve image is a Rust binary — it has NO python/torch.
+          # Build (or pull) a separate PyTorch trainer image, e.g. FROM an NGC
+          # pytorch base + your week-06 code. Two images, two jobs — that's realistic.
+          image: lora-trainer:dev   # TODO(you): build from week-06 (nvcr.io/nvidia/pytorch base is fine)
+          command: ["python3", "-m", "src.train_lora"]   # TODO(you): point at your week-06 LoRA entrypoint + small config
+          resources:
+            # TODO(you) 4: one time-sliced GPU replica + measured CPU/mem.
+            limits:
+              nvidia.com/gpu: 1

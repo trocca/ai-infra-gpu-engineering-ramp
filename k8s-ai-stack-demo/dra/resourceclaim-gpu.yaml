@@ -1,0 +1,44 @@
+# Layer 5 — DRA: the modern way a pod asks for a GPU.
+#
+# Contrast with the legacy device plugin: `nvidia.com/gpu: 1` is an opaque
+# INTEGER — it can't say which GPU, how much memory, or any sharing policy.
+# A ResourceClaim is an attribute-based request the STOCK kube-scheduler
+# allocates from driver-published ResourceSlices (structured parameters,
+# KEP-4381). Core DRA is GA since Kubernetes v1.34 (resource.k8s.io/v1).
+#
+# Requires: nvidia-dra-driver-gpu installed (and the legacy device plugin
+# DISABLED for these GPUs — they conflict).
+---
+apiVersion: resource.k8s.io/v1
+kind: ResourceClaimTemplate
+metadata:
+  name: single-gpu
+spec:
+  spec:
+    devices:
+      requests:
+        - name: gpu
+          exactly:
+            deviceClassName: gpu.nvidia.com
+            # This is what the integer count could never express:
+            # CEL selectors over device attributes.
+            # selectors:
+            #   - cel:
+            #       expression: device.capacity['nvidia.com'].memory >= quantity('40Gi')
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dra-gpu-pod
+spec:
+  restartPolicy: Never
+  containers:
+    - name: work
+      image: nvcr.io/nvidia/cuda:13.3.0-base-ubuntu24.04
+      command: ["nvidia-smi"]
+      resources:
+        claims:
+          - name: gpu0
+  resourceClaims:
+    - name: gpu0
+      resourceClaimTemplateName: single-gpu

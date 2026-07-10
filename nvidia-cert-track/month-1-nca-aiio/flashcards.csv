@@ -1,0 +1,91 @@
+front,back
+"What is the relationship between AI, ML, and DL?","Nested subsets: AI (machines doing intelligent tasks) ⊃ ML (learning patterns from data instead of explicit programming) ⊃ DL (ML using multi-layer neural networks)."
+Supervised vs unsupervised learning,"Supervised: learns from labeled data (classification, regression). Unsupervised: finds structure in unlabeled data (clustering, dimensionality reduction)."
+What is reinforcement learning?,"An agent learns by interacting with an environment and maximizing cumulative reward through trial and error (e.g. robotics, game playing, RLHF)."
+What happens during one training iteration?,"Forward pass produces predictions → loss function measures error → backpropagation computes gradients → optimizer (e.g. Adam/SGD) updates weights."
+Epoch vs batch vs iteration,"Epoch: one full pass over the training dataset. Batch: subset of samples processed together. Iteration: one weight update (one batch)."
+Training vs inference: key performance metric,"Training: throughput (samples/tokens per second, time-to-train). Inference: latency per request, balanced against throughput/cost (often via batching)."
+Why does training need more memory than inference?,"Training holds weights + activations + gradients + optimizer states (several × model size). Inference holds only weights + working activations (+ KV cache for LLMs)."
+What is the KV cache?,"In LLM inference, stored attention keys/values for already-generated tokens so they aren't recomputed each step; it grows with context length and dominates inference memory."
+Why do GPUs beat CPUs for deep learning?,"DL is dominated by massively parallel matrix math; GPUs offer thousands of cores, huge memory bandwidth (HBM), and Tensor Cores. CPUs optimize few-core serial/branchy work."
+CUDA core vs Tensor Core,"CUDA core: general scalar/vector arithmetic unit. Tensor Core: specialized unit doing whole matrix multiply-accumulate ops per clock in reduced/mixed precision (TF32/FP16/BF16/FP8/FP4)."
+When is a CPU the right choice in an AI pipeline?,"Serial/branchy work: data preprocessing and ETL logic, orchestration/control plane, small classical ML models, general business logic."
+What is CUDA?,"NVIDIA's parallel computing platform and programming model plus toolkit (compiler, runtime, libraries) for general-purpose GPU computing."
+What is cuDNN?,"GPU-accelerated library of deep learning primitives (convolution, attention, normalization) used under the hood by PyTorch and TensorFlow."
+What is cuBLAS?,NVIDIA's GPU-accelerated BLAS library for dense linear algebra (matrix multiply etc.); frameworks call it for GEMM operations.
+What is NCCL?,"NVIDIA Collective Communications Library: optimized multi-GPU/multi-node collectives (all-reduce, all-gather, broadcast) used for gradient sync in distributed training; topology-aware (NVLink, InfiniBand)."
+What is DALI?,NVIDIA Data Loading Library: GPU-accelerated data loading and preprocessing (decode/augment) pipelines that keep GPUs fed during training.
+What is RAPIDS?,"NVIDIA's GPU-accelerated data science suite: cuDF (pandas-like dataframes), cuML (scikit-learn-like ML), running on GPUs."
+What is TensorRT?,"Inference optimizer and runtime: layer/kernel fusion, precision calibration (FP16/FP8/INT8), kernel auto-tuning — produces a fast engine for a target NVIDIA GPU."
+What is TensorRT-LLM?,"TensorRT-based open-source library specialized for LLM inference: kernel optimizations, quantization, in-flight batching, multi-GPU tensor parallelism."
+What is Triton Inference Server?,"Open-source model serving platform: hosts models from multiple frameworks behind HTTP/gRPC with dynamic batching, concurrent execution, ensembles, and Prometheus metrics."
+What is NVIDIA NIM?,"NVIDIA Inference Microservices: prebuilt containers packaging a model + optimized runtime (e.g. TensorRT-LLM) + standard API (OpenAI-compatible), deployable anywhere; part of NVIDIA AI Enterprise."
+What is NGC?,"NVIDIA GPU Cloud catalog: GPU-optimized containers, pretrained models, Helm charts, and SDKs — tested and optimized for NVIDIA platforms."
+What does NVIDIA AI Enterprise provide over free downloads?,"Enterprise support with SLAs, security patches and stable long-term branches, certification on mainstream servers/VMware/clouds, and production components like NIM."
+Stages of the AI development lifecycle,Problem definition → data collection/prep → model training → evaluation/validation → deployment optimization (quantization/TensorRT) → deployment/serving → monitoring & retraining. A loop.
+What is model drift?,Degradation of model accuracy over time as real-world data distribution shifts from training data; detected by monitoring; fixed by retraining on fresh data.
+Fine-tuning vs prompting vs RAG,Fine-tuning: further train a model on domain data. Prompting: steer via input text only. RAG: retrieve relevant documents at query time and feed them as context — no weight changes.
+What is a foundation model?,A large model pretrained on broad data that can be adapted (prompted/fine-tuned) to many downstream tasks instead of training per-task from scratch.
+What is a transformer?,"The dominant neural architecture for LLMs: self-attention layers let every token weigh every other token, enabling parallel training on sequences (unlike RNNs)."
+Common AI use cases by industry (name 4),"Healthcare: medical imaging diagnostics. Finance: fraud detection. Retail: recommender systems. Automotive: autonomous driving. (Also: manufacturing visual inspection, conversational AI.)"
+Why does batching increase inference throughput?,"Processing many requests in one kernel launch amortizes overhead and fills the GPU's parallel units; trade-off: larger batches raise per-request latency."
+Ampere architecture: signature features,"A100 (2020): first MIG support (up to 7 instances), TF32 Tensor Cores, structured sparsity, 40/80 GB HBM2e, 3rd-gen NVLink."
+Hopper architecture: signature features,"H100 (2022): 4th-gen Tensor Cores with FP8, Transformer Engine, NVLink 4 (900 GB/s), HBM3; H200 variant has 141 GB HBM3e."
+Blackwell architecture: signature features,"B200/GB200 (2024): dual-die GPU, FP4/FP6 inference formats, NVLink 5 (1.8 TB/s per GPU), GB200 NVL72 rack-scale NVLink domain (72 GPUs), liquid-cooled designs."
+What is the Grace CPU?,"NVIDIA's Arm-based datacenter CPU, designed for high memory bandwidth and to pair coherently with NVIDIA GPUs (Grace Hopper GH200, Grace Blackwell GB200 superchips)."
+What is NVLink-C2C?,"Coherent chip-to-chip interconnect (~900 GB/s) linking Grace CPU to Hopper/Blackwell GPUs in superchips, letting the GPU access CPU memory far faster than PCIe."
+DGX vs HGX,"DGX: NVIDIA's turnkey integrated AI system (hardware + DGX software stack + NVIDIA support). HGX: the 8-GPU SXM baseboard with NVSwitch that OEMs build their own servers around."
+What's inside a DGX H100?,"8× H100 SXM GPUs, 4× NVSwitch, dual x86 CPUs, ConnectX-7 400G NICs (one per GPU) + BlueField DPUs, NVMe storage, DGX OS/Base Command software; ~10.2 kW max."
+What is MGX?,NVIDIA's modular server reference architecture letting OEMs build many configurations (including Grace CPUs and various GPU counts) with shared building blocks.
+DGX BasePOD vs SuperPOD,"Validated reference architectures for DGX clusters: BasePOD = smaller scale; SuperPOD = large scale (tens to hundreds of nodes) with InfiniBand fabric, parallel storage, and Base Command management."
+SXM vs PCIe GPU form factor,"SXM: socketed module on HGX baseboard, full NVLink/NVSwitch to all peers, higher power (H100: 700 W). PCIe: standard slot card, lower power, at most NVLink bridge pairs — inter-GPU traffic mostly over PCIe."
+What is NVLink?,NVIDIA's high-speed point-to-point GPU interconnect; H100 (NVLink 4): 900 GB/s total per GPU; Blackwell (NVLink 5): 1.8 TB/s — an order of magnitude above PCIe.
+What is NVSwitch?,A switch chip building an all-to-all NVLink fabric so every GPU in a system (or NVL72 rack) talks to every other at full NVLink bandwidth simultaneously.
+PCIe Gen5 x16 bandwidth (approx),~64 GB/s per direction (~128 GB/s bidirectional) — compare NVLink 4's 900 GB/s per H100.
+Why does data-parallel training stress the interconnect?,Every step ends with an all-reduce synchronizing gradients (≈ model size) across all GPUs; slow links leave GPUs idle and destroy scaling efficiency.
+"Data, tensor, and pipeline parallelism","Data: replicate model, split data, sync gradients. Tensor: split each layer's matrices across GPUs (needs NVLink-class bandwidth). Pipeline: split model into layer stages, micro-batches flow through."
+What is HBM?,"High Bandwidth Memory: DRAM stacked on the GPU package with very wide interfaces; H100 ~3.35 TB/s, H200 (HBM3e) ~4.8 TB/s — versus tens of GB/s for CPU DDR."
+GPU memory rule of thumb for model weights,"~2 bytes per parameter at FP16/BF16 (1 byte at FP8/INT8). A 70B model ≈ 140 GB FP16 → needs multiple GPUs or quantization; training needs several × more."
+What is TF32?,"Ampere+ Tensor Core mode: FP32's 8-bit exponent (same range) with 10-bit mantissa — accelerates existing FP32 code on Tensor Cores automatically, usually without accuracy loss."
+BF16 vs FP16,"Both 16-bit. BF16 keeps FP32's 8-bit exponent (same dynamic range, no loss scaling needed) — preferred for training. FP16 has more mantissa but a narrow 5-bit exponent, needing loss scaling."
+What is FP8 and which architecture introduced Tensor Core support?,"8-bit floating point (E4M3/E5M2 variants) halving memory and doubling math rate vs FP16; introduced with Hopper, managed by the Transformer Engine."
+What is the Transformer Engine?,Hopper+ hardware/software feature that dynamically selects FP8/FP16 precision and scaling per layer for transformer models — FP8 speed with maintained accuracy.
+Which precisions for training vs inference vs HPC?,"Training: BF16/TF32 mixed precision (FP8 emerging). Inference: FP16/FP8/INT8/INT4 quantized (FP4 on Blackwell). HPC/scientific: FP64."
+What is quantization?,"Converting model weights/activations to lower precision (INT8, FP8, INT4) for inference — less memory, higher throughput — with calibration or QAT to preserve accuracy."
+What is 2:4 structured sparsity?,"Ampere+ Tensor Core feature: if at least 2 of every 4 weights are zero (after pruning), hardware skips zeros for up to 2× math throughput."
+Which architecture introduced Tensor Cores?,"Volta (V100, 2017). Ampere added TF32 + sparsity; Hopper added FP8 + Transformer Engine; Blackwell added FP4."
+Why is AI training traffic hard for networks?,"Synchronized bursts (all-reduce) of elephant flows across all nodes at once; the step completes at the speed of the slowest flow, so tail latency and any packet loss stall every GPU."
+InfiniBand: key properties for AI,"Lossless by design (credit-based flow control), native RDMA, lowest latency, adaptive routing, in-network computing (SHARP), managed fabric (subnet manager/UFM). NVIDIA Quantum switches + ConnectX adapters."
+What is SHARP?,"Scalable Hierarchical Aggregation and Reduction Protocol: InfiniBand switches perform reductions (e.g. gradient sums) in-network, reducing all-reduce data movement and latency."
+What is RoCE?,"RDMA over Converged Ethernet: InfiniBand-style RDMA verbs on Ethernet. Needs a lossless-tuned fabric (PFC, ECN) to perform; attractive where Ethernet operations are standard."
+What is Spectrum-X?,"NVIDIA's AI-optimized Ethernet platform: Spectrum-4 switches + BlueField-3 SuperNICs with adaptive routing and congestion control, closing most of the gap to InfiniBand while staying Ethernet."
+InfiniBand vs Ethernet/RoCE: how to choose,"Max performance/scale for a dedicated training fabric → InfiniBand (SuperPOD default). Ethernet-standardized operations, multi-vendor policy, or cloud alignment → RoCE/Spectrum-X."
+What is GPUDirect RDMA?,"The RDMA NIC reads/writes GPU memory directly over PCIe, eliminating the copy through CPU system memory — lower latency and CPU load for multi-node training (used by NCCL)."
+What is GPUDirect Storage?,"Direct DMA between storage (NVMe/remote) and GPU memory, bypassing the CPU bounce buffer — faster data loading for training and analytics."
+What is a rail-optimized topology?,SuperPOD network design where each GPU's dedicated NIC connects to its own leaf-switch 'rail' (8 rails for 8 GPUs/node) matching NCCL traffic patterns and minimizing congestion.
+What is a DPU?,"Data Processing Unit: programmable SoC (Arm cores + NIC + accelerators) offloading infrastructure services — networking, storage, security — from host CPUs and isolating them from tenants. NVIDIA's is BlueField."
+What does BlueField offload? (3 categories),"Networking (virtual switching, overlays), storage (NVMe-oF, virtualization), security (firewall, encryption, zero-trust microsegmentation) — freeing host CPU cores for applications."
+What is DOCA?,NVIDIA's SDK/framework for programming BlueField DPUs — the DPU equivalent of what CUDA is to GPUs.
+Power draw: DGX H100 node and AI racks,"DGX H100 ≈ 10.2 kW max per node; AI racks run ~40–120+ kW (GB200 NVL72 ≈ 120 kW) vs ~10–15 kW traditional racks — power and cooling become first-order design constraints."
+When is liquid cooling required?,"When rack density exceeds air-cooling limits (~40 kW/rack practical); Blackwell NVL72 rack-scale systems are liquid-cooled by design. Benefits: much higher density, better energy efficiency (PUE)."
+What is PUE?,Power Usage Effectiveness = total facility power ÷ IT equipment power. Closer to 1.0 is better (1.1 excellent; 2.0 means half the power goes to overhead like cooling).
+Storage tiers in an AI cluster,"Local NVMe (per-node scratch/cache) → shared parallel/high-performance file system (Lustre, Spectrum Scale, VAST, WEKA — hot data, checkpoints) → object storage (datasets, archives)."
+Why does storage throughput affect GPU utilization?,"If storage can't feed the data loaders, GPUs idle waiting for batches (data starvation); checkpoint write bursts can also stall training. Expensive accelerators should never wait on I/O."
+Cloud vs on-prem for AI: decision drivers,"Cloud: OPEX, instant start, elasticity — wins for bursty/short projects. On-prem: CAPEX, better TCO at sustained high utilization, data sovereignty/gravity, custom fabrics. Hybrid: steady base on-prem + cloud burst."
+What is DGX Cloud?,NVIDIA's AI-supercomputing-as-a-service: SuperPOD-class DGX infrastructure hosted in partner clouds and rented with NVIDIA software and expertise included.
+What is data gravity?,Large datasets are costly/slow to move (plus egress fees) so compute gets placed where data lives — a primary force in on-prem vs cloud decisions.
+How does a Kubernetes pod get a GPU?,NVIDIA device plugin advertises `nvidia.com/gpu` to the kubelet; the pod requests it in resources.limits; scheduler places it on a node with a free GPU; container toolkit injects driver libraries.
+What does the NVIDIA GPU Operator do?,"Automates the GPU software stack on K8s nodes: containerized driver, container toolkit, device plugin, DCGM exporter, GPU feature discovery/labels, MIG manager — no manual per-node installs."
+What is Slurm?,"The dominant HPC batch workload manager: job queues, partitions, priorities/fair-share, gang scheduling of multi-node jobs; GPUs scheduled via GRES (`--gres=gpu:4`); sbatch submits, srun launches."
+Slurm vs Kubernetes: when each?,"Slurm: batch training clusters, queued multi-node HPC-style jobs, fair-share between research teams. Kubernetes: containerized services and inference, autoscaling, cloud-native ML platforms. Many orgs run both."
+What is Base Command Manager?,"NVIDIA's cluster management software for provisioning/imaging nodes, managing drivers and software lifecycle, monitoring health, and deploying Slurm or Kubernetes on DGX PODs."
+nvidia-smi vs DCGM,"nvidia-smi: per-node CLI for spot checks (utilization, memory, temp, power, processes, ECC counts). DCGM: datacenter-grade fleet monitoring — background health checks, active diagnostics (dcgmi diag), policies, job stats, Prometheus exporter."
+Standard K8s GPU monitoring pipeline,DCGM exporter (via GPU Operator) exposes Prometheus metrics → Prometheus scrapes → Grafana dashboards + alerts; metrics labeled with pod/namespace for per-workload attribution.
+Key GPU health metrics to watch,"Utilization, memory used, temperature, power draw, ECC errors (single/double-bit), XID events, NVLink errors, clock throttling reasons (thermal/power)."
+Single-bit vs double-bit ECC errors,"Single-bit: detected and corrected, job continues — watch the rate. Double-bit: uncorrectable — app typically crashes, pages retired; recurring errors → drain node / RMA GPU."
+What is an XID error?,A GPU error event code logged by the NVIDIA driver (e.g. Xid 48 = double-bit ECC; Xid 79 = GPU fell off the bus) — first thing to check when a GPU job dies unexpectedly.
+What is MIG?,"Multi-Instance GPU (Ampere+): hardware-partitions one GPU into up to 7 instances with dedicated SM/memory/cache slices — full memory/fault isolation and QoS; each instance appears as a GPU (e.g. `nvidia.com/mig-1g.10gb` in K8s)."
+MIG vs time-slicing,"MIG: hardware isolation, guaranteed memory/QoS — right for multi-tenant and latency-sensitive inference. Time-slicing: software context-switching, no memory isolation or QoS — fine for dev/bursty sharing and oversubscription."
+When is vGPU the answer?,"When GPUs must be shared across virtual machines: VDI and VMware/enterprise-virtualization environments. Licensed NVIDIA driver/manager stack; can use MIG-backed or time-sliced profiles inside VMs."
+Why run DCGM diagnostics in a job prologue?,A short active health check before each job keeps failing GPUs (memory/NVLink/thermal issues) out of large multi-node jobs — much cheaper than a big training run crashing mid-flight.
+What is Run:ai?,"GPU orchestration/scheduling platform on Kubernetes (acquired by NVIDIA): fractional GPUs, quotas and fair-share pooling between teams, workload-aware batch scheduling for AI clusters."

@@ -1,0 +1,5 @@
+# results/ (JSON + charts) is COMMITTED — published numbers live in the repo.
+/target
+/dist
+*.so
+__pycache__/

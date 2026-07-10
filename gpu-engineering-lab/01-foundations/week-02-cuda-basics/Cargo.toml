@@ -1,0 +1,17 @@
+# Week 02 workspace. COMPLETE — do not edit (except to bump pins deliberately).
+
+[workspace]
+resolver = "2"
+members = ["common", "kernels", "exercises"]
+
+[workspace.dependencies]
+# Pinned per repo contract; Cargo.lock (committed) is the authoritative pin.
+cudarc = { version = "=0.16.4", features = ["cuda-12080", "cublas", "nvrtc"] }
+# Rust-CUDA lives on git, not crates.io. Day 1: replace `rev` with the commit
+# recommended by https://github.com/Rust-GPU/Rust-CUDA for the pinned nightly
+# in rust-toolchain.toml, and record it in RESULTS.md.
+cuda_std = { git = "https://github.com/Rust-GPU/Rust-CUDA", rev = "PIN-ME-DAY-1" }
+cuda_builder = { git = "https://github.com/Rust-GPU/Rust-CUDA", rev = "PIN-ME-DAY-1" }
+
+[profile.release]
+debug = true   # keep symbols so nsys/ncu show readable names (repo convention)
