@@ -4,6 +4,7 @@
 > 1–2B model, then validated line-by-line against HuggingFace PEFT.
 
 Prerequisite support: [Week 06 companion lesson](../../../companion-lessons/week-06.md).
+Source reading: [HF Ultra-Scale Playbook — fine-tuning memory pressure and global batch math](../../../references/hf-ultrascale-playbook.md#week-6---fine-tuning-memory-pressure-and-global-batch-math).
 
 ## Goal
 

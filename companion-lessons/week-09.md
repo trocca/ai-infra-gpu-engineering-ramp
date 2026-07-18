@@ -35,6 +35,14 @@ Scaling efficiency:
 efficiency = single_gpu_time / (num_gpus * multi_gpu_time)
 ```
 
+## Playbook Bridge
+
+Read the
+[Week 9 Ultra-Scale Playbook bridge](../references/hf-ultrascale-playbook.md#week-9---data-parallelism-zero-collectives-and-profiling).
+Use the playbook to place your manual DDP work in the larger ladder: replicated data
+parallelism first, DDP overlap second, then ZeRO/FSDP sharding when replicated optimizer
+state becomes the memory wall.
+
 ## Programming Primer
 
 - `RANK` is the global process index; `LOCAL_RANK` selects the GPU on the node.

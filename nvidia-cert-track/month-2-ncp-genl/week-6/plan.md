@@ -9,6 +9,7 @@ Exam coverage this week: **Fine-Tuning 13% + Evaluation 7% = 20%**, plus the LoR
 ## Prerequisites before Monday
 
 - Companion lesson: [Week 06 companion — LoRA rank math, QLoRA, and evaluation support](../../../companion-lessons/week-06.md).
+- Source reading: [HF Ultra-Scale Playbook — fine-tuning memory pressure and global batch math](../../../references/hf-ultrascale-playbook.md#week-6---fine-tuning-memory-pressure-and-global-batch-math).
 - Math support: rank, adapter parameter counts, `W' = W + (alpha/r) * B @ A`, and the capacity/update-scale trade-off.
 - Programming support: freezing parameters, optimizer parameter groups, adapter state dicts, PEFT parity tests, and evaluation caveats.
 - Gate: compute LoRA parameter counts for one `4096 x 4096` projection at `r=8`, `16`, and `64`.

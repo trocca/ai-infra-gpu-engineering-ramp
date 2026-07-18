@@ -12,7 +12,8 @@
 | Questions | 60–70, multiple choice, online proctored |
 | Validity | 2 years |
 | Level | Professional (mid-level; assumes hands-on LLM experience) |
-| Prerequisite competencies | Transformer architectures, distributed parallelism (DDP / FSDP / Megatron-style tensor & pipeline parallelism), PEFT/LoRA |
+| Official prerequisite | 2–3 years of practical AI/ML experience working with LLMs |
+| Prerequisite competencies | Transformer architectures, prompt engineering, distributed parallelism (DDP / FSDP / Megatron-style tensor & pipeline parallelism), PEFT/LoRA, RAG, evaluation, and performance profiling |
 
 ## Domains and weights
 

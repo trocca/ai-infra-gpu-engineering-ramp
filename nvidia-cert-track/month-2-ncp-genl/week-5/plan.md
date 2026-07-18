@@ -11,6 +11,7 @@ Each day ≈ 2 h: ~75 min study, ~30 min hands-on/notes, ~15 min flashcards (add
 ## Prerequisites before Monday
 
 - Companion lesson: [Week 05 companion — transformer math, PyTorch architecture, and tokenizer support](../../../companion-lessons/week-05.md).
+- Source reading: [HF Ultra-Scale Playbook — transformer memory and single-GPU training](../../../references/hf-ultrascale-playbook.md#week-5---transformer-memory-and-single-gpu-training).
 - Math support: Q/K/V projection shapes, `softmax(QK^T/sqrt(d))V`, cross-entropy, and the KV-cache memory formula.
 - Programming support: `torch.nn.Module`, tokenizer-to-token-ID flow, train vs eval mode, and causal masking.
 - Gate: compute attention tensor shapes for `B=2`, `T=128`, `C=768`, `H=12` and identify the test that protects attention correctness.

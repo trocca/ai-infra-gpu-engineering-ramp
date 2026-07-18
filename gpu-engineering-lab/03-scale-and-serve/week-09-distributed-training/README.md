@@ -3,6 +3,7 @@
 > **Phase 3, Week 1 of 4** · ~4 h/day × 5 days · Cloud: 1 node × 2 GPUs (L4/A10G class, no NVLink) · Budget: ~$10–20
 
 Prerequisite support: [Week 09 companion lesson](../../../companion-lessons/week-09.md).
+Source reading: [HF Ultra-Scale Playbook — data parallelism, ZeRO, collectives, and profiling](../../../references/hf-ultrascale-playbook.md#week-9---data-parallelism-zero-collectives-and-profiling).
 
 ## Goal
 

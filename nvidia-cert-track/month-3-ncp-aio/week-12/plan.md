@@ -11,6 +11,7 @@ domains (this is where the 3 hands-on lab exercises are won); Friday = exam.
 ## Prerequisites before Monday
 
 - Companion lesson: [Week 12 companion — troubleshooting, capstone integration, and portfolio defense](../../../companion-lessons/week-12.md).
+- Source reading: [HF Ultra-Scale Playbook — capstone defense and scale-up story](../../../references/hf-ultrascale-playbook.md#week-12---capstone-defense-and-scale-up-story).
 - Math/support: utilization ratios, scaling efficiency, queue saturation, and before/after evidence.
 - Systems/story support: triage by layer, timed drill discipline, capstone script reproducibility, and the 90-second repo tour.
 - Gate: list the five most likely failure layers for a GPU training job and decide what gets cut if exam readiness and capstone polish collide.

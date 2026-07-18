@@ -3,6 +3,7 @@
 > **Phase 3, Week 2 of 4** · ~4 h/day × 5 days · Cloud: 1 node × 2 GPUs (L4/A10G, no NVLink) · Budget: ~$10–25
 
 Prerequisite support: [Week 10 companion lesson](../../../companion-lessons/week-10.md).
+Source reading: [HF Ultra-Scale Playbook — model parallelism and 5D strategy](../../../references/hf-ultrascale-playbook.md#week-10---model-parallelism-and-5d-strategy).
 
 ## Goal
 

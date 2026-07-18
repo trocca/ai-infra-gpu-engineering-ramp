@@ -35,6 +35,14 @@ same math, fewer HBM reads/writes
 
 That is why it can be faster without changing the model output.
 
+## Playbook Bridge
+
+Read the
+[Week 7 Ultra-Scale Playbook bridge](../references/hf-ultrascale-playbook.md#week-7---kernels-flashattention-and-mixed-precision).
+Treat FlashAttention as IO accounting, not a magic attention variant: the result is the
+same, but the score matrix stops round-tripping through HBM. For precision, compare
+range and mantissa bits before comparing memory size.
+
 ## Programming Primer
 
 - Triton kernels operate on blocks. `program_id` chooses which block this instance owns.

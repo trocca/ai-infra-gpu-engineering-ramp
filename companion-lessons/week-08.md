@@ -35,6 +35,14 @@ L = lambda * W
 
 Paged KV cache is memory management: fixed-size blocks reduce fragmentation and make it possible to serve many sequences with changing lengths.
 
+## Playbook Bridge
+
+Read the
+[Week 8 Ultra-Scale Playbook bridge](../references/hf-ultrascale-playbook.md#week-8---serving-memory-and-precision-carryover).
+The playbook is training-focused, so use it carefully here: carry over the memory and
+precision vocabulary, then translate it to serving as KV cache, continuous batching,
+prefill/decode split, and measured latency.
+
 ## Programming Primer
 
 - Rust async: avoid blocking the async runtime with long CPU work; isolate model execution and request scheduling.

@@ -7,13 +7,14 @@
 | Item | Detail |
 |---|---|
 | Certification | NVIDIA-Certified Associate: AI Infrastructure and Operations (NCA-AIIO) |
-| Level | Associate (entry-level, no prerequisites) |
+| Level | Associate |
 | Price | $125 USD |
 | Duration | 1 hour |
 | Questions | 50 multiple-choice |
 | Validity | 2 years |
 | Delivery | Online, proctored |
 | Language | English |
+| Official prerequisite | Basic understanding of data center infrastructure |
 
 **Who it's for:** IT professionals, ops engineers, and pre-sales/solutions people who need a working understanding of NVIDIA's AI stack — from GPUs and DGX systems through networking, orchestration, and monitoring. For a Developer Evangelist / pre-sales role on the Kubernetes-AI stack, this is the foundation cert: it covers the "why" behind GPU Operator, MIG, DCGM, InfiniBand, and the rest of the platform you'll demo daily.
 

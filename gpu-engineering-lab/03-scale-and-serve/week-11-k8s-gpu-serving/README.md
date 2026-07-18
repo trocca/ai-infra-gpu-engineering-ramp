@@ -3,6 +3,7 @@
 > **Phase 3, Week 3 of 4** · ~4 h/day × 5 days · Cloud: 1× L4 node (~$0.70/h) · Budget: ~$6
 
 Prerequisite support: [Week 11 companion lesson](../../../companion-lessons/week-11.md).
+Source reading: [HF Ultra-Scale Playbook — benchmarking, observability, and cluster reality](../../../references/hf-ultrascale-playbook.md#week-11---benchmarking-observability-and-cluster-reality).
 
 ## Goal
 

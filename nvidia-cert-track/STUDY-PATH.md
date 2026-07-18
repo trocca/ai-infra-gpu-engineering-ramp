@@ -4,10 +4,12 @@
 > interview end-game) lives one level up: `../MASTER-PLAN.md`. This page is the
 > day-to-day operating manual for the two daily tracks.
 
-You run two tracks in parallel for 12 weeks, ~6 h/day, 5 days/week:
+You run two primary tracks in parallel for 12 weeks, ~6 h/day, 5 days/week, plus one optional drill lane and one source-reading lane:
 
 - **Study track** (this repo, ~2 h/day) → three certifications
 - **Build track** (`../gpu-engineering-lab`, ~4 h/day) → the public portfolio
+- **C++/CUDA mirror drill** (`../cpp-cuda-track`, optional/weekend) → the same parallelism ideas implemented once on CPU and once on GPU
+- **Source reading** (`../references`, 20-45 min when assigned) → long-form references mapped into the week they support
 
 They are deliberately aligned: what you study in the morning is what you build in the
 afternoon. This page is the only schedule you need to look at.
@@ -18,6 +20,11 @@ Open the week's companion lesson from [`../companion-lessons`](../companion-less
 It is the prerequisite gate for the math, programming-language, and systems concepts that
 would otherwise ambush the week. Copy any weak spots into the current week's `notes.md`.
 If the gate exercise takes more than 45 minutes, schedule repair time before Day 1.
+When the week's core concept feels fuzzy, open the matching C++/CUDA module from
+[`../cpp-cuda-track`](../cpp-cuda-track/README.md) and do the smallest runnable lab.
+From week 5 onward, read the matching row in the
+[`../references/hf-ultrascale-playbook.md`](../references/hf-ultrascale-playbook.md)
+map and copy one formula, trade-off, or profiling habit into the week's `notes.md`.
 
 ## The day (Mon–Thu)
 
@@ -28,6 +35,8 @@ If the gate exercise takes more than 45 minutes, schedule repair time before Day
 | 3 | 15 min | Anki flashcards + fill `notes.md` | cert repo |
 | — | break | | |
 | 4 | 4 h | build the week's project | lab repo, current week |
+| optional | 20–45 min | source reading | `../references`, matching week |
+| optional | 30–90 min | C++/CUDA mirror drill | `../cpp-cuda-track`, matching module |
 
 ## The Friday (the gate)
 
@@ -53,6 +62,36 @@ If the gate exercise takes more than 45 minutes, schedule repair time before Day
 | 10 | Sep 14–18 | [prep](../companion-lessons/week-10.md) | AIO: Slurm admin, Run:ai, MIG | tensor + pipeline parallelism (cloud) | admin commands and parallelism both test resource boundaries |
 | 11 | Sep 21–25 | [prep](../companion-lessons/week-11.md) | AIO: NGC, workloads, troubleshooting | K8s GPU serving: Operator, DCGM, KAI | the cert's lab drills and your deployment are the same commands |
 | 12 | Sep 28–Oct 2 | [prep](../companion-lessons/week-12.md) | AIO lab drills + mock + **EXAM Fri Oct 2** | capstone: train→quantize→serve + repo polish | troubleshooting and portfolio defense converge |
+
+## C++/CUDA mirror modules
+
+| Wk | Module |
+|----|--------|
+| 1 | [01 execution model](../cpp-cuda-track/01-execution-model/README.md) |
+| 2 | [02 memory hierarchy](../cpp-cuda-track/02-memory-hierarchy/README.md) + [03 SAXPY](../cpp-cuda-track/03-data-parallel-saxpy/README.md) |
+| 3 | [06 matmul tiling](../cpp-cuda-track/06-matmul-tiling/README.md) + [09 roofline](../cpp-cuda-track/09-profiling-roofline/README.md) |
+| 4 | [12 PyTorch extension](../cpp-cuda-track/12-capstone-pytorch-extension/README.md) |
+| 5 | [04 reduction](../cpp-cuda-track/04-reduction/README.md) |
+| 6 | [05 scan and histogram](../cpp-cuda-track/05-scan-histogram/README.md) |
+| 7 | [10 advanced GPU](../cpp-cuda-track/10-advanced-gpu/README.md) |
+| 8 | [07 async overlap](../cpp-cuda-track/07-async-overlap/README.md) |
+| 9 | [11 multi-device](../cpp-cuda-track/11-multi-device/README.md) |
+| 10 | [08 atomics and memory model](../cpp-cuda-track/08-sync-atomics-memory-model/README.md) |
+| 11 | [09 profiling roofline](../cpp-cuda-track/09-profiling-roofline/README.md) |
+| 12 | [12 PyTorch extension](../cpp-cuda-track/12-capstone-pytorch-extension/README.md) |
+
+## HF Ultra-Scale Playbook modules
+
+| Wk | Source-reading focus |
+|----|----------------------|
+| 5 | [transformer memory and one-GPU training](../references/hf-ultrascale-playbook.md#week-5---transformer-memory-and-single-gpu-training) |
+| 6 | [global batch math, DP, and ZeRO](../references/hf-ultrascale-playbook.md#week-6---fine-tuning-memory-pressure-and-global-batch-math) |
+| 7 | [kernels, FlashAttention, and mixed precision](../references/hf-ultrascale-playbook.md#week-7---kernels-flashattention-and-mixed-precision) |
+| 8 | [serving memory and precision carryover](../references/hf-ultrascale-playbook.md#week-8---serving-memory-and-precision-carryover) |
+| 9 | [data parallelism, ZeRO, collectives, and profiling](../references/hf-ultrascale-playbook.md#week-9---data-parallelism-zero-collectives-and-profiling) |
+| 10 | [model parallelism and 5D strategy](../references/hf-ultrascale-playbook.md#week-10---model-parallelism-and-5d-strategy) |
+| 11 | [benchmarking, observability, and cluster reality](../references/hf-ultrascale-playbook.md#week-11---benchmarking-observability-and-cluster-reality) |
+| 12 | [capstone defense and scale-up story](../references/hf-ultrascale-playbook.md#week-12---capstone-defense-and-scale-up-story) |
 
 ## Readiness gates (don't negotiate with yourself)
 

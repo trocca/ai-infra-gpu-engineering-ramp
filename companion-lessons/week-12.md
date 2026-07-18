@@ -35,6 +35,14 @@ scaling_efficiency = speedup / num_gpus
 
 The ratios tell you whether the bottleneck moved after your fix.
 
+## Playbook Bridge
+
+Read the
+[Week 12 Ultra-Scale Playbook bridge](../references/hf-ultrascale-playbook.md#week-12---capstone-defense-and-scale-up-story).
+Use it to write the capstone scale-up answer: which parallelism dimensions you would
+add on an 8xH100 box, which would wait for multi-node, and what metric would prove the
+choice worked.
+
 ## Programming Primer
 
 - Prefer reproducible scripts to manual demos during capstone week.

@@ -1,15 +1,16 @@
 # MASTER PLAN — the navigation hub for the whole path
 
-Three tracks, one 12-week campaign (Mon **2026-07-13** → Fri **2026-10-02**), ~6 h/day, 5 days/week.
+Three primary tracks plus one C++/CUDA drill lane and one source-reading lane, one 12-week campaign (Mon **2026-07-13** → Fri **2026-10-02**), ~6 h/day, 5 days/week.
 **This document is the only bookmark you need** — every week below links to the exact files you'll work in.
 
 | Track | Repo | Role | Time |
 |-------|------|------|------|
 | **PROVE** | [nvidia-cert-track](nvidia-cert-track/README.md) | NCA-AIIO → NCP-GENL → NCP-AIO | ~2 h/day |
 | **BUILD** | [gpu-engineering-lab](gpu-engineering-lab/README.md) | 12 shipped projects: Python → Rust/CUDA → cluster | ~4 h/day |
+| **DRILL** | [cpp-cuda-track](cpp-cuda-track/README.md) | C++ ↔ CUDA mirror modules for execution/memory/performance intuition | optional / weekend |
 | **SHOW** | [k8s-ai-stack-demo](k8s-ai-stack-demo/README.md) | the 7-scene evangelist demo (built — scheduled touchpoints) | ✦ marked below |
 
-How they stack: **certs give the vocabulary → the lab gives the scars → the demo gives the story.**
+How they stack: **certs give the vocabulary → source readings give the frontier map → labs give the scars → C++/CUDA drills sharpen the hardware instinct → the demo gives the story.**
 
 **The whole campaign at a glance:**
 
@@ -17,12 +18,15 @@ How they stack: **certs give the vocabulary → the lab gives the scars → the 
 flowchart LR
     subgraph M1["Month 1 — literacy"]
         A1["NCA-AIIO study"] --- B1["autograd · Rust ramp<br/>CUDA kernels · SGEMM"]
+        C1["C++/CUDA mirror:<br/>execution · memory · tiling"]
     end
     subgraph M2["Month 2 — dangerous"]
         A2["NCP-GENL study"] --- B2["GPT · LoRA · Triton<br/>ferrum-serve (Rust)"]
+        C2["C++/CUDA mirror:<br/>reductions · scans · tensor cores"]
     end
     subgraph M3["Month 3 — operational"]
         A3["NCP-AIO study"] --- B3["DDP · TP/PP internals<br/>K8s GPU serving"]
+        C3["C++/CUDA mirror:<br/>multi-device · profiling · PyTorch extension"]
     end
     M1 -->|"exam Aug 7"| M2
     M2 -->|"exam Sep 4"| M3
@@ -42,6 +46,7 @@ flowchart LR
 - [ ] Import [month-1 flashcards](nvidia-cert-track/month-1-nca-aiio/flashcards.csv) into Anki
 - [ ] Verify local toolchain: [setup/local-wsl2-cuda.md](gpu-engineering-lab/setup/local-wsl2-cuda.md) (CUDA ≥ 12.8, PyTorch cu128)
 - [ ] Skim the build-track curriculum: [ROADMAP.md](gpu-engineering-lab/ROADMAP.md)
+- [ ] Skim the C++/CUDA mirror lane: [cpp-cuda-track/README.md](cpp-cuda-track/README.md)
 - [ ] Push both repos to GitHub — building in public starts at commit one
 
 ## The day (Mon–Fri)
@@ -57,12 +62,59 @@ Friday gate → back here for the next week.
 **Prerequisite loop**: Sunday → the week's `[prep]` companion lesson → copy weak spots
 into `notes.md` → Monday starts with execution, not discovery.
 
+**Source reading loop**: weeks 5-12 → the matching
+[HF Ultra-Scale Playbook row](references/hf-ultrascale-playbook.md#weekly-integration)
+→ copy one formula, constraint, or profiling habit into `notes.md`.
+
 | Slot | What | Open |
 |------|------|------|
 | 2 h | study: lesson → quick check → Anki | today's `day-D.md` (enter via `[day 1]` below) |
 | 4 h | build | the day doc's build block → project `README.md` |
+| optional | source reading | [HF Ultra-Scale Playbook map](references/hf-ultrascale-playbook.md), weeks 5-12 |
+| optional | C++/CUDA mirror drill | the week-matched module under [cpp-cuda-track](cpp-cuda-track/README.md) |
 
 **Friday (= day 5) is gate day**: self-check + exit criteria + [PROGRESS.md](nvidia-cert-track/PROGRESS.md) row; lab bench → README numbers → push. Rules: [STUDY-PATH.md](nvidia-cert-track/STUDY-PATH.md).
+
+---
+
+## C++/CUDA mirror lane
+
+This lane is optional during busy exam weeks, but it is now part of the study system.
+Use it when the main lesson would benefit from seeing the same idea in CPU and GPU form.
+
+| Wk | Mirror module | Use it to reinforce |
+|----|---------------|---------------------|
+| 1 | [01 execution model](cpp-cuda-track/01-execution-model/README.md) | CPU threads vs GPU grids, blocks, warps |
+| 2 | [02 memory hierarchy](cpp-cuda-track/02-memory-hierarchy/README.md) + [03 SAXPY](cpp-cuda-track/03-data-parallel-saxpy/README.md) | cache lines, coalescing, bandwidth, grid-stride kernels |
+| 3 | [06 matmul tiling](cpp-cuda-track/06-matmul-tiling/README.md) + [09 roofline](cpp-cuda-track/09-profiling-roofline/README.md) | SGEMM, arithmetic intensity, roofline |
+| 4 | [12 PyTorch extension](cpp-cuda-track/12-capstone-pytorch-extension/README.md) | custom ops, dispatcher, fused softmax |
+| 5 | [04 reduction](cpp-cuda-track/04-reduction/README.md) | attention/softmax reductions |
+| 6 | [05 scan and histogram](cpp-cuda-track/05-scan-histogram/README.md) | aggregation, contention, prefix-sum thinking |
+| 7 | [10 advanced GPU](cpp-cuda-track/10-advanced-gpu/README.md) | tensor cores, warp intrinsics, fusion |
+| 8 | [07 async overlap](cpp-cuda-track/07-async-overlap/README.md) | streams, events, overlap, latency/throughput |
+| 9 | [11 multi-device](cpp-cuda-track/11-multi-device/README.md) | P2P, NVLink, NCCL, ring all-reduce |
+| 10 | [08 atomics and memory model](cpp-cuda-track/08-sync-atomics-memory-model/README.md) | synchronization and memory ordering |
+| 11 | [09 profiling roofline](cpp-cuda-track/09-profiling-roofline/README.md) | measurement discipline for serving claims |
+| 12 | [12 PyTorch extension](cpp-cuda-track/12-capstone-pytorch-extension/README.md) | final CPU/CUDA op evidence |
+
+---
+
+## HF Ultra-Scale Playbook lane
+
+This lane starts in week 5, once transformers and distributed training become the core
+story. Use the detailed map in
+[references/hf-ultrascale-playbook.md](references/hf-ultrascale-playbook.md).
+
+| Wk | Playbook support | Use it to sharpen |
+|----|------------------|-------------------|
+| 5 | [single-GPU training memory](references/hf-ultrascale-playbook.md#week-5---transformer-memory-and-single-gpu-training) | parameter/gradient/optimizer/activation ledger for GPT |
+| 6 | [gradient accumulation, DP, ZeRO](references/hf-ultrascale-playbook.md#week-6---fine-tuning-memory-pressure-and-global-batch-math) | LoRA/QLoRA as memory and optimizer-state relief |
+| 7 | [kernels, fusion, FlashAttention, precision](references/hf-ultrascale-playbook.md#week-7---kernels-flashattention-and-mixed-precision) | IO-aware Triton and quantization work |
+| 8 | [training memory vocabulary applied to serving](references/hf-ultrascale-playbook.md#week-8---serving-memory-and-precision-carryover) | KV cache, batching, and precision trade-offs |
+| 9 | [data parallelism, ZeRO, collectives, profiling](references/hf-ultrascale-playbook.md#week-9---data-parallelism-zero-collectives-and-profiling) | DDP/FSDP/NCCL internals |
+| 10 | [TP, context, pipeline, expert, 5D parallelism](references/hf-ultrascale-playbook.md#week-10---model-parallelism-and-5d-strategy) | choosing a parallelism strategy |
+| 11 | [benchmarking and cluster reality](references/hf-ultrascale-playbook.md#week-11---benchmarking-observability-and-cluster-reality) | profiler traces, NCCL logs, and operational evidence |
+| 12 | [5D summary, scale estimates, overlap math](references/hf-ultrascale-playbook.md#week-12---capstone-defense-and-scale-up-story) | capstone defense and scale-up answer |
 
 ---
 
@@ -126,6 +178,8 @@ Weekly log lives in [PROGRESS.md](nvidia-cert-track/PROGRESS.md) — one row eve
 
 - [READINESS-REVIEW.md](READINESS-REVIEW.md) — weaknesses, corrections, and readiness gates for this profile
 - [companion-lessons](companion-lessons/README.md) — week-by-week math/programming/system prerequisites
+- [references](references/README.md) — source-reading maps for books, papers, and long-form references
+- [cpp-cuda-track](cpp-cuda-track/README.md) — C++ ↔ CUDA mirror modules for low-level parallelism
 - [01_pitch_and_demo.md](01_pitch_and_demo.md) — the pitch; update it in week 12
 - [03_mock_interview_qa.md](03_mock_interview_qa.md) — interview drill, weeks 11–12
 - [04_stack_reference_verified.md](04_stack_reference_verified.md) — verified stack facts, cite freely

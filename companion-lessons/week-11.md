@@ -37,6 +37,14 @@ GPU_memory_used
 
 A useful HPA metric is one that rises before users feel pain and falls when adding replicas helps.
 
+## Playbook Bridge
+
+Read the
+[Week 11 Ultra-Scale Playbook bridge](../references/hf-ultrascale-playbook.md#week-11---benchmarking-observability-and-cluster-reality).
+Borrow the benchmarking discipline: profiler traces, NCCL/debug logs, restart behavior,
+and resource graphs are evidence. A Kubernetes workload is not healthy merely because
+the YAML applied.
+
 ## Programming Primer
 
 - `kubectl describe pod` for scheduling and lifecycle events.

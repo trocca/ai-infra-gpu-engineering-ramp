@@ -1,6 +1,6 @@
 # ai-infra-gpu-engineering-ramp
 
-**Last updated:** 2026-07-10 09:40 UTC
+**Last updated:** 2026-07-18 12:34 +02:00
 
 ![Visitors](https://api.visitorbadge.io/api/visitors?path=trocca%2Fai-infra-gpu-engineering-ramp&label=visitors&countColor=%2376B900)
 ![GitHub stars](https://img.shields.io/github/stars/trocca/ai-infra-gpu-engineering-ramp?color=76B900)
@@ -20,8 +20,9 @@
 <!-- STATS:END -->
 
 A 12-week public ramp-up for AI infrastructure and GPU engineering. The repo combines
-NVIDIA certification prep, from-scratch GPU/LLM engineering projects, Kubernetes GPU
-operations labs, prerequisite companion lessons, and a final portfolio-ready demo path.
+NVIDIA certification prep, from-scratch GPU/LLM engineering projects, C++/CUDA
+parallelism drills, Kubernetes GPU operations labs, prerequisite companion lessons,
+source-reading maps, and a final portfolio-ready demo path.
 
 This is built as a study tool first and a public proof artifact second: every week has a
 study plan, a build project, prerequisite support, a Friday gate, and a linkable result.
@@ -37,20 +38,32 @@ Before starting a new week, clear the matching page in
 programming-language, CUDA, PyTorch, Triton, distributed-training, and Kubernetes
 prerequisites that make the weekly plans executable.
 
+For low-level reinforcement, use the matching module in
+[cpp-cuda-track](cpp-cuda-track/README.md). It mirrors each major systems concept in
+modern C++ and CUDA so the CPU/GPU execution-model differences stay concrete.
+
+For distributed-training source reading, use the
+[Hugging Face Ultra-Scale Playbook map](references/hf-ultrascale-playbook.md). It
+adds transformer memory accounting, ZeRO/FSDP, 5D parallelism, kernel fusion,
+profiling, and compute/communication overlap to the weeks where those ideas pay off.
+
 ## What This Repo Is For
 
 - Build enough AI infrastructure depth to explain and operate the NVIDIA Kubernetes-AI stack.
 - Earn structured proof through NCA-AIIO, NCP-GENL, and NCP-AIO certification prep.
 - Build a GPU engineering portfolio: autograd, CUDA/Rust kernels, SGEMM, GPT, LoRA,
   Triton kernels, a Rust inference server, distributed training, and Kubernetes GPU serving.
+- Drill C++/CUDA parallelism side by side: execution model, memory hierarchy, reductions,
+  scans, tiling, streams, atomics, roofline, tensor cores, multi-device, and PyTorch extensions.
 - Produce a demo-ready story for interviews, pre-sales, and developer-evangelist work.
 
-## The Three Tracks
+## The Four Tracks
 
 | Track | Purpose | Where |
 |-------|---------|-------|
 | PROVE | Certification study, self-checks, mock exams, flashcards | [nvidia-cert-track](nvidia-cert-track/README.md) |
 | BUILD | Twelve shipped GPU/LLM/system projects with tests and benchmarks | [gpu-engineering-lab](gpu-engineering-lab/README.md) |
+| DRILL | C++ vs CUDA mirror modules for low-level parallelism and performance intuition | [cpp-cuda-track](cpp-cuda-track/README.md) |
 | SHOW | Kubernetes-AI stack demo and interview/pitch material | [k8s-ai-stack-demo](k8s-ai-stack-demo/README.md) |
 
 ## 12-Week Path
@@ -114,13 +127,38 @@ gantt
 | 11 | NGC, workload deployment, troubleshooting | Kubernetes GPU serving stack | A GPU service is healthy only when scheduling, runtime, app, and metrics all agree. |
 | 12 | Timed lab drills, troubleshooting, mock exam | End-to-end capstone and portfolio polish | The final artifact must prove claims with reproducible evidence. |
 
+## Source Reading Lane
+
+| Weeks | Source | What it adds |
+|-------|--------|--------------|
+| 5-12 | [Hugging Face Ultra-Scale Playbook map](references/hf-ultrascale-playbook.md) | Memory ledgers, global batch math, ZeRO/FSDP, TP/PP/context/expert parallelism, FlashAttention, profiling, and overlap math. |
+
+## C++/CUDA Mirror Track
+
+| Week | Mirror module | Why it fits |
+|------|---------------|-------------|
+| 1 | [01 execution model](cpp-cuda-track/01-execution-model/README.md) | CPU threads vs GPU grids/blocks/warps grounds the whole ramp. |
+| 2 | [02 memory hierarchy](cpp-cuda-track/02-memory-hierarchy/README.md) + [03 SAXPY](cpp-cuda-track/03-data-parallel-saxpy/README.md) | Cache lines, coalescing, bandwidth, and grid-stride kernels reinforce GPU hardware week. |
+| 3 | [06 matmul tiling](cpp-cuda-track/06-matmul-tiling/README.md) + [09 roofline](cpp-cuda-track/09-profiling-roofline/README.md) | SGEMM and networking both become bottleneck math instead of vocabulary. |
+| 4 | [12 PyTorch extension capstone](cpp-cuda-track/12-capstone-pytorch-extension/README.md) | Pairs directly with custom ops and PyTorch dispatch concepts. |
+| 5 | [04 reduction](cpp-cuda-track/04-reduction/README.md) | Attention, softmax, and normalization all rely on reductions. |
+| 6 | [05 scan/histogram](cpp-cuda-track/05-scan-histogram/README.md) | Adapter/evaluation weeks benefit from contention and aggregation intuition. |
+| 7 | [10 advanced GPU](cpp-cuda-track/10-advanced-gpu/README.md) | Tensor cores, warp intrinsics, and fusion support quantization/Triton week. |
+| 8 | [07 async overlap](cpp-cuda-track/07-async-overlap/README.md) | Streams, events, and overlap map onto serving latency/throughput work. |
+| 9 | [11 multi-device](cpp-cuda-track/11-multi-device/README.md) | P2P, NVLink, NCCL, NUMA, and ring all-reduce pair with distributed training. |
+| 10 | [08 atomics and memory model](cpp-cuda-track/08-sync-atomics-memory-model/README.md) | Parallelism internals need synchronization and memory-order discipline. |
+| 11 | [09 profiling roofline](cpp-cuda-track/09-profiling-roofline/README.md) | K8s serving claims need Nsight/perf-backed measurement habits. |
+| 12 | [12 PyTorch extension capstone](cpp-cuda-track/12-capstone-pytorch-extension/README.md) | Final integration: one op, CPU and CUDA backends, benchmarked against PyTorch. |
+
 ## Main Entry Points
 
 - [MASTER-PLAN.md](MASTER-PLAN.md) - daily operating dashboard.
 - [READINESS-REVIEW.md](READINESS-REVIEW.md) - weaknesses, corrections, and gates.
 - [companion-lessons](companion-lessons/README.md) - prerequisite support by week.
+- [references](references/README.md) - source-reading maps for books and long-form references.
 - [nvidia-cert-track](nvidia-cert-track/README.md) - certification study path.
 - [gpu-engineering-lab](gpu-engineering-lab/README.md) - build projects.
+- [cpp-cuda-track](cpp-cuda-track/README.md) - C++/CUDA mirror drills.
 - [k8s-ai-stack-demo](k8s-ai-stack-demo/README.md) - demo and Kubernetes-AI stack walkthrough.
 
 ## Tech Reference
