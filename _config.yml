@@ -1,5 +1,5 @@
-title: "NVIDIA Ramp-Up — a 12-week curriculum"
-description: "Certifications + GPU engineering projects + a Kubernetes-AI demo: a self-built, reusable path onto the NVIDIA Kubernetes-AI stack."
+title: "AI Infrastructure & GPU Engineering Ramp"
+description: "A 12-week NVIDIA Kubernetes-AI curriculum combining certification prep, GPU engineering projects, C++/CUDA drills, and a portfolio-ready demo path."
 theme: jekyll-theme-cayman
 
 # Rewrites links between .md files to their rendered .html pages
