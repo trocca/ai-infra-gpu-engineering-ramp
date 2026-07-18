@@ -395,7 +395,9 @@
       controls.panel.querySelector(".ramp-progress-cookie-warning")?.classList.add("is-visible");
     }
 
-    setPanelOpen(readCookie(PANEL_COOKIE) === "open", controls);
+    const savedPanelState = readCookie(PANEL_COOKIE);
+    const largeViewport = window.matchMedia("(min-width: 1024px)").matches;
+    setPanelOpen(savedPanelState === "open" || (savedPanelState !== "closed" && largeViewport), controls);
   }
 
   if (document.readyState === "loading") {
