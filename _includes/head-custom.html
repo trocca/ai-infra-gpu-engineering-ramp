@@ -1,6 +1,7 @@
 <!-- Render ```mermaid fenced blocks on GitHub Pages (GitHub.com renders them natively;
      Jekyll emits them as <pre><code class="language-mermaid">, which this converts). -->
 {% assign asset_version = site.github.build_revision | default: site.time %}
+<link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}?v={{ asset_version }}">
 <link rel="stylesheet" href="{{ '/assets/progress.css' | relative_url }}?v={{ asset_version }}">
 <script defer src="{{ '/assets/progress.js' | relative_url }}?v={{ asset_version }}"></script>
 
@@ -9,12 +10,109 @@
   if (blocks.length > 0) {
     const { default: mermaid } = await import("https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs");
     for (const code of blocks) {
+      const figure = document.createElement("figure");
+      figure.className = "mermaid-figure";
+
+      const toolbar = document.createElement("figcaption");
+      toolbar.className = "mermaid-toolbar";
+
+      const zoomOut = document.createElement("button");
+      zoomOut.type = "button";
+      zoomOut.className = "mermaid-action";
+      zoomOut.textContent = "Zoom -";
+
+      const zoomIn = document.createElement("button");
+      zoomIn.type = "button";
+      zoomIn.className = "mermaid-action";
+      zoomIn.textContent = "Zoom +";
+
+      const fit = document.createElement("button");
+      fit.type = "button";
+      fit.className = "mermaid-action";
+      fit.textContent = "Fit width";
+
+      const full = document.createElement("button");
+      full.type = "button";
+      full.className = "mermaid-action";
+      full.textContent = "Full size";
+
+      toolbar.append(zoomOut, zoomIn, fit, full);
+
+      const frame = document.createElement("div");
+      frame.className = "mermaid-frame";
+
       const holder = document.createElement("pre");
       holder.className = "mermaid";
       holder.textContent = code.textContent;
-      code.closest("pre").replaceWith(holder);
+      frame.append(holder);
+      figure.append(toolbar, frame);
+      code.closest("pre").replaceWith(figure);
+
+      function baseWidth() {
+        const svg = figure.querySelector("svg");
+        if (!svg) return 1040;
+        const viewBoxWidth = svg.viewBox?.baseVal?.width || 0;
+        const attrWidth = Number.parseFloat(svg.getAttribute("width") || "");
+        const rectWidth = svg.getBoundingClientRect().width;
+        return Math.ceil(viewBoxWidth || attrWidth || rectWidth || 1040);
+      }
+
+      function applyZoom(nextZoom) {
+        const svg = figure.querySelector("svg");
+        if (!svg) return;
+        const zoom = Math.max(0.7, Math.min(2.5, nextZoom));
+        figure.dataset.zoom = String(zoom);
+        if (!figure.dataset.baseWidth) figure.dataset.baseWidth = String(baseWidth());
+        figure.classList.remove("is-fit");
+        fit.textContent = "Fit width";
+        svg.style.width = Math.round(Number(figure.dataset.baseWidth) * zoom) + "px";
+        svg.style.height = "auto";
+      }
+
+      zoomOut.addEventListener("click", () => {
+        applyZoom(Number(figure.dataset.zoom || "1") - 0.15);
+      });
+
+      zoomIn.addEventListener("click", () => {
+        applyZoom(Number(figure.dataset.zoom || "1") + 0.15);
+      });
+
+      fit.addEventListener("click", () => {
+        const svg = figure.querySelector("svg");
+        const isFit = !figure.classList.contains("is-fit");
+        figure.classList.toggle("is-fit", isFit);
+        fit.textContent = isFit ? "Actual size" : "Fit width";
+        if (svg) svg.style.width = isFit ? "" : Math.round(baseWidth() * Number(figure.dataset.zoom || "1")) + "px";
+      });
+
+      full.addEventListener("click", () => {
+        const open = !figure.classList.contains("is-fullscreen");
+        figure.classList.toggle("is-fullscreen", open);
+        document.body.classList.toggle("mermaid-fullscreen-open", open);
+        full.textContent = open ? "Close" : "Full size";
+      });
     }
     mermaid.initialize({ startOnLoad: false, theme: "neutral", securityLevel: "loose" });
     await mermaid.run();
+
+    for (const figure of document.querySelectorAll(".mermaid-figure")) {
+      const svg = figure.querySelector("svg");
+      if (!svg) continue;
+      const width = Math.ceil(svg.viewBox?.baseVal?.width || svg.getBoundingClientRect().width || 1040);
+      figure.dataset.baseWidth = String(width);
+      figure.dataset.zoom = "1";
+      svg.style.width = width + "px";
+      svg.style.height = "auto";
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+      for (const figure of document.querySelectorAll(".mermaid-figure.is-fullscreen")) {
+        figure.classList.remove("is-fullscreen");
+        const full = figure.querySelector(".mermaid-action:last-child");
+        if (full) full.textContent = "Full size";
+      }
+      document.body.classList.remove("mermaid-fullscreen-open");
+    });
   }
 </script>
