@@ -293,13 +293,6 @@ body.ramp-progress-open .ramp-progress-panel {
   display: block;
 }
 
-@media (min-width: 1240px) {
-  body.ramp-progress-open .main-content {
-    margin-right: 410px;
-    transition: margin-right 180ms ease;
-  }
-}
-
 @media (max-width: 520px) {
   .ramp-progress-toggle {
     right: 10px;
