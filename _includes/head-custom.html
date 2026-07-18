@@ -1,5 +1,8 @@
 <!-- Render ```mermaid fenced blocks on GitHub Pages (GitHub.com renders them natively;
      Jekyll emits them as <pre><code class="language-mermaid">, which this converts). -->
+<link rel="stylesheet" href="{{ '/assets/progress.css' | relative_url }}">
+<script defer src="{{ '/assets/progress.js' | relative_url }}"></script>
+
 <script type="module">
   const blocks = document.querySelectorAll("pre > code.language-mermaid");
   if (blocks.length > 0) {

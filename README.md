@@ -47,6 +47,10 @@ For distributed-training source reading, use the
 adds transformer memory accounting, ZeRO/FSDP, 5D parallelism, kernel fusion,
 profiling, and compute/communication overlap to the weeks where those ideas pay off.
 
+The GitHub Pages site also includes a browser-local progress sidebar. Visitors can
+tick off core weeks and optional support lanes; progress is stored in a cookie on
+their own device, with no account or database.
+
 ## What This Repo Is For
 
 - Build enough AI infrastructure depth to explain and operate the NVIDIA Kubernetes-AI stack.
