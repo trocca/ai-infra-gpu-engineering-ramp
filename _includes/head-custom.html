@@ -59,13 +59,17 @@
 
       function applyZoom(nextZoom) {
         const svg = figure.querySelector("svg");
+        const diagram = figure.querySelector(".mermaid");
         if (!svg) return;
         const zoom = Math.max(0.7, Math.min(2.5, nextZoom));
         figure.dataset.zoom = String(zoom);
         if (!figure.dataset.baseWidth) figure.dataset.baseWidth = String(baseWidth());
         figure.classList.remove("is-fit");
         fit.textContent = "Fit width";
-        svg.style.width = Math.round(Number(figure.dataset.baseWidth) * zoom) + "px";
+        const width = Math.round(Number(figure.dataset.baseWidth) * zoom);
+        if (diagram) diagram.style.width = width + "px";
+        svg.style.maxWidth = "none";
+        svg.style.width = width + "px";
         svg.style.height = "auto";
       }
 
@@ -79,10 +83,18 @@
 
       fit.addEventListener("click", () => {
         const svg = figure.querySelector("svg");
+        const diagram = figure.querySelector(".mermaid");
         const isFit = !figure.classList.contains("is-fit");
         figure.classList.toggle("is-fit", isFit);
         fit.textContent = isFit ? "Actual size" : "Fit width";
-        if (svg) svg.style.width = isFit ? "" : Math.round(baseWidth() * Number(figure.dataset.zoom || "1")) + "px";
+        if (!svg) return;
+        if (isFit) {
+          if (diagram) diagram.style.width = "";
+          svg.style.maxWidth = "100%";
+          svg.style.width = "";
+        } else {
+          applyZoom(Number(figure.dataset.zoom || "1"));
+        }
       });
 
       full.addEventListener("click", () => {
@@ -97,10 +109,13 @@
 
     for (const figure of document.querySelectorAll(".mermaid-figure")) {
       const svg = figure.querySelector("svg");
+      const diagram = figure.querySelector(".mermaid");
       if (!svg) continue;
       const width = Math.ceil(svg.viewBox?.baseVal?.width || svg.getBoundingClientRect().width || 1040);
       figure.dataset.baseWidth = String(width);
       figure.dataset.zoom = "1";
+      if (diagram) diagram.style.width = width + "px";
+      svg.style.maxWidth = "none";
       svg.style.width = width + "px";
       svg.style.height = "auto";
     }
