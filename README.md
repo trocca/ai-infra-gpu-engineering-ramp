@@ -1,6 +1,6 @@
-# ai-infra-gpu-engineering-ramp
+# AI Infrastructure & GPU Engineering Ramp: 12-Week NVIDIA Kubernetes-AI Curriculum
 
-**Last updated:** 2026-07-18 12:34 +02:00
+**Last updated:** 2026-07-18 13:24 +02:00
 
 ![Visitors](https://api.visitorbadge.io/api/visitors?path=trocca%2Fai-infra-gpu-engineering-ramp&label=visitors&countColor=%2376B900)
 ![GitHub stars](https://img.shields.io/github/stars/trocca/ai-infra-gpu-engineering-ramp?color=76B900)
@@ -91,7 +91,7 @@ flowchart LR
 
 ```mermaid
 gantt
-    title 12-week AI infrastructure and GPU engineering ramp
+    title AI infrastructure and GPU engineering ramp - 12-week NVIDIA Kubernetes-AI curriculum
     dateFormat  YYYY-MM-DD
     axisFormat  %b %d
 

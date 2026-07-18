@@ -1,4 +1,4 @@
-# Ramping up on the NVIDIA Kubernetes-AI stack — a 12-week curriculum
+# AI Infrastructure & GPU Engineering Ramp: 12-Week NVIDIA Kubernetes-AI Curriculum
 
 This site documents a complete, self-built ramp-up path onto the NVIDIA AI
 infrastructure stack — built in 12 weeks at ~6 focused hours a day, with optional
