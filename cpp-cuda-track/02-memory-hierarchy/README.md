@@ -52,3 +52,12 @@ means a single thread walks memory with a stride of `blockDim * gridDim`
 
 - CUDA C++ Best Practices Guide — "Memory Optimizations".
 - Ulrich Drepper, "What Every Programmer Should Know About Memory" (CPU side).
+
+## Lab
+
+- [`cpp/stride_sweep.cpp`](cpp/stride_sweep.cpp) — experiments 1–2 (stride sweep, AoS vs SoA). Build: `g++ -O3 -std=c++20 -march=native cpp/stride_sweep.cpp -o stride_cpu`
+- [`cuda/stride_sweep.cu`](cuda/stride_sweep.cu) — experiments 1–3 (coalescing sweep, AoS vs SoA, pinned vs pageable). Build: `nvcc -O3 -arch=native cuda/stride_sweep.cu -o stride_gpu`
+
+## Companion reading
+
+- Fregly, *AI Systems Performance Engineering*: Ch. 6 §"GPU Memory Hierarchy", Ch. 7 (coalesced vs uncoalesced access, vectorized access — runs this module's experiment with Nsight evidence).

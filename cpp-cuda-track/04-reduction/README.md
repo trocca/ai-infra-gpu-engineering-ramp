@@ -66,3 +66,7 @@ nvcc -O3 -arch=native cuda/reduce.cu -o reduce_gpu && ./reduce_gpu
 4. Replace your GPU kernel with `cub::DeviceReduce::Sum` and measure. Lesson:
    in production you call CUB/Thrust; you write the raw version to *understand*
    what you're calling.
+
+## Companion reading
+
+- Fregly, *AI Systems Performance Engineering*: Ch. 7 §"Warp Shuffle Intrinsics" — this module's kernel, profiled.

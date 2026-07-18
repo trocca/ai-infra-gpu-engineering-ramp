@@ -53,3 +53,8 @@ nvcc -O3 -arch=native cuda/matmul.cu -o matmul_gpu && ./matmul_gpu
    with the humility.
 4. In the GPU kernel, remove one `__syncthreads()` and run under
    `compute-sanitizer --tool racecheck`. This is module 08's cliffhanger.
+
+## Companion reading
+
+- Fregly, *AI Systems Performance Engineering*: Ch. 9 (multi-level micro-tiling, kernel fusion, CUTLASS — the chapters between this module's kernel and cuBLAS).
+- Ultra-Scale Playbook: the arithmetic-intensity / kernel sections — same tiling story told from the LLM-training side.

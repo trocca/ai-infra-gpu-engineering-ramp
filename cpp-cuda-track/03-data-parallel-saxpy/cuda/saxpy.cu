@@ -1,6 +1,9 @@
-// 03/cuda — SAXPY with the grid-stride idiom, timed with events,
+// Lab 03/cuda — SAXPY with the grid-stride idiom, timed with events,
 // reported as achieved bandwidth.
-// Build: nvcc -O3 -arch=native saxpy.cu -o saxpy_gpu
+// Lesson: ../README.md — §Concept (SIMT, grid-stride), exercises 1–4.
+// Refs:   NVIDIA blog "CUDA Pro Tip: Write Flexible Kernels with Grid-Stride
+//         Loops"; CUDA C++ Best Practices Guide §"Effective Bandwidth".
+// Build:  nvcc -O3 -arch=native saxpy.cu -o saxpy_gpu
 
 #include <cstdio>
 #include <vector>

@@ -1,6 +1,10 @@
-// 04/cuda — hierarchical sum: registers -> warp shuffle -> shared -> one
+// Lab 04/cuda — hierarchical sum: registers -> warp shuffle -> shared -> one
 // atomicAdd per block. The template for every reduction-shaped ML kernel.
-// Build: nvcc -O3 -arch=native reduce.cu -o reduce_gpu
+// Lesson: ../README.md — §Concept (the 4-level funnel), exercises 1–2, 4.
+// Refs:   NVIDIA blog "Faster Parallel Reductions on Kepler" (Harris — the
+//         canonical shuffle-reduction walkthrough); CUDA C++ Programming
+//         Guide §"Warp Shuffle Functions"; cub::DeviceReduce docs.
+// Build:  nvcc -O3 -arch=native reduce.cu -o reduce_gpu
 
 #include <cstdio>
 #include <numeric>

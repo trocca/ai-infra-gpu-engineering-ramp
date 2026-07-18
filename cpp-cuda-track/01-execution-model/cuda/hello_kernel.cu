@@ -1,5 +1,9 @@
-// 01/cuda — launch a grid, print who ran where, query the machine.
-// Build: nvcc -O3 -arch=native hello_kernel.cu -o hello_gpu
+// Lab 01/cuda — launch a grid, print who ran where, query the machine.
+// Lesson: ../README.md — §Concept (GPU side), exercises 1–3.
+// Refs:   CUDA C++ Programming Guide §"Programming Model" (grid/block/thread),
+//         §"Hardware Implementation" (SIMT, warp scheduling);
+//         cudaGetDeviceProperties API docs.
+// Build:  nvcc -O3 -arch=native hello_kernel.cu -o hello_gpu
 
 #include <cstdio>
 

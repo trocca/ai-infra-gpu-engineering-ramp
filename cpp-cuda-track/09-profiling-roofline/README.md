@@ -44,3 +44,14 @@ or launch bound (occupancy, sync, small grid).
 4. `nsys profile` a small PyTorch training step (any toy model). Find: kernel
    launch gaps (CPU-bound?), memcpys you didn't expect, and the NCCL kernels if
    you run DDP. This closes the loop to the main ramp.
+
+## Lab
+
+No new code — this module's lab subjects are the binaries you already built:
+profile [`03-data-parallel-saxpy`](../03-data-parallel-saxpy/) and
+[`06-matmul-tiling`](../06-matmul-tiling/) per exercises 1–3, and a toy PyTorch
+step per exercise 4.
+
+## Companion reading
+
+- Fregly, *AI Systems Performance Engineering*: Ch. 6 §"Roofline Model Analysis", Ch. 8 (Nsight Systems/Compute workflow, occupancy tuning — this module's toolchain, chapter-length), Ch. 13 (the same workflow applied to PyTorch, with NVTX and HTA).

@@ -56,3 +56,12 @@ Triton matmul and map its pragmas to what you wrote by hand.
 - CUDA C++ Programming Guide: warp functions; WMMA; clusters; TMA.
 - CUTLASS docs + `examples/`; the CUTLASS 3.x "CuTe" layout tutorial.
 - FlashAttention-3 paper (Shah et al., 2024).
+
+## Lab
+
+- [`cuda/wmma_gemm.cu`](cuda/wmma_gemm.cu) — exercise 2 (tensor-core GEMM via `wmma::`, FP16→FP32; one warp per 16×16 tile). Build: `nvcc -O3 -arch=native cuda/wmma_gemm.cu -o wmma_gpu` (CC ≥ 7.0). Deliberately no CPU twin — the honest CPU counterpart is AMX, see §10b.
+
+## Companion reading
+
+- Fregly, *AI Systems Performance Engineering*: Ch. 9 (mixed precision, tensor cores, CUTLASS, PTX/SASS), Ch. 10 (intra-kernel pipelining, warp-specialized producer/consumer, thread block clusters — §10c of this lesson, book-length), Ch. 14 (Triton — the compiler that writes this module's kernels for you).
+- Ultra-Scale Playbook: fused kernels / Flash Attention sections.

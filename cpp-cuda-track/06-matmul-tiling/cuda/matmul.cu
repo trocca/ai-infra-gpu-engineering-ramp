@@ -1,5 +1,10 @@
-// 06/cuda — SGEMM: naive vs shared-memory tiled.
-// Build: nvcc -O3 -arch=native matmul.cu -o matmul_gpu
+// Lab 06/cuda — SGEMM: naive vs shared-memory tiled.
+// Lesson: ../README.md — §Concept (shared-memory tiling), exercises 1–4.
+// Refs:   CUDA C++ Programming Guide §"Shared Memory" (this exact kernel is
+//         its worked example); Boehm, "How to Optimize a CUDA Matmul Kernel
+//         for cuBLAS-like Performance" (siboehm.com — the follow-on steps);
+//         CUTLASS docs for where the road leads.
+// Build:  nvcc -O3 -arch=native matmul.cu -o matmul_gpu
 
 #include <cmath>
 #include <cstdio>
