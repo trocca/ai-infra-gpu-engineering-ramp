@@ -396,8 +396,8 @@
     }
 
     const savedPanelState = readCookie(PANEL_COOKIE);
-    const largeViewport = window.matchMedia("(min-width: 1024px)").matches;
-    setPanelOpen(savedPanelState === "open" || (savedPanelState !== "closed" && largeViewport), controls);
+    const wideViewport = window.matchMedia("(min-width: 1860px)").matches;
+    setPanelOpen(savedPanelState === "open" || (savedPanelState !== "closed" && wideViewport), controls);
   }
 
   if (document.readyState === "loading") {
