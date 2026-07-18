@@ -82,10 +82,6 @@
   min-width: 1440px;
 }
 
-.mermaid-figure.is-fullscreen .mermaid-frame svg {
-  width: auto;
-}
-
 body.mermaid-fullscreen-open {
   overflow: hidden;
 }
