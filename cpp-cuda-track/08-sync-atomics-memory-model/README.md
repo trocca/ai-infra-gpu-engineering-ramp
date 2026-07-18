@@ -54,3 +54,12 @@ in-kernel global sync is a specialty tool.
    wrong answers are nondeterministic.
 4. Reading: "GPU Concurrency: Weak Behaviours and Programming Assumptions"
    (Alglave et al.) — skim; then the libcu++ `cuda::atomic` docs.
+
+## Lab
+
+- [`cpp/race_and_fix.cpp`](cpp/race_and_fix.cpp) — exercises 1–2 (racy counter → seq_cst → relaxed → sharded+padded). Build: `g++ -O3 -std=c++20 -pthread cpp/race_and_fix.cpp -o race_cpu` (rebuild with `-fsanitize=thread -O1 -g` for the TSan run)
+- [`cuda/race_and_fix.cu`](cuda/race_and_fix.cu) — exercises 1–2 (global atomicAdd → warp-aggregated → block-privatized → `cuda::atomic_ref`). Build: `nvcc -O3 -arch=native cuda/race_and_fix.cu -o race_gpu`
+
+## Companion reading
+
+- Fregly, *AI Systems Performance Engineering*: Ch. 10 §"Cooperative Groups", Ch. 12 §"Dynamic Scheduling with Atomic Work Queues" (atomics as a scheduling primitive — where this module's counters are headed).

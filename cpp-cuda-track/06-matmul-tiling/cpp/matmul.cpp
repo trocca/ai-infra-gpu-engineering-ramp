@@ -1,5 +1,9 @@
-// 06/cpp — SGEMM: naive vs cache-blocked, OpenMP across rows.
-// Build: g++ -O3 -std=c++20 -fopenmp -march=native matmul.cpp -o matmul_cpu
+// Lab 06/cpp — SGEMM: naive vs cache-blocked, OpenMP across rows.
+// Lesson: ../README.md — §Concept (cache blocking), exercises 1–3.
+// Refs:   Goto & van de Geijn, "Anatomy of High-Performance Matrix
+//         Multiplication" (ACM TOMS 2008); the flame/BLIS tutorial
+//         "how-to-optimize-gemm"; Drepper §6.2.1 (matrix blocking example).
+// Build:  g++ -O3 -std=c++20 -fopenmp -march=native matmul.cpp -o matmul_cpu
 
 #include <cstdio>
 #include <vector>

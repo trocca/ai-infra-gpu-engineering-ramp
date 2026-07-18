@@ -54,3 +54,7 @@ nvcc -O3 -arch=native cuda/saxpy.cu -o saxpy_gpu && ./saxpy_gpu
 4. Add the H2D/D2H transfer time to the GPU measurement. At what N does the GPU
    *including transfers* beat the CPU? (This is why "move the whole pipeline to
    the GPU" beats "offload one op".)
+
+## Companion reading
+
+- Fregly, *AI Systems Performance Engineering*: Ch. 6 §"CUDA Programming Refresher" and §"Maintaining High Occupancy".

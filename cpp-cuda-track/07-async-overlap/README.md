@@ -50,3 +50,12 @@ streams, transfer hides behind compute almost entirely.
    get right and why.
 4. Launch a 1 µs kernel 10 000 times in a loop; measure. Capture the same loop
    in a CUDA Graph and replay. The ratio you see is why graphs exist.
+
+## Lab
+
+- [`cpp/overlap_pipeline.cpp`](cpp/overlap_pipeline.cpp) — exercise 3 (serial vs double-buffered fetch/compute pipeline). Build: `g++ -O3 -std=c++20 -pthread cpp/overlap_pipeline.cpp -o overlap_cpu`
+- [`cuda/streams_pipeline.cu`](cuda/streams_pipeline.cu) — exercises 1 & 4 (1/2/4/8-stream pipelined transfer; 10k-launch loop vs CUDA Graph). Build: `nvcc -O3 -arch=native cuda/streams_pipeline.cu -o streams_gpu`
+
+## Companion reading
+
+- Fregly, *AI Systems Performance Engineering*: Ch. 11 (streams, stream-ordered allocator, events, CUDA Graphs — this module, production-grade), Ch. 12 §"Batch Repeated Kernel Launches with CUDA Graphs".

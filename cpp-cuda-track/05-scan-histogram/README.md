@@ -45,3 +45,12 @@ too big to privatize, you're in scatter territory and both chips hurt.
    why it beats the 3-pass scheme (hint: one trip over global memory, not two).
 4. Connect to ML: find where scan appears in MoE token dispatch (capacity
    offsets) — e.g. in Megatron or vLLM source — and note the kernel used.
+
+## Lab
+
+- [`cpp/scan_histogram.cpp`](cpp/scan_histogram.cpp) — exercises 1–2 (3-pass blocked scan; histogram, shared-atomics vs privatized). Build: `g++ -O3 -std=c++20 -fopenmp -march=native cpp/scan_histogram.cpp -o scanhist_cpu`
+- [`cuda/scan_histogram.cu`](cuda/scan_histogram.cu) — exercises 1–2 (single-block shared-memory scan; histogram, global vs block-privatized atomics). Build: `nvcc -O3 -arch=native cuda/scan_histogram.cu -o scanhist_gpu`
+
+## Companion reading
+
+- Fregly, *AI Systems Performance Engineering*: Ch. 7 §"Tiling and Data Reuse Using Shared Memory"; Ch. 12 §"Dynamic Scheduling with Atomic Work Queues" (where histogram-style atomics graduate to).

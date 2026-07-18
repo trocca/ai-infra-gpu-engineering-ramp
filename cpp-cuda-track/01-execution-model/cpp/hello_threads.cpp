@@ -1,5 +1,8 @@
-// 01/cpp — spawn N OS threads, observe the cost and the scheduler.
-// Build: g++ -O3 -std=c++20 -pthread hello_threads.cpp -o hello_cpu
+// Lab 01/cpp — spawn N OS threads, observe the cost and the scheduler.
+// Lesson: ../README.md — §Concept (CPU side), exercise 1.
+// Refs:   cppreference std::thread; man pthread_create (thread creation cost);
+//         Butenhof, "Programming with POSIX Threads" ch.1.
+// Build:  g++ -O3 -std=c++20 -pthread hello_threads.cpp -o hello_cpu
 
 #include <cstdio>
 #include <thread>

@@ -15,6 +15,6 @@ them.
 ## Reference shelf
 
 - [The Ultra-Scale Playbook](https://nanotron-ultrascale-playbook.static.hf.space/) — Hugging Face, the parallelism textbook.
-- *AI Systems Performance Engineering* (Fregly, O'Reilly 2025) — GPU/CUDA/PyTorch performance reference.
+- *AI Systems Performance Engineering* (Fregly, O'Reilly 2025) — GPU/CUDA/PyTorch performance reference; its chapters are spread across the dual track's modules as per-module "Companion reading" (map in [`cpp-cuda-track/README.md`](cpp-cuda-track/README.md)).
 - [PyTorch internals](http://blog.ezyang.com/2019/05/pytorch-internals/) — Edward Yang.
 - [CUDA C++ Programming Guide](https://docs.nvidia.com/cuda/cuda-c-programming-guide/) — the primary source for the CUDA half of the dual track.

@@ -1,5 +1,9 @@
-// 04/cpp — sum 64M floats: serial, OpenMP reduction, and pairwise (accuracy).
-// Build: g++ -O3 -std=c++20 -fopenmp -march=native reduce.cpp -o reduce_cpu
+// Lab 04/cpp — sum 64M floats: serial, OpenMP reduction, and pairwise (accuracy).
+// Lesson: ../README.md — §Concept (CPU side) and the float-absorption callout;
+//         exercise 3.
+// Refs:   Higham, "The accuracy of floating point summation" (SIAM 1993);
+//         OpenMP spec §reduction clause; cppreference std::reduce.
+// Build:  g++ -O3 -std=c++20 -fopenmp -march=native reduce.cpp -o reduce_cpu
 
 #include <cstdio>
 #include <numeric>

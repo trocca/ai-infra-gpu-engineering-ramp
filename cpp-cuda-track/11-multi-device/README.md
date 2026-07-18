@@ -58,3 +58,13 @@ and gradient bucketing in DDP).
 4. Run a 2-GPU PyTorch DDP script under `nsys`; find the NCCL all-reduce
    kernels overlapping the backward pass. This is the track's graduation
    photo: module 01's warps to module 11's fleet, one timeline.
+
+## Lab
+
+- [`cpp/ring_allreduce.cpp`](cpp/ring_allreduce.cpp) — exercise 2 (ring all-reduce by hand: reduce-scatter + all-gather, threads standing in for ranks; verifies the 2·(R−1)/R traffic formula). Build: `g++ -O3 -std=c++20 -pthread cpp/ring_allreduce.cpp -o ring_cpu`
+- [`cuda/p2p_bandwidth.cu`](cuda/p2p_bandwidth.cu) — exercise 1 (pairwise GPU bandwidth matrix, peer access off/on; single-GPU fallback included). Build: `nvcc -O3 -arch=native cuda/p2p_bandwidth.cu -o p2p_gpu`
+
+## Companion reading
+
+- Fregly, *AI Systems Performance Engineering*: Ch. 2 §"Ultra-Scale Networking, NVLink and NVSwitch", Ch. 3 §"NUMA Awareness and CPU Pinning", Ch. 4 (NCCL, topology awareness, comm/compute overlap, SHARP — this module's syllabus as a chapter), Ch. 12 §"NVSHMEM".
+- Ultra-Scale Playbook: data-parallelism + ZeRO sections — the training-strategy view of these same collectives.

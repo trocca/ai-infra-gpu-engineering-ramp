@@ -53,3 +53,15 @@ the online-softmax trick) the seed of FlashAttention.
 - Milakov & Gimelshein, "Online normalizer calculation for softmax" (2018).
 - PyTorch source: `aten/src/ATen/native/cuda/SoftMax.cu` — read after writing
   yours, not before.
+
+## Lab
+
+- [`csrc/ops.cpp`](csrc/ops.cpp) — plan steps 1–2: schema + `TORCH_LIBRARY` registration, CPU impl on `at::parallel_for`.
+- [`csrc/softmax.cu`](csrc/softmax.cu) — plan step 3: one-block-per-row fused kernel reusing module 04's funnel.
+- [`lab.py`](lab.py) — JIT-builds the extension, verifies against `torch.softmax` (CPU & CUDA), benchmarks vs eager and `torch.compile`. Run: `python lab.py`
+- Plan steps 4–5 (backward + beating Inductor) are the exercise — the scaffold stops where the learning starts.
+
+## Companion reading
+
+- Fregly, *AI Systems Performance Engineering*: Ch. 13 (profiling/tuning PyTorch — profile your op in a real model), Ch. 14 (torch.compile internals and Triton — read after step 5's `TORCH_LOGS=output_code` comparison).
+- After this module, the book's Ch. 15–20 (inference at scale: disaggregated prefill/decode, KV-cache tuning) are the natural sequel track.

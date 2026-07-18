@@ -1,6 +1,9 @@
-// 03/cpp — SAXPY: serial, auto-vectorized, and OpenMP variants.
-// Build: g++ -O3 -std=c++20 -fopenmp -march=native saxpy.cpp -o saxpy_cpu
-// Vector report: add -fopt-info-vec (gcc) to see what the compiler vectorized.
+// Lab 03/cpp — SAXPY: serial, auto-vectorized, and OpenMP variants.
+// Lesson: ../README.md — §Concept (two-level CPU parallelism), exercises 1–2.
+// Refs:   OpenMP 5.x spec §worksharing-loop; GCC "-fopt-info-vec" docs
+//         (verify auto-vectorization); BLAS Level-1 saxpy reference.
+// Build:  g++ -O3 -std=c++20 -fopenmp -march=native saxpy.cpp -o saxpy_cpu
+//         (add -fopt-info-vec to see what the compiler vectorized)
 
 #include <cstdio>
 #include <vector>

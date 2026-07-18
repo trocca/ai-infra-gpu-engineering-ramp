@@ -52,11 +52,47 @@ Modules 01–06 are the foundation (do them in order). 07–09 can interleave.
 ## How to work a module
 
 1. Read the module `README.md` — concept, the confrontation table, and the exercises.
-2. Build and run the `cpp/` version. Measure it.
-3. Build and run the `cuda/` version. Measure it.
+2. Build and run the `cpp/` lab. Measure it.
+3. Build and run the `cuda/` lab. Measure it.
 4. Answer the confrontation questions in the README *in writing* (add a `NOTES.md`).
    The questions are chosen so the answer differs between the stacks — that delta
    is the lesson.
+5. Do the module's **Companion reading** (below and per-README) once your own
+   numbers exist — the chapters land differently when they explain measurements
+   you just made.
+
+**Lesson ↔ lab binding.** Every module README ends with a `## Lab` section (or
+inline build commands) naming its code files and which exercises they
+implement; every code file opens with a header block pointing back:
+`Lesson:` (the README section and exercise numbers it belongs to) and `Refs:`
+(the primary sources for that exact technique). If you add a lab, keep the
+contract in both directions.
+
+## Companion book: *AI Systems Performance Engineering* (Fregly, O'Reilly 2025)
+
+The track uses one book as its spine, spread across the modules where each
+chapter's content is exercised (details in each module's "Companion reading"):
+
+| Book chapter | Woven into module |
+|---|---|
+| Ch. 2 — hardware: SMs, warps, NVLink/NVSwitch | 01, 11 |
+| Ch. 3 — OS/K8s tuning, NUMA pinning | 11 |
+| Ch. 4 — NCCL, topology, comm/compute overlap | 11 |
+| Ch. 6 — GPU architecture, CUDA refresher, occupancy, roofline | 01, 02, 03, 09 |
+| Ch. 7 — memory access patterns, shuffle, shared-memory reuse | 02, 04, 05 |
+| Ch. 8 — Nsight workflow, occupancy & warp efficiency | 09 |
+| Ch. 9 — micro-tiling, fusion, tensor cores, CUTLASS | 06, 10 |
+| Ch. 10 — intra-kernel pipelining, clusters, cooperative groups | 08, 10 |
+| Ch. 11 — streams, events, CUDA Graphs | 07 |
+| Ch. 12 — device-side orchestration, atomic work queues, NVSHMEM | 05, 07, 08, 11 |
+| Ch. 13 — profiling & scaling PyTorch | 09, 12 |
+| Ch. 14 — torch.compile, Triton | 10, 12 |
+| Ch. 15–20 — inference at scale (prefill/decode, KV cache…) | after 12 — the sequel track |
+
+Ch. 1 and 5 (role overview; storage I/O) are worth a standalone read early on —
+no module exercises them directly. The free
+[Ultra-Scale Playbook](https://nanotron-ultrascale-playbook.static.hf.space/)
+complements from the training-strategy side (referenced in modules 06, 10, 11).
 
 ## Environment
 

@@ -54,3 +54,7 @@ nvcc -O3 -arch=native cuda/hello_kernel.cu -o hello_gpu && ./hello_gpu
 
 - CUDA C++ Programming Guide §2 "Programming Model".
 - Hennessy & Patterson, "Computer Architecture", GPU chapter — the SIMT section.
+
+## Companion reading
+
+- Fregly, *AI Systems Performance Engineering*: Ch. 2 (SMs, threads, warps — the hardware this module runs on), Ch. 6 §"Threads, Warps, Blocks, and Grids".
