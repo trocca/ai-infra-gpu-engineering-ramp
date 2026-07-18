@@ -2,7 +2,7 @@
   "use strict";
 
   const COOKIE_NAME = "aiInfraRampProgressV1";
-  const PANEL_COOKIE = "aiInfraRampProgressPanel";
+  const PANEL_COOKIE = "aiInfraRampProgressPanelV2";
   const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
   const coreWeeks = [
