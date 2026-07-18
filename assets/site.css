@@ -1,0 +1,109 @@
+.mermaid-figure {
+  margin: 1.35rem 0 1.8rem;
+}
+
+.mermaid-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-bottom: 0.45rem;
+}
+
+.mermaid-action {
+  border: 1px solid #d8dee9;
+  border-radius: 8px;
+  background: #fff;
+  color: #172033;
+  cursor: pointer;
+  font: 700 0.82rem/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  padding: 0.45rem 0.65rem;
+}
+
+.mermaid-action:hover,
+.mermaid-action:focus {
+  border-color: #76b900;
+  outline: 2px solid rgba(118, 185, 0, 0.22);
+  outline-offset: 1px;
+}
+
+.mermaid-frame {
+  overflow-x: auto;
+  overflow-y: hidden;
+  border: 1px solid #d8dee9;
+  border-radius: 8px;
+  background: #fff;
+  padding: 1rem;
+  box-shadow: 0 10px 28px rgba(23, 32, 51, 0.08);
+}
+
+.mermaid-frame .mermaid {
+  min-width: 1040px;
+  margin: 0;
+}
+
+.mermaid-frame svg {
+  display: block;
+  max-width: none;
+  height: auto;
+}
+
+.mermaid-figure.is-fit .mermaid-frame .mermaid {
+  min-width: 0;
+}
+
+.mermaid-figure.is-fit .mermaid-frame svg {
+  width: 100%;
+}
+
+.mermaid-figure.is-fullscreen {
+  position: fixed;
+  inset: 18px;
+  z-index: 20000;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  margin: 0;
+  padding: 1rem;
+  border-radius: 10px;
+  background: #f6f8fb;
+  box-shadow: 0 24px 80px rgba(23, 32, 51, 0.35);
+}
+
+.mermaid-figure.is-fullscreen .mermaid-toolbar {
+  margin: 0 0 0.75rem;
+}
+
+.mermaid-figure.is-fullscreen .mermaid-frame {
+  overflow: auto;
+  min-height: 0;
+}
+
+.mermaid-figure.is-fullscreen .mermaid-frame .mermaid {
+  min-width: 1440px;
+}
+
+.mermaid-figure.is-fullscreen .mermaid-frame svg {
+  width: auto;
+}
+
+body.mermaid-fullscreen-open {
+  overflow: hidden;
+}
+
+@media (max-width: 720px) {
+  .mermaid-toolbar {
+    justify-content: flex-start;
+  }
+
+  .mermaid-frame {
+    margin-right: -1rem;
+    margin-left: -1rem;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+  }
+
+  .mermaid-frame .mermaid {
+    min-width: 900px;
+  }
+}
