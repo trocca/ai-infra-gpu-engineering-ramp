@@ -15,6 +15,7 @@ syntax cold from the docs even though you can't run it.
 ## Prerequisites before Monday
 
 - Companion lesson: [Week 09 companion — distributed training, all-reduce cost, and NCCL support](../../../companion-lessons/week-09.md).
+- Source reading: [HF Ultra-Scale Playbook — data parallelism, ZeRO, collectives, and profiling](../../../references/hf-ultrascale-playbook.md#week-9---data-parallelism-zero-collectives-and-profiling).
 - Math support: all-reduce byte cost, rank/world-size vocabulary, and scaling efficiency.
 - Systems/programming support: `torch.distributed`, DDP hooks, NCCL logs, cloud GPU setup, and teardown discipline.
 - Gate: explain all-reduce in three sentences and confirm the cloud GPU budget before launching anything.

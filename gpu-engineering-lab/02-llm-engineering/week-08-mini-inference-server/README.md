@@ -9,6 +9,7 @@
 > Exam week: Friday is deliberately light.
 
 Prerequisite support: [Week 08 companion lesson](../../../companion-lessons/week-08.md).
+Source reading: [HF Ultra-Scale Playbook — serving memory and precision carryover](../../../references/hf-ultrascale-playbook.md#week-8---serving-memory-and-precision-carryover).
 
 ## Goal
 

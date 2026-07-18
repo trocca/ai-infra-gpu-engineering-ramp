@@ -9,6 +9,7 @@ Exam coverage this week: **Model Optimization 17% + GPU Acceleration & Optimizat
 ## Prerequisites before Monday
 
 - Companion lesson: [Week 07 companion — quantization, Triton tiling, and FlashAttention support](../../../companion-lessons/week-07.md).
+- Source reading: [HF Ultra-Scale Playbook — kernels, FlashAttention, and mixed precision](../../../references/hf-ultrascale-playbook.md#week-7---kernels-flashattention-and-mixed-precision).
 - Math support: affine quantization, memory estimates for FP16/INT8/INT4, softmax stability, and FlashAttention as an IO reduction.
 - Programming support: Triton program IDs, block pointers, masks, PyTorch reference tests, and error-vs-speed reporting.
 - Gate: estimate memory for an 8B model in FP16, INT8, and INT4, then name the tests that protect custom kernels.

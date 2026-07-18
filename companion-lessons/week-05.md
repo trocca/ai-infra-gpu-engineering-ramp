@@ -35,6 +35,13 @@ KV bytes = 2 * layers * kv_heads * head_dim * sequence_length * batch * bytes_pe
 
 The `2` is K plus V. This one formula explains why inference is often memory-bound.
 
+## Playbook Bridge
+
+Before this week, read the
+[Week 5 Ultra-Scale Playbook bridge](../references/hf-ultrascale-playbook.md#week-5---transformer-memory-and-single-gpu-training).
+Add a memory ledger to `notes.md`: parameters, gradients, optimizer states, activations,
+and KV cache. The core habit is to predict memory pressure before PyTorch tells you.
+
 ## Programming Primer
 
 - PyTorch modules register parameters when assigned as `nn.Parameter` or submodules.

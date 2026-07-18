@@ -3,6 +3,7 @@
 > **Phase 3, Week 4 of 4** · ~4 h/day, **Friday light — NCP-AIO exam week** · Mostly local; ~1 short cloud session Day 2
 
 Prerequisite support: [Week 12 companion lesson](../../../companion-lessons/week-12.md).
+Source reading: [HF Ultra-Scale Playbook — capstone defense and scale-up story](../../../references/hf-ultrascale-playbook.md#week-12---capstone-defense-and-scale-up-story).
 
 ## Goal
 

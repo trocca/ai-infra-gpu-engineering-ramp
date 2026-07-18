@@ -1,8 +1,9 @@
 # Ramping up on the NVIDIA Kubernetes-AI stack — a 12-week curriculum
 
 This site documents a complete, self-built ramp-up path onto the NVIDIA AI
-infrastructure stack — built in 12 weeks at ~6 focused hours a day, and published
-so anyone can follow (or fork) the same path.
+infrastructure stack — built in 12 weeks at ~6 focused hours a day, with optional
+C++/CUDA mirror drills for low-level parallelism, source-reading maps for long-form
+references, and published so anyone can follow (or fork) the same path.
 
 **If you're reviewing my candidacy**: this is both the artifact and the evidence.
 The curriculum below is what I built to get ramped; designing a path others can
@@ -23,16 +24,24 @@ plus the corrections that keep the 12-week run honest.
 → **[Companion Lessons](companion-lessons/README.md)** — week-by-week prerequisite
 support for the math, Rust, PyTorch, CUDA, Triton, distributed training, and K8s topics.
 
-## The three tracks
+→ **[C++/CUDA Dual Track](cpp-cuda-track/README.md)** — side-by-side CPU/GPU
+parallelism drills from execution model to PyTorch extensions.
+
+→ **[Reference Shelf](references/README.md)** — source-reading maps, including the
+[Hugging Face Ultra-Scale Playbook](references/hf-ultrascale-playbook.md) for
+distributed training and scaling.
+
+## The four tracks
 
 | Track | What | Where |
 |-------|------|-------|
 | **PROVE** — certifications | NCA-AIIO → NCP-GENL → NCP-AIO: weekly plans, self-checks, 300+ flashcards, full mock exams | [nvidia-cert-track](nvidia-cert-track/README.md) |
 | **BUILD** — 12 shipped projects | autograd from scratch → CUDA kernels in Rust → SGEMM ladder → GPT + LoRA from scratch → Triton + quantization → a Rust inference engine → distributed training internals → Kubernetes GPU serving | [gpu-engineering-lab](gpu-engineering-lab/README.md) |
+| **DRILL** — C++/CUDA mirror | execution model → memory hierarchy → reductions/scans → matmul tiling → streams/atomics → roofline → tensor cores → multi-device → PyTorch extension | [cpp-cuda-track](cpp-cuda-track/README.md) |
 | **SHOW** — the demo | a narrated 7-scene demo of the Kubernetes-AI stack: TrainJob v2, KAI gang scheduling, fractional GPUs, LWS multi-node vLLM, DRA | [k8s-ai-stack-demo](k8s-ai-stack-demo/README.md) |
 
-The design principle: **certifications give the vocabulary, the projects give the
-scars, the demo gives the story.** Study and build tracks run in parallel and are
+The design principle: **certifications give the vocabulary, source readings give the
+frontier map, projects give the scars, the demo gives the story.** Study and build tracks run in parallel and are
 week-aligned — the LoRA math you study Monday morning is the LoRA you implement
 Monday afternoon.
 
@@ -52,4 +61,4 @@ Monday afternoon.
 
 ## Reference material
 
-- [Readiness review](READINESS-REVIEW.md) · [Companion lessons](companion-lessons/README.md) · [The pitch](01_pitch_and_demo.md) · [Mock interview Q&A](03_mock_interview_qa.md) · [Verified stack reference](04_stack_reference_verified.md)
+- [Readiness review](READINESS-REVIEW.md) · [Companion lessons](companion-lessons/README.md) · [Reference shelf](references/README.md) · [C++/CUDA dual track](cpp-cuda-track/README.md) · [The pitch](01_pitch_and_demo.md) · [Mock interview Q&A](03_mock_interview_qa.md) · [Verified stack reference](04_stack_reference_verified.md)

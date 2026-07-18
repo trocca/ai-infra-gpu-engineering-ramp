@@ -4,6 +4,7 @@
 > no `nn.MultiheadAttention`, no `x = model(x)` hand-waving. Every matrix multiply is yours.
 
 Prerequisite support: [Week 05 companion lesson](../../../companion-lessons/week-05.md).
+Source reading: [HF Ultra-Scale Playbook — transformer memory and single-GPU training](../../../references/hf-ultrascale-playbook.md#week-5---transformer-memory-and-single-gpu-training).
 
 ## Goal
 

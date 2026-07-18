@@ -5,6 +5,7 @@
 > weight-only INT8 quantization with a fused dequant-matmul.
 
 Prerequisite support: [Week 07 companion lesson](../../../companion-lessons/week-07.md).
+Source reading: [HF Ultra-Scale Playbook — kernels, FlashAttention, and mixed precision](../../../references/hf-ultrascale-playbook.md#week-7---kernels-flashattention-and-mixed-precision).
 
 ## Goal
 

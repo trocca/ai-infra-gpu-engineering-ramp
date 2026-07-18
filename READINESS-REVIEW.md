@@ -38,9 +38,9 @@ Official certification pages should be treated as the source of truth before boo
 
 - [NCA-AIIO - AI Infrastructure and Operations Associate](https://www.nvidia.com/en-us/learn/certification/ai-infrastructure-operations-associate/)
 - [NCP-GENL - Generative AI LLMs Professional](https://www.nvidia.com/en-us/learn/certification/generative-ai-llm-professional/)
-- [NCP-AIO - AI Operations Professional](https://www.nvidia.com/en-us/learn/certification/ai-operations-professional/)
+- [NCP-AIO / NCP-AIOL - AI Operations Professional](https://www.nvidia.com/en-us/learn/certification/ai-operations-professional/)
 
-As of the July 2026 verification pass, the plan's broad shape still matches the public NVIDIA pages: NCA-AIIO is foundational, NCP-GENL expects transformer/PEFT/distributed-training competence, and NCP-AIO is the hardest operational exam because it includes hands-on lab work.
+As of the July 2026 verification pass, the plan's broad shape still matches the public NVIDIA pages: NCA-AIIO is foundational, NCP-GENL expects transformer/PEFT/distributed-training competence, and NCP-AIO / NCP-AIOL is the hardest operational exam because it includes hands-on lab work.
 
 ## What "Ready" Means
 

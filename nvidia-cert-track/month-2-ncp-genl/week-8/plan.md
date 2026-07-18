@@ -9,6 +9,7 @@ Exam coverage this week: **Model Deployment 9% + Production Monitoring & Reliabi
 ## Prerequisites before Monday
 
 - Companion lesson: [Week 08 companion — serving math, queueing, Rust async, and safety support](../../../companion-lessons/week-08.md).
+- Source reading: [HF Ultra-Scale Playbook — serving memory and precision carryover](../../../references/hf-ultrascale-playbook.md#week-8---serving-memory-and-precision-carryover).
 - Math support: TTFT, ITL, throughput, p95 latency, Little's Law, and KV-cache memory budgeting.
 - Programming/systems support: `async`/`await`, `tokio`, `axum`, continuous batching, paged KV, NIM/vLLM/Triton role boundaries, and safety controls.
 - Gate: define TTFT/ITL/throughput without notes and identify what `ferrum-serve` will compare against vLLM.

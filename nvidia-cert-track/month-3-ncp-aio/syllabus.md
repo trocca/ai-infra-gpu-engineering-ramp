@@ -1,11 +1,13 @@
-# NCP-AIO — NVIDIA-Certified Professional: AI Operations
+# NCP-AIO / NCP-AIOL — NVIDIA-Certified Professional: AI Operations
 
 > **Details verified July 2026 against the official exam page — re-check before booking.**
 > Official page: https://www.nvidia.com/en-us/learn/certification/ai-operations-professional/
+> NVIDIA's current page labels this exam code **NCP-AIOL**; this repo keeps the shorter
+> **NCP-AIO** shorthand in folder names and weekly references.
 
 ## What this exam is
 
-NCP-AIO validates that you can **operate** NVIDIA AI infrastructure — deploy it, administer it,
+NCP-AIO / NCP-AIOL validates that you can **operate** NVIDIA AI infrastructure — deploy it, administer it,
 run workloads on it, and fix it when it breaks. It is the professional-level counterpart to
 NCA-AIIO and sits squarely on the stack you already demo: GPU Operator, MIG, Slurm, Run:ai/KAI,
 NGC, DCGM.

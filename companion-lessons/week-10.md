@@ -41,6 +41,14 @@ efficiency ~= m / (m + p - 1)
 
 More microbatches reduce the bubble, but increase activation bookkeeping and scheduling complexity.
 
+## Playbook Bridge
+
+Read the
+[Week 10 Ultra-Scale Playbook bridge](../references/hf-ultrascale-playbook.md#week-10---model-parallelism-and-5d-strategy).
+Use the playbook's ordering as your decision tree: first make the step fit in memory,
+then hit the target global batch size, then tune throughput. TP, PP, context parallelism,
+expert parallelism, and ZeRO are strategy knobs, not vocabulary ornaments.
+
 ## Programming Primer
 
 - Shape assertions are not optional. Most tensor-parallel bugs are silent shape mistakes until a collective hangs.

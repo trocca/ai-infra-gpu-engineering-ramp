@@ -34,6 +34,14 @@ Low rank is a constraint, not a trick. The bet is that task adaptation lives in 
 
 QLoRA adds memory savings by quantizing the frozen base weights while keeping adapters trainable in higher precision.
 
+## Playbook Bridge
+
+Read the
+[Week 6 Ultra-Scale Playbook bridge](../references/hf-ultrascale-playbook.md#week-6---fine-tuning-memory-pressure-and-global-batch-math).
+Use it to connect LoRA/QLoRA to the larger training-memory story: frozen base weights
+do not need adapter optimizer states, gradient accumulation raises global batch without
+raising per-step activation memory, and ZeRO/FSDP are the full-training analogs.
+
 ## Programming Primer
 
 - In PyTorch, set `requires_grad=False` on frozen base parameters.

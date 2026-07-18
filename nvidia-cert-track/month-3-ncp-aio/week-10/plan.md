@@ -14,6 +14,7 @@ terms, Slurm admin verbs) and drilling the admin commands.
 ## Prerequisites before Monday
 
 - Companion lesson: [Week 10 companion — tensor/pipeline parallelism math and admin command support](../../../companion-lessons/week-10.md).
+- Source reading: [HF Ultra-Scale Playbook — model parallelism and 5D strategy](../../../references/hf-ultrascale-playbook.md#week-10---model-parallelism-and-5d-strategy).
 - Math support: row-parallel vs column-parallel linear layers, collective placement, and pipeline bubble efficiency.
 - Systems support: Slurm drain/resume, Kubernetes cordon/drain, Run:ai/KAI vocabulary, MIG `single` vs `mixed`.
 - Gate: compute pipeline efficiency for `p=4`, `m=4` and `m=16`, then highlight every command you need to drill this week.

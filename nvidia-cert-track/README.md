@@ -15,12 +15,12 @@ vLLM/Dynamo/NIM).
 |-------|-------|------|--------|-------|-----------|
 | 1 | 1–4 | **NCA-AIIO** — Associate: AI Infrastructure & Operations | 50 MCQ / 60 min | $125 | end of week 4 |
 | 2 | 5–8 | **NCP-GENL** — Professional: Generative AI LLMs | 60–70 MCQ / 120 min | $200 | end of week 8 |
-| 3 | 9–12 | **NCP-AIO** — Professional: AI Operations | 30 MCQ **+ 3 hands-on labs** / 120 min | $500 | end of week 12 |
+| 3 | 9–12 | **NCP-AIO / NCP-AIOL** — Professional: AI Operations | 30 MCQ **+ 3 hands-on labs** / 120 min | $500 | end of week 12 |
 
 All three are valid 2 years from issuance.
 
 Difficulty ramps deliberately: NCA-AIIO is foundational vocabulary and architecture;
-NCP-GENL leans on ML/LLM depth you partly already have; NCP-AIO is the hardest and most
+NCP-GENL leans on ML/LLM depth you partly already have; NCP-AIO / NCP-AIOL is the hardest and most
 hands-on — its lab component is why month 3 has five labs and a dedicated drill week.
 
 ## Repo layout

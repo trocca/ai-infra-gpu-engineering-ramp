@@ -12,6 +12,7 @@ view (pull, deploy, allocate, verify) rather than the evangelist pitch.
 ## Prerequisites before Monday
 
 - Companion lesson: [Week 11 companion — Kubernetes GPU serving, scheduling invariants, and observability support](../../../companion-lessons/week-11.md).
+- Source reading: [HF Ultra-Scale Playbook — benchmarking, observability, and cluster reality](../../../references/hf-ultrascale-playbook.md#week-11---benchmarking-observability-and-cluster-reality).
 - Math/support: queue depth, request rate, TTFT/p95 latency, GPU utilization, memory used, and HPA signal quality.
 - Systems support: GPU Operator, device plugin, DCGM exporter, readiness probes, pod events, image pulls, and resource names.
 - Gate: write the shortest debug sequence for a Pending GPU pod and pick three metrics that prove an inference service is healthy.
