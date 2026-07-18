@@ -2,7 +2,7 @@
   "use strict";
 
   const COOKIE_NAME = "aiInfraRampProgressV1";
-  const PANEL_COOKIE = "aiInfraRampProgressPanelV2";
+  const PANEL_COOKIE = "aiInfraRampProgressPanelV3";
   const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
   const coreWeeks = [
@@ -321,9 +321,13 @@
     return { toggle, panel };
   }
 
-  function setPanelOpen(open, controls) {
+  function applyPanelOpen(open, controls) {
     document.body.classList.toggle("ramp-progress-open", open);
     controls.toggle.setAttribute("aria-expanded", String(open));
+  }
+
+  function setPanelOpen(open, controls) {
+    applyPanelOpen(open, controls);
     writeCookie(PANEL_COOKIE, open ? "open" : "closed");
   }
 
@@ -397,7 +401,7 @@
 
     const savedPanelState = readCookie(PANEL_COOKIE);
     const wideViewport = window.matchMedia("(min-width: 1860px)").matches;
-    setPanelOpen(savedPanelState === "open" || (savedPanelState !== "closed" && wideViewport), controls);
+    applyPanelOpen(savedPanelState === "open" || (savedPanelState !== "closed" && wideViewport), controls);
   }
 
   if (document.readyState === "loading") {
