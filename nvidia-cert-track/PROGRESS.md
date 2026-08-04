@@ -1,5 +1,9 @@
 # Progress Tracker
 
+> **Campaign restarted 2026-08-05.** Onboarding Wed Aug 5 – Sun Aug 9; week 1 begins Mon Aug 10.
+> Exam targets: NCA-AIIO **Fri Sep 4** · NCP-GENL **Fri Oct 2** · NCP-AIO **Fri Oct 30**.
+> Optional add-on: NCA-GENL (Associate) — see `addon-nca-genl/`, target end of week 6 (Fri Sep 18).
+
 One row per week. Fill in every Friday after the self-check.
 
 - **Topics done**: did you cover the week's plan? (✅ / partial / ❌ + what slipped)
