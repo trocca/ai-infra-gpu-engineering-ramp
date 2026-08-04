@@ -6,6 +6,7 @@
 *.css text eol=lf
 *.js text eol=lf
 *.html text eol=lf
+*.json text eol=lf
 *.cpp text eol=lf
 *.hpp text eol=lf
 *.cu text eol=lf
@@ -16,3 +17,4 @@
 *.yaml text eol=lf
 *.sh text eol=lf
 Makefile text eol=lf
+*.png binary

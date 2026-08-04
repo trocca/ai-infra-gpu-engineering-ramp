@@ -10,4 +10,5 @@ the right outside source into the right week without turning study time into wan
 
 | Source guide | Use it for |
 |--------------|------------|
+| [Demystifying AI visual primer](demystifying-ai/README.md) | FLOPS/precision, token IDs, embeddings, parameters vs activations, self-attention, FlashAttention, and structured sparsity. Best for onboarding and weeks 1, 2, 5, and 7. |
 | [Hugging Face Ultra-Scale Playbook](hf-ultrascale-playbook.md) | Transformer memory, distributed training, 5D parallelism, kernel fusion, profiling, and compute/communication overlap. |

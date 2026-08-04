@@ -130,6 +130,18 @@
 
   const supportGroups = [
     {
+      id: "demystifying",
+      label: "Visual Transformer foundations",
+      items: [
+        ["00", "Primer integration map", "references/demystifying-ai/README.md"],
+        ["01", "Week 1 parameters vs activations", "references/demystifying-ai/docs/03-parameters-and-activations.md"],
+        ["02", "Week 2 FLOPS and precision", "references/demystifying-ai/docs/01-compute-and-precision.md"],
+        ["05a", "Week 5 tokens and embeddings", "references/demystifying-ai/docs/02-tokens-and-embeddings.md"],
+        ["05b", "Week 5 self-attention flow", "references/demystifying-ai/docs/04-self-attention.md"],
+        ["07", "Week 7 FlashAttention and sparsity", "references/demystifying-ai/docs/05-efficiency-techniques.md"]
+      ]
+    },
+    {
       id: "cuda",
       label: "Optional C++/CUDA skill gym",
       items: [

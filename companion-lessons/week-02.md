@@ -39,6 +39,13 @@ time_lower_bound = bytes_moved / peak_bandwidth
 
 If your measured time is 10x slower than that lower bound, the problem is not "the GPU is slow." Look for uncoalesced loads, small problem size, launch overhead, synchronization, or bad occupancy.
 
+## Demystifying AI Bridge
+
+Read [compute and precision](../references/demystifying-ai/docs/01-compute-and-precision.md)
+before the precision-format day. The key correction is that a throughput claim such
+as "exaFLOPS" is incomplete until it names FP64, FP32, TF32, BF16, FP16, FP8, FP4,
+or sparsity assumptions.
+
 ## Programming Primer
 
 - CUDA: contiguous threads should read contiguous addresses; that is memory coalescing.

@@ -11,6 +11,7 @@ Domain 2 is the biggest domain (40%, ~20 of 50 questions), split across weeks 2 
 ## Prerequisites before Monday
 
 - Companion lesson: [Week 02 companion — GPU hardware math, memory bandwidth, and CUDA/Rust basics](../../../companion-lessons/week-02.md).
+- Visual primer: [Demystifying AI — compute and precision](../../../references/demystifying-ai/docs/01-compute-and-precision.md).
 - Math support: bytes-moved estimates, bandwidth lower bounds, and precision-format trade-offs.
 - Programming support: Rust `Result`, CUDA grid/block/thread vocabulary, global vs shared memory, and timed GPU benchmarking.
 - Gate: estimate bytes moved by SAXPY and identify the first week-2 toolchain proof command before Day 1.
@@ -61,6 +62,7 @@ Domain 2 is the biggest domain (40%, ~20 of 50 questions), split across weeks 2 
   - **HBM** (High Bandwidth Memory): stacked DRAM on-package → multi-TB/s bandwidth (H100: ~3.35 TB/s; H200 HBM3e: ~4.8 TB/s); vs GDDR (consumer) and system DDR
   - Why memory bandwidth is often the bottleneck (LLM inference is memory-bound); why model size vs GPU memory drives GPU count (rule of thumb: FP16 weights = 2 bytes/param)
 - (45 min) Precision formats table in `notes.md`: FP64, FP32, **TF32** (Ampere+: FP32 range, ~10-bit mantissa, transparent speedup), FP16 (needs loss scaling), **BF16** (FP32 range, less precision, no loss scaling — preferred for training), **FP8** (Hopper+, Transformer Engine manages scaling), INT8 (inference quantization), FP4 (Blackwell inference). Know: fewer bits → more throughput + less memory, and which generation introduced which.
+- Cross-check inside this block against [Demystifying AI compute and precision](../../../references/demystifying-ai/docs/01-compute-and-precision.md): every throughput number must name the precision format and assumptions.
 - (15 min) Read NVIDIA blog "TF32" or "FP8/Transformer Engine" post.
 
 ## Day 5 (Fri) — Tensor Cores deep-ish dive + review
