@@ -9,6 +9,7 @@ Exam coverage this week: **Model Optimization 17% + GPU Acceleration & Optimizat
 ## Prerequisites before Monday
 
 - Companion lesson: [Week 07 companion — quantization, Triton tiling, and FlashAttention support](../../../companion-lessons/week-07.md).
+- Visual primer: [Demystifying AI — FlashAttention, sparsity, and efficiency](../../../references/demystifying-ai/docs/05-efficiency-techniques.md).
 - Source reading: [HF Ultra-Scale Playbook — kernels, FlashAttention, and mixed precision](../../../references/hf-ultrascale-playbook.md#week-7---kernels-flashattention-and-mixed-precision).
 - Math support: affine quantization, memory estimates for FP16/INT8/INT4, softmax stability, and FlashAttention as an IO reduction.
 - Programming support: Triton program IDs, block pointers, masks, PyTorch reference tests, and error-vs-speed reporting.
@@ -21,6 +22,7 @@ Exam coverage this week: **Model Optimization 17% + GPU Acceleration & Optimizat
 
 - (35 min) Fundamentals: quantization maps FP weights/activations to low-bit representations with scale (and zero-point) factors. Distinguish **weight-only** (W8A16/W4A16 — helps memory + bandwidth, decode gets faster) vs **weight+activation** (W8A8 INT8/FP8 — also uses low-precision Tensor Core math, helps compute-bound prefill). **PTQ** (calibrate on a few hundred samples, no training) vs **QAT** (train with fake-quant; better at very low bits, costs a training run).
 - (35 min) Formats: **INT8** — LLM.int8() outlier problem in activations; **SmoothQuant** migrates activation outliers into weights to make W8A8 viable. **FP8** (E4M3 for weights/activations, E5M2 for gradients) — Hopper/Ada Tensor Core native; near-lossless for inference, also usable in training. **FP4/NVFP4** — Blackwell-native 4-bit floating point with per-block scaling. Know the hardware mapping: FP8 → Hopper/Ada+, NVFP4 → Blackwell.
+- During the formats block, re-read [compute and precision](../../../references/demystifying-ai/docs/01-compute-and-precision.md) and add a flashcard distinguishing storage precision, multiply precision, and accumulation precision.
 - (30 min) Memory math drill: 8B model at FP16 = 16 GB, INT8 = 8 GB, INT4 ≈ 4–4.5 GB (plus scales). KV cache quantization (FP8 KV) as a separate lever. Rule of thumb: decode throughput scales roughly with bytes moved → 4-bit ≈ 2–3× decode speedup on bandwidth-bound workloads.
 - (20 min) NVIDIA tooling: **TensorRT Model Optimizer** (PTQ/QAT for FP8/INT8/INT4/NVFP4, exports to TensorRT-LLM), quantization in vLLM (loads AWQ/GPTQ/FP8 checkpoints). Flashcards.
 
@@ -37,6 +39,7 @@ Exam coverage this week: **Model Optimization 17% + GPU Acceleration & Optimizat
 
 - (35 min) **Tensor Cores**: matrix-multiply-accumulate units; peak throughput doubles as precision halves (FP16 → FP8 → FP4 on Blackwell). Mixed-precision training: BF16 compute + FP32 accumulate; why BF16 beats FP16 for training (FP32-range exponent, no loss scaling). **Arithmetic intensity & roofline**: FLOPs/byte determines compute-bound vs memory-bound; GEMMs with large batch = compute-bound; decode GEMV (batch 1) = memory-bound → the whole inference-optimization story follows from this.
 - (35 min) **Prefill vs decode** (now in depth): prefill = parallel over prompt tokens, compute-bound, Tensor-Core-heavy; decode = sequential, one token/step, re-reads all weights + KV cache → bandwidth-bound. **Kernel fusion**: merging ops (e.g., bias+GeLU, attention ops) to avoid HBM round-trips — the point is reducing memory traffic, not FLOPs. **FlashAttention**: exact attention computed in tiles inside SRAM with online softmax; avoids materializing the N×N score matrix → memory O(N) not O(N²), big speedups at long context. **CUDA graphs**: capture kernel-launch sequences to eliminate per-step launch overhead in decode loops.
+- During the acceleration block, cross-check against [Demystifying AI efficiency techniques](../../../references/demystifying-ai/docs/05-efficiency-techniques.md): FlashAttention is an IO-aware implementation of ordinary attention, not a new attention formula.
 - (30 min) Hands-on: on any GPU (or Colab), run a quick roofline intuition check — time `torch.matmul` at batch 1 vs batch 64 for a 4096×4096 layer; observe near-identical latency (memory-bound at low batch). Note result in notes.md.
 - (20 min) Flashcards.
 

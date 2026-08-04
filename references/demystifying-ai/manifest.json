@@ -1,0 +1,26 @@
+{
+  "project": "Demystifying AI",
+  "format": "Markdown + PNG assets",
+  "files": [
+    "README.md",
+    "TRANSCRIPT.md",
+    "docs/01-compute-and-precision.md",
+    "docs/02-tokens-and-embeddings.md",
+    "docs/03-parameters-and-activations.md",
+    "docs/04-self-attention.md",
+    "docs/05-efficiency-techniques.md",
+    "images/embedding_stage_annotated_legend.png",
+    "images/embedding_stage_dmodel_focus.png",
+    "images/embedding_stage_real_numbers_legend.png",
+    "images/self_attention_complete_flow_en.png",
+    "images/self_attention_complete_flow_it.png",
+    "prompts/continue_project.md"
+  ],
+  "copied_images": [
+    "self_attention_complete_flow_it.png",
+    "self_attention_complete_flow_en.png",
+    "embedding_stage_dmodel_focus.png",
+    "embedding_stage_real_numbers_legend.png",
+    "embedding_stage_annotated_legend.png"
+  ]
+}

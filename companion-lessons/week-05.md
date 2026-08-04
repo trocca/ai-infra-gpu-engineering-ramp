@@ -37,6 +37,13 @@ The `2` is K plus V. This one formula explains why inference is often memory-bou
 
 ## Playbook Bridge
 
+First, read the
+[Demystifying AI Week 5 bridge](../references/demystifying-ai/README.md#weekly-integration):
+[tokens and embeddings](../references/demystifying-ai/docs/02-tokens-and-embeddings.md),
+[parameters and activations](../references/demystifying-ai/docs/03-parameters-and-activations.md),
+and [self-attention](../references/demystifying-ai/docs/04-self-attention.md). Use the
+embedding and self-attention PNGs when the formula feels too compressed.
+
 Before this week, read the
 [Week 5 Ultra-Scale Playbook bridge](../references/hf-ultrascale-playbook.md#week-5---transformer-memory-and-single-gpu-training).
 Add a memory ledger to `notes.md`: parameters, gradients, optimizer states, activations,

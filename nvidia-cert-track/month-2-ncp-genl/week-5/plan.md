@@ -11,6 +11,7 @@ Each day ≈ 2 h: ~75 min study, ~30 min hands-on/notes, ~15 min flashcards (add
 ## Prerequisites before Monday
 
 - Companion lesson: [Week 05 companion — transformer math, PyTorch architecture, and tokenizer support](../../../companion-lessons/week-05.md).
+- Visual primer: [Demystifying AI — tokens, embeddings, parameters, and self-attention](../../../references/demystifying-ai/README.md#weekly-integration).
 - Source reading: [HF Ultra-Scale Playbook — transformer memory and single-GPU training](../../../references/hf-ultrascale-playbook.md#week-5---transformer-memory-and-single-gpu-training).
 - Math support: Q/K/V projection shapes, `softmax(QK^T/sqrt(d))V`, cross-entropy, and the KV-cache memory formula.
 - Programming support: `torch.nn.Module`, tokenizer-to-token-ID flow, train vs eval mode, and causal masking.
@@ -23,6 +24,7 @@ Each day ≈ 2 h: ~75 min study, ~30 min hands-on/notes, ~15 min flashcards (add
 
 - (40 min) Re-read "Attention Is All You Need" with modern eyes; sketch a decoder-only block from memory: embeddings → [attention → MLP] × N → LM head. Note what modern LLMs changed: pre-norm (RMSNorm), SwiGLU MLP, no encoder.
 - (35 min) Attention math: Q/K/V projections, scaled dot-product (`softmax(QKᵀ/√d_k)V`), why the √d_k scaling, causal masking. Multi-head vs **MQA** vs **GQA** — memorize *why* GQA exists (shrinks KV cache, near-MHA quality; used by Llama-3, Qwen2.5).
+- During the attention block, use the [Demystifying AI self-attention flow](../../../references/demystifying-ai/docs/04-self-attention.md) to label every matrix shape before coding.
 - (30 min) Hands-on: in a notebook, implement single-head scaled dot-product attention in ~15 lines of PyTorch on random tensors; verify output shape and causal mask behavior.
 - (15 min) Flashcards.
 - Resources: Jay Alammar "The Illustrated Transformer"; Lilian Weng "The Transformer Family v2"; nanoGPT `model.py` (read it — it's ~300 lines and exam-perfect).
@@ -33,6 +35,7 @@ Each day ≈ 2 h: ~75 min study, ~30 min hands-on/notes, ~15 min flashcards (add
 - (35 min) KV cache: why decode re-uses cached K/V, cache size formula `2 × layers × kv_heads × head_dim × seq_len × batch × bytes/param` — compute it for Llama-3-8B at 8k context and understand why it dominates memory at high batch. This is the *reason* paged attention exists (week 7) and why you saw KV-cache pressure in your vLLM demo.
 - (30 min) Positional encodings: absolute sinusoidal/learned vs **RoPE** (rotates Q/K pairs; relative by construction; enables NTK/YaRN context extension) vs **ALiBi** (linear attention bias). Know which models use what (RoPE ≈ everything modern).
 - (30 min) Tokenization: BPE and byte-level BPE, SentencePiece/Unigram, vocab-size trade-offs, why tokenizer choice affects multilingual/code performance and effective context. Play with https://tiktokenizer.vercel.app or `AutoTokenizer` on tricky strings (numbers, code, non-English).
+- During the tokenizer block, read [tokens and embeddings](../../../references/demystifying-ai/docs/02-tokens-and-embeddings.md); write the correction "token ID is a row index, not a semantic magnitude" in `notes.md`.
 - (10 min) Skim: prefill vs decode phases — one is compute-bound, one memory-bound. Just plant the seed; week 7 harvests it.
 - (15 min) Flashcards.
 

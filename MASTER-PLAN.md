@@ -41,6 +41,7 @@ flowchart LR
 
 - [ ] Read the readiness review: [READINESS-REVIEW.md](READINESS-REVIEW.md)
 - [ ] Open the prerequisite support layer: [companion-lessons](companion-lessons/README.md)
+- [ ] Skim the visual primer: [Demystifying AI](references/demystifying-ai/README.md) — especially parameters vs activations and token IDs vs embeddings
 - [ ] Read this page, then the daily rules: [STUDY-PATH.md](nvidia-cert-track/STUDY-PATH.md) and [tools/daily.md](nvidia-cert-track/tools/daily.md)
 - [ ] Book the NCA-AIIO exam for Fri Sep 4 → [tools/booking-checklist.md](nvidia-cert-track/tools/booking-checklist.md)
 - [ ] Import [month-1 flashcards](nvidia-cert-track/month-1-nca-aiio/flashcards.csv) into Anki
@@ -62,7 +63,9 @@ Friday gate → back here for the next week.
 **Prerequisite loop**: Sunday → the week's `[prep]` companion lesson → copy weak spots
 into `notes.md` → Monday starts with execution, not discovery.
 
-**Source reading loop**: weeks 5-12 → the matching
+**Source reading loop**: onboarding + weeks 1, 2, 5, and 7 → the
+[Demystifying AI visual primer](references/demystifying-ai/README.md); weeks 5-12
+→ the matching
 [HF Ultra-Scale Playbook row](references/hf-ultrascale-playbook.md#weekly-integration)
 → copy one formula, constraint, or profiling habit into `notes.md`.
 
@@ -70,7 +73,7 @@ into `notes.md` → Monday starts with execution, not discovery.
 |------|------|------|
 | 2 h | study: lesson → quick check → Anki | today's `day-D.md` (enter via `[day 1]` below) |
 | 4 h | build | the day doc's build block → project `README.md` |
-| optional | source reading | [HF Ultra-Scale Playbook map](references/hf-ultrascale-playbook.md), weeks 5-12 |
+| optional | source reading | [Reference shelf](references/README.md): Demystifying AI for visual foundations; HF Playbook for scale |
 | optional | C++/CUDA mirror drill | the week-matched module under [cpp-cuda-track](cpp-cuda-track/README.md) |
 
 **Friday (= day 5) is gate day**: self-check + exit criteria + [PROGRESS.md](nvidia-cert-track/PROGRESS.md) row; lab bench → README numbers → push. Rules: [STUDY-PATH.md](nvidia-cert-track/STUDY-PATH.md).
@@ -96,6 +99,25 @@ Use it when the main lesson would benefit from seeing the same idea in CPU and G
 | 10 | [08 atomics and memory model](cpp-cuda-track/08-sync-atomics-memory-model/README.md) | synchronization and memory ordering |
 | 11 | [09 profiling roofline](cpp-cuda-track/09-profiling-roofline/README.md) | measurement discipline for serving claims |
 | 12 | [12 PyTorch extension](cpp-cuda-track/12-capstone-pytorch-extension/README.md) | final CPU/CUDA op evidence |
+
+---
+
+## Demystifying AI visual primer lane
+
+This lane is the repair kit for concepts that become expensive if they stay fuzzy:
+token IDs are not vectors, learned parameters are not current activations, `d_model`
+is the fixed representation width, `QK^T` creates token-to-token scores, and
+FlashAttention is IO-aware exact attention.
+
+Use the detailed map in
+[references/demystifying-ai/README.md](references/demystifying-ai/README.md).
+
+| Wk | Demystifying AI support | Use it to sharpen |
+|----|-------------------------|-------------------|
+| onboarding / 1 | [transcript](references/demystifying-ai/TRANSCRIPT.md) + [parameters vs activations](references/demystifying-ai/docs/03-parameters-and-activations.md) | learned parameters, temporary activations, and real-number notation |
+| 2 | [compute and precision](references/demystifying-ai/docs/01-compute-and-precision.md) | FLOP vs FLOPS, exaFLOPS, FP8/FP4, and precision-qualified throughput claims |
+| 5 | [tokens and embeddings](references/demystifying-ai/docs/02-tokens-and-embeddings.md) + [self-attention](references/demystifying-ai/docs/04-self-attention.md) | token IDs, embedding table lookup, `d_model`, `QK^T`, and attention shapes |
+| 7 | [FlashAttention, sparsity, and efficiency](references/demystifying-ai/docs/05-efficiency-techniques.md) | IO-aware attention, `N x N` score memory, and 2:4 sparsity |
 
 ---
 
@@ -179,6 +201,7 @@ Weekly log lives in [PROGRESS.md](nvidia-cert-track/PROGRESS.md) — one row eve
 - [READINESS-REVIEW.md](READINESS-REVIEW.md) — weaknesses, corrections, and readiness gates for this profile
 - [companion-lessons](companion-lessons/README.md) — week-by-week math/programming/system prerequisites
 - [references](references/README.md) — source-reading maps for books, papers, and long-form references
+- [references/demystifying-ai](references/demystifying-ai/README.md) — visual Transformer primer imported from `demystifying_ai_export.zip`
 - [cpp-cuda-track](cpp-cuda-track/README.md) — C++ ↔ CUDA mirror modules for low-level parallelism
 - [01_pitch_and_demo.md](01_pitch_and_demo.md) — the pitch; update it in week 12
 - [03_mock_interview_qa.md](03_mock_interview_qa.md) — interview drill, weeks 11–12

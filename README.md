@@ -1,6 +1,6 @@
 # AI Infrastructure & GPU Engineering Ramp: 12-Week NVIDIA Kubernetes-AI Curriculum
 
-**Last updated:** 2026-07-18 13:24 +02:00
+**Last updated:** 2026-08-04 19:07 +02:00
 
 ![Visitors](https://api.visitorbadge.io/api/visitors?path=trocca%2Fai-infra-gpu-engineering-ramp&label=visitors&countColor=%2376B900)
 ![GitHub stars](https://img.shields.io/github/stars/trocca/ai-infra-gpu-engineering-ramp?color=76B900)
@@ -46,6 +46,11 @@ For distributed-training source reading, use the
 [Hugging Face Ultra-Scale Playbook map](references/hf-ultrascale-playbook.md). It
 adds transformer memory accounting, ZeRO/FSDP, 5D parallelism, kernel fusion,
 profiling, and compute/communication overlap to the weeks where those ideas pay off.
+
+For the visual Transformer foundation, use the
+[Demystifying AI visual primer](references/demystifying-ai/README.md). It explains
+FLOPS and precision, token IDs, embeddings, parameters versus activations,
+self-attention shape math, FlashAttention, and structured sparsity with PNG diagrams.
 
 The GitHub Pages site also includes a browser-local progress sidebar. Visitors can
 tick off core weeks and optional support lanes; progress is stored in a cookie on
@@ -135,6 +140,7 @@ gantt
 
 | Weeks | Source | What it adds |
 |-------|--------|--------------|
+| onboarding, 1, 2, 5, 7 | [Demystifying AI visual primer](references/demystifying-ai/README.md) | Visual support for FLOPS/precision, token IDs, embeddings, parameters vs activations, attention shape math, FlashAttention, and sparsity. |
 | 5-12 | [Hugging Face Ultra-Scale Playbook map](references/hf-ultrascale-playbook.md) | Memory ledgers, global batch math, ZeRO/FSDP, TP/PP/context/expert parallelism, FlashAttention, profiling, and overlap math. |
 
 ## C++/CUDA Mirror Track

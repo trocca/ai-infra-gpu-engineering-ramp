@@ -48,6 +48,14 @@ dL/dw = dL/dz * dz/dw
 
 This tiny example is the whole week in miniature: every bigger network is a graph of these local derivatives.
 
+## Demystifying AI Bridge
+
+Before Day 1, read [parameters and activations](../references/demystifying-ai/docs/03-parameters-and-activations.md)
+and skim the [conversation transcript](../references/demystifying-ai/TRANSCRIPT.md).
+The repair target is vocabulary: a parameter is stored and reused; an activation is
+computed for this input; `R^(V x d_model)` means real-valued matrix shape, not a
+mystical AI object.
+
 ## Programming Primer
 
 - Python: shape bugs dominate beginner ML code. Print shapes early and use assertions.

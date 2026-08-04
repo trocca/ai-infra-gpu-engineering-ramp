@@ -37,6 +37,11 @@ That is why it can be faster without changing the model output.
 
 ## Playbook Bridge
 
+Start with [Demystifying AI efficiency techniques](../references/demystifying-ai/docs/05-efficiency-techniques.md)
+if FlashAttention or 2:4 sparsity still feels like a magic trick. The local picture
+to keep: naive attention writes the `T x T` score matrix to HBM; FlashAttention keeps
+the same math but changes the memory traffic pattern.
+
 Read the
 [Week 7 Ultra-Scale Playbook bridge](../references/hf-ultrascale-playbook.md#week-7---kernels-flashattention-and-mixed-precision).
 Treat FlashAttention as IO accounting, not a magic attention variant: the result is the
