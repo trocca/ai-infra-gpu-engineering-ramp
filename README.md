@@ -8,6 +8,7 @@ them.
 
 | Track | Path | Status |
 |---|---|---|
+| **ML foundations chapter** — "How Machines Learn from Data": features, scaling, paradigms, training vs inference, modern LLM workflow (GitHub Pages site) | [`docs/`](docs/) | active |
 | **C++ ↔ CUDA dual track** — same operation on both stacks, confronted module by module, from "hello, thread" to tensor cores and multi-GPU | [`cpp-cuda-track/`](cpp-cuda-track/) | active |
 | PyTorch parallelism (DDP → FSDP → 3D) | _planned_ | — |
 | Orchestration (Slurm, Kubernetes, Ray) | _planned_ | — |
