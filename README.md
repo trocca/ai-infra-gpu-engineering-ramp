@@ -1,3 +1,7 @@
+[![Open the learning site](assets/readme-banner.svg)](https://trocca.github.io/ai-infra-gpu-engineering-ramp/docs/)
+
+> **📖 This repo is best read as a website:** [trocca.github.io/ai-infra-gpu-engineering-ramp/docs](https://trocca.github.io/ai-infra-gpu-engineering-ramp/docs/) — guided path, lesson pages, AI Math track, glossary and search. What follows below is the raw study-plan material behind it.
+
 # AI Infrastructure & GPU Engineering Ramp: 12-Week NVIDIA Kubernetes-AI Curriculum
 
 **Last updated:** 2026-08-04 19:07 +02:00

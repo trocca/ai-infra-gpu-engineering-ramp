@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="170" viewBox="0 0 1200 170" role="img" aria-label="Open the learning site">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#312e81"/>
+      <stop offset="0.55" stop-color="#5b21b6"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <radialGradient id="glowGreen" cx="0.92" cy="0.05" r="0.5">
+      <stop offset="0" stop-color="#76b900" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#76b900" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowCyan" cx="0.06" cy="0.95" r="0.5">
+      <stop offset="0" stop-color="#0891b2" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#0891b2" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="170" rx="16" fill="url(#bg)"/>
+  <rect width="1200" height="170" rx="16" fill="url(#glowGreen)"/>
+  <rect width="1200" height="170" rx="16" fill="url(#glowCyan)"/>
+  <text x="48" y="72" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="34" font-weight="800" fill="#ffffff">AI Infra &amp; GPU Ramp — the learning site</text>
+  <text x="48" y="106" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="18" fill="#ffffffdd">Guided path · C++ ↔ CUDA track · AI Math · ML foundations · Glossary</text>
+  <rect x="48" y="122" rx="14" width="188" height="30" fill="#76b900"/>
+  <text x="66" y="143" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#10250b">Open the site →</text>
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#ffffff">
+    <rect x="252" y="122" rx="14" width="76" height="30" fill="#ffffff22" stroke="#ffffff55"/>
+    <text x="268" y="142">Track</text>
+    <rect x="336" y="122" rx="14" width="92" height="30" fill="#ffffff22" stroke="#ffffff55"/>
+    <text x="352" y="142">AI Math</text>
+    <rect x="436" y="122" rx="14" width="98" height="30" fill="#ffffff22" stroke="#ffffff55"/>
+    <text x="452" y="142">Glossary</text>
+  </g>
+</svg>
