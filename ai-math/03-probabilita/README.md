@@ -1,31 +1,31 @@
-# Modulo 03: probabilità
+# Module 03: probability
 
-I dati veri sono rumorosi, i modelli veri sono incerti. La probabilità è il linguaggio per ragionare bene sull'incertezza. In questo modulo scoprirai anche un segreto del deep learning: quasi tutte le loss che si usano davvero (MSE, cross entropy) non sono inventate, sono conseguenze dirette di idee probabilistiche.
+Real data is noisy, real models are uncertain. Probability is the language for reasoning well about uncertainty. In this module you'll also discover one of deep learning's secrets: nearly every loss actually used in practice (MSE, cross entropy) wasn't invented — each one is a direct consequence of probabilistic ideas.
 
-## Lezioni
+## Lessons
 
-| Cartella | Argomento | Cosa saprai fare alla fine |
+| Lesson | Topic | What you'll be able to do |
 |---|---|---|
-| `01-variabili-casuali-distribuzioni` | Variabili casuali, distribuzioni, valore atteso | Simulare processi casuali e prevedere il loro comportamento medio |
-| `02-verosimiglianza-mle` | Likelihood, log likelihood, MLE | Stimare parametri dai dati massimizzando la verosimiglianza |
-| `03-entropia-kl-cross-entropy` | Sorpresa, entropia, KL, cross entropy | Capire da dove viene davvero la loss di classificazione |
+| [01-variabili-casuali-distribuzioni](01-variabili-casuali-distribuzioni/) | Random variables, distributions, expected value | Simulate random processes and predict their average behavior |
+| [02-verosimiglianza-mle](02-verosimiglianza-mle/) | Likelihood, log likelihood, MLE | Estimate parameters from data by maximizing the likelihood |
+| [03-entropia-kl-cross-entropy](03-entropia-kl-cross-entropy/) | Surprise, entropy, KL, cross entropy | Understand where the classification loss really comes from |
 
-Le lezioni vanno fatte in ordine. La lezione 03 chiude il cerchio: la cross entropy che troverai in ogni rete neurale è l'incontro tra la likelihood della lezione 02 e l'entropia.
+The lessons are meant to be done in order. Lesson 03 closes the circle: the cross entropy you'll find in every neural network is where the likelihood from lesson 02 meets entropy.
 
-## Riferimenti ai libri
+## Book references
 
-* **Mathematics for Machine Learning** (Deisenroth, Faisal, Ong), il testo principale:
-  * Capitolo 6, Probability and Distributions: sezioni 6.1 e 6.2 per la lezione 01, sezione 6.4 per valore atteso e varianza, sezione 6.5 per la gaussiana.
-  * Capitolo 8, When Models Meet Data: sezione 8.3 per la maximum likelihood della lezione 02.
-* **Introduction to Probability** (Blitzstein, Hwang), di supporto:
-  * Capitolo 3 per le variabili casuali e le distribuzioni, capitolo 4 per il valore atteso, capitolo 5 per le variabili continue.
-* **Understanding Deep Learning** (Prince), di supporto:
-  * Capitolo 5, Loss Functions: il ponte tra probabilità e loss, usato nella lezione 03.
+* **Mathematics for Machine Learning** (Deisenroth, Faisal, Ong), the main text:
+  * Chapter 6, Probability and Distributions: sections 6.1 and 6.2 for lesson 01, section 6.4 for expected value and variance, section 6.5 for the Gaussian.
+  * Chapter 8, When Models Meet Data: section 8.3 for the maximum likelihood of lesson 02.
+* **Introduction to Probability** (Blitzstein, Hwang), supporting text:
+  * Chapter 3 for random variables and distributions, chapter 4 for expected value, chapter 5 for continuous variables.
+* **Understanding Deep Learning** (Prince), supporting text:
+  * Chapter 5, Loss Functions: the bridge between probability and losses, used in lesson 03.
 
-## Tempo stimato
+## Estimated time
 
-Circa 1 settimana e mezza a 4 o 5 ore a settimana. La lezione 01 è leggera, le altre due meritano calma: sono i concetti che rendono leggibili i paper.
+About a week and a half at 4 to 5 hours per week. Lesson 01 is light; the other two deserve a calm pace: these are the concepts that make papers readable.
 
-## Il filo conduttore
+## The common thread
 
-Il punteggio di errore cambia faccia: nella lezione 02 scoprirai che minimizzare la MSE del modello delle case equivale a massimizzare una verosimiglianza gaussiana. E nella lezione 03 vedrai che la loss di classificazione è la sorpresa media del modello davanti alla verità. Le loss non si inventano: si derivano.
+The error score changes face: in lesson 02 you'll discover that minimizing the MSE of the 5-house dataset model is equivalent to maximizing a Gaussian likelihood. And in lesson 03 you'll see that the classification loss is the model's average surprise when confronted with the truth. Losses aren't invented: they're derived.

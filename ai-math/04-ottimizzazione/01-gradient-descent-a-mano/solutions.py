@@ -1,18 +1,18 @@
-"""Soluzioni complete degli esercizi della lezione 01: gradient descent.
+"""Complete solutions to the exercises of lesson 01: gradient descent.
 
-Guardale solo dopo aver provato sul serio con exercises.py.
+Look at them only after a serious attempt at exercises.py.
 """
 
 import torch
 
 
 def passo_gd(w, grad, lr):
-    """Applica un singolo passo di gradient descent."""
+    """Apply a single gradient descent step."""
     return w - lr * grad
 
 
 def gd_su_parabola(w0, lr, passi):
-    """Esegui gradient descent sulla parabola loss(w) = (w - 3)^2."""
+    """Run gradient descent on the parabola loss(w) = (w - 3)^2."""
     w = float(w0)
     for _ in range(passi):
         grad = 2 * (w - 3)
@@ -21,7 +21,7 @@ def gd_su_parabola(w0, lr, passi):
 
 
 def gd_autograd(f, w0, lr, passi):
-    """Gradient descent generico su una funzione qualsiasi, con autograd."""
+    """Generic gradient descent on any function, with autograd."""
     punto = w0.clone()
     for _ in range(passi):
         p = punto.clone().requires_grad_(True)
@@ -32,7 +32,7 @@ def gd_autograd(f, w0, lr, passi):
 
 
 def gd_con_storia(f, w0, lr, passi):
-    """Come gd_autograd, ma registra anche la storia della loss."""
+    """Like gd_autograd, but also record the loss history."""
     punto = w0.clone()
     storia = []
     for _ in range(passi):

@@ -124,9 +124,9 @@ points = torch.stack([gx, gy], dim=-1)
 
 fig, axes = plt.subplots(1, 3, figsize=(12, 4))
 norms = [
-    ("L1 (rombo)", torch.abs(points).sum(dim=-1)),
-    ("L2 (cerchio)", torch.linalg.norm(points, dim=-1)),
-    ("L infinito (quadrato)", torch.abs(points).max(dim=-1).values),
+    ("L1 (diamond)", torch.abs(points).sum(dim=-1)),
+    ("L2 (circle)", torch.linalg.norm(points, dim=-1)),
+    ("L infinity (square)", torch.abs(points).max(dim=-1).values),
 ]
 for ax, (title, values) in zip(axes, norms):
     ax.contour(gx.numpy(), gy.numpy(), values.numpy(), levels=[1.0], colors="tab:blue")

@@ -1,6 +1,6 @@
-"""Test per gli esercizi della lezione 02: derivate parziali e gradiente.
+"""Tests for the exercises of lesson 02: partial derivatives and the gradient.
 
-Esegui `pytest` da questa cartella. Deterministici: nessun numero casuale.
+Run `pytest` from this folder. Deterministic: no random numbers.
 """
 
 import torch
@@ -9,7 +9,7 @@ import exercises
 
 
 def f_esempio(p):
-    # f(x, y) = x^2 + 3y, the SPIEGAZIONE example
+    # f(x, y) = x^2 + 3y, the EXPLANATION.md example
     return p[0] ** 2 + 3 * p[1]
 
 
@@ -30,7 +30,7 @@ def test_parziale_finita_y():
 def test_parziale_non_modifica_il_punto():
     punto = torch.tensor([2.0, 1.0])
     exercises.parziale_finita(f_esempio, punto, 0)
-    assert torch.equal(punto, torch.tensor([2.0, 1.0])), "il punto originale e' stato modificato"
+    assert torch.equal(punto, torch.tensor([2.0, 1.0])), "the original point was modified"
 
 
 def test_gradiente_autograd():

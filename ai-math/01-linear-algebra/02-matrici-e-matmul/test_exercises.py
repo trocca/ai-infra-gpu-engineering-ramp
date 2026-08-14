@@ -1,6 +1,6 @@
-"""Test per gli esercizi della lezione 02: matrici e matmul.
+"""Tests for the lesson 02 exercises: matrices and matmul.
 
-Esegui `pytest` da questa cartella. Deterministici: seed fissato.
+Run `pytest` from this folder. Deterministic: fixed seed.
 """
 
 import torch

@@ -1,6 +1,6 @@
-"""Test per gli esercizi della lezione 02: SGD e minibatch.
+"""Tests for the exercises of lesson 02: SGD and minibatches.
 
-Esegui `pytest` da questa cartella. Deterministici: seed fissati.
+Run `pytest` from this folder. Deterministic: fixed seeds.
 """
 
 import torch
@@ -44,7 +44,7 @@ def test_mescola_dataset_allineato():
     Xa, ya = exercises.mescola_dataset(X5, Y5, seed=3)
     for i in range(5):
         j = (X5 == Xa[i]).all(dim=1).nonzero()[0].item()
-        assert ya[i].item() == Y5[j].item(), "riga e prezzo disallineati"
+        assert ya[i].item() == Y5[j].item(), "row and price misaligned"
 
 
 def test_gradiente_minibatch_contro_formula():
@@ -69,5 +69,5 @@ def test_epoca_sgd_riduce_la_loss():
     for epoch in range(30):
         w, b = exercises.epoca_sgd(w, b, X5, Y5, lr=0.1, batch_size=2, seed=epoch)
     dopo = loss_totale(w, b)
-    assert dopo < prima / 10, f"la loss doveva crollare: prima {prima}, dopo {dopo}"
+    assert dopo < prima / 10, f"the loss should have collapsed: before {prima}, after {dopo}"
     assert not w.requires_grad and not b.requires_grad

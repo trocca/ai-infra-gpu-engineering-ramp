@@ -1,7 +1,7 @@
 """Lesson 04: eigenvalues, eigenvectors and SVD.
 
 Run with: python lesson.py
-Checks the hand computed eigenvectors of SPIEGAZIONE.md, rebuilds A from
+Checks the hand computed eigenvectors of EXPLANATION.md, rebuilds A from
 its eigendecomposition, then runs SVD on the house dataset and shows how
 well it compresses to rank 1.
 """

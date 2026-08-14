@@ -1,13 +1,13 @@
-"""Soluzioni complete degli esercizi della lezione 03: la chain rule.
+"""Complete solutions to the exercises of lesson 03: the chain rule.
 
-Guardale solo dopo aver provato sul serio con exercises.py.
+Look at them only after a serious attempt at exercises.py.
 """
 
 import torch
 
 
 def catena_due_anelli(x):
-    """Calcola A MANO la derivata di y = (3x + 1)^2 nel punto x."""
+    """Compute BY HAND the derivative of y = (3x + 1)^2 at the point x."""
     u = 3 * x + 1
     dy_du = 2 * u
     du_dx = 3.0
@@ -15,7 +15,7 @@ def catena_due_anelli(x):
 
 
 def catena_loss_a_mano(w, x, y):
-    """Calcola A MANO dloss/dw per il modello a una casa."""
+    """Compute BY HAND dloss/dw for the single-house model."""
     pred = w * x
     err = pred - y
     dloss_derr = 2 * err
@@ -25,7 +25,7 @@ def catena_loss_a_mano(w, x, y):
 
 
 def catena_loss_autograd(w, x, y):
-    """Calcola dloss/dw con autograd, stessa catena dell'esercizio sopra."""
+    """Compute dloss/dw with autograd, same chain as the exercise above."""
     wt = torch.tensor(float(w), requires_grad=True)
     pred = wt * x
     err = pred - y
@@ -35,7 +35,7 @@ def catena_loss_autograd(w, x, y):
 
 
 def catena_tre_anelli(x):
-    """Calcola A MANO la derivata di t = ((2x)^2 + 1)^3 nel punto x."""
+    """Compute BY HAND the derivative of t = ((2x)^2 + 1)^3 at the point x."""
     u = 2 * x
     v = u**2 + 1
     dt_dv = 3 * v**2

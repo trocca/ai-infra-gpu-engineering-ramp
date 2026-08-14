@@ -1,29 +1,29 @@
-# Modulo 02: calcolo
+# Module 02: calculus
 
-Il calcolo differenziale risponde a una sola domanda, ripetuta in mille forme: se muovo questa manopola di un pelo, quanto cambia il risultato? Quella "sensibilità" si chiama derivata. Le reti neurali imparano esattamente così: misurano quanto ogni peso fa cambiare l'errore, e girano le manopole nella direzione giusta.
+Differential calculus answers a single question, asked in a thousand different forms: if I nudge this knob a tiny bit, how much does the result change? That "sensitivity" is called the derivative. Neural networks learn exactly this way: they measure how much each weight moves the error, and turn the knobs in the right direction.
 
-## Lezioni
+## Lessons
 
-| Cartella | Argomento | Cosa saprai fare alla fine |
+| Lesson | Topic | What you'll be able to do |
 |---|---|---|
-| `01-derivata-come-pendenza` | Derivata, differenze finite, autograd | Calcolare la pendenza di una funzione in tre modi diversi e verificare che coincidono |
-| `02-derivate-parziali-gradiente` | Derivate parziali, gradiente | Misurare la pendenza rispetto a ogni manopola, e leggere ∇ senza paura |
-| `03-chain-rule` | Regola della catena | Derivare funzioni composte moltiplicando le pendenze anello per anello |
-| `04-matrix-calculus-jacobiani` | Jacobiane, gradienti di vettori | Gestire le forme di derivate quando input e output sono vettori |
+| [01-derivata-come-pendenza](01-derivata-come-pendenza/) | Derivative, finite differences, autograd | Compute the slope of a function in three different ways and check that they agree |
+| [02-derivate-parziali-gradiente](02-derivate-parziali-gradiente/) | Partial derivatives, gradient | Measure the slope with respect to each knob, and read ∇ without fear |
+| [03-chain-rule](03-chain-rule/) | Chain rule | Differentiate composed functions by multiplying slopes link by link |
+| [04-matrix-calculus-jacobiani](04-matrix-calculus-jacobiani/) | Jacobians, gradients of vectors | Keep derivative shapes straight when inputs and outputs are vectors |
 
-Le lezioni vanno fatte in ordine: la chain rule della lezione 03 è il cuore di backpropagation, e la lezione 04 sistema le forme delle matrici.
+Do the lessons in order: the chain rule in lesson 03 is the heart of backpropagation, and lesson 04 sorts out the matrix shapes.
 
-## Riferimenti ai libri
+## Book references
 
-* **Mathematics for Machine Learning** (Deisenroth, Faisal, Ong), il testo principale:
-  * Capitolo 5, Vector Calculus: sezione 5.1 per la lezione 01, sezione 5.2 per le lezioni 02 e 03, sezione 5.3 per la lezione 04, sezione 5.6 come anteprima di backpropagation.
-* **The Matrix Calculus You Need For Deep Learning** (Parr, Howard), di supporto:
-  * Le sezioni introduttive sulle derivate parziali per la lezione 02, la sezione sulla chain rule per la lezione 03, la sezione sulla Jacobiana per la lezione 04.
+* **Mathematics for Machine Learning** (Deisenroth, Faisal, Ong), the main text:
+  * Chapter 5, Vector Calculus: section 5.1 for lesson 01, section 5.2 for lessons 02 and 03, section 5.3 for lesson 04, section 5.6 as a preview of backpropagation.
+* **The Matrix Calculus You Need For Deep Learning** (Parr, Howard), as support:
+  * The introductory sections on partial derivatives for lesson 02, the chain rule section for lesson 03, the Jacobian section for lesson 04.
 
-## Tempo stimato
+## Estimated time
 
-Circa 2 settimane a 4 o 5 ore a settimana. La lezione 03 è la più importante del modulo: se la chain rule ti è chiara, backpropagation (modulo 05) sarà una formalità.
+About 2 weeks at 4 or 5 hours a week. Lesson 03 is the most important one in the module: once the chain rule is clear to you, backpropagation (module 05) will be a formality.
 
-## Il filo conduttore
+## The running thread
 
-Il dataset delle 5 case torna qui con un ruolo nuovo: la loss, il punteggio di errore del modello, vista come funzione di un peso. Nella lezione 01 scoprirai che è una parabola, e che la sua pendenza ti dice da che parte correggere il peso. È il seme del gradient descent del modulo 04.
+The 5-house dataset returns here in a new role: the loss, the model's error score, seen as a function of one weight. In lesson 01 you'll discover it's a parabola, and that its slope tells you which way to correct the weight. That's the seed of the gradient descent you'll meet in module 04.

@@ -1,74 +1,74 @@
-"""Esercizi sulla lezione 03: norme e distanze.
+"""Exercises for lesson 03: norms and distances.
 
-Completa le funzioni marcate con # TODO.
-Poi esegui `pytest` da questa cartella.
-La difficolta' cresce man mano che scendi nel file.
+Complete the functions marked with # TODO.
+Then run `pytest` from this folder.
+The difficulty grows as you move down the file.
 """
 
 import torch
 
 
 def norma_l1(v):
-    """Calcola la norma L1 di v: somma dei valori assoluti.
+    """Compute the L1 norm of v: sum of the absolute values.
 
-    Non usare torch.linalg.norm: costruiscila con torch.abs e sum.
-    Restituisci un tensor scalare.
-    Esempio: norma_l1(tensor([3., -4.])) restituisce 7.
+    Do not use torch.linalg.norm: build it from torch.abs and sum.
+    Return a scalar tensor.
+    Example: norma_l1(tensor([3., -4.])) returns 7.
     """
     # TODO
     raise NotImplementedError
 
 
 def norma_l2(v):
-    """Calcola la norma L2 di v: radice della somma dei quadrati.
+    """Compute the L2 norm of v: square root of the sum of squares.
 
-    Non usare torch.linalg.norm: costruiscila con le operazioni base
-    (moltiplicazione, sum, torch.sqrt). Restituisci un tensor scalare.
-    Esempio: norma_l2(tensor([3., 4.])) restituisce 5.
+    Do not use torch.linalg.norm: build it from the basic operations
+    (multiplication, sum, torch.sqrt). Return a scalar tensor.
+    Example: norma_l2(tensor([3., 4.])) returns 5.
     """
     # TODO
     raise NotImplementedError
 
 
 def norma_linf(v):
-    """Calcola la norma L infinito di v: il massimo dei valori assoluti.
+    """Compute the L-infinity norm of v: the maximum of the absolute values.
 
-    Non usare torch.linalg.norm. Restituisci un tensor scalare.
-    Esempio: norma_linf(tensor([3., -4.])) restituisce 4.
+    Do not use torch.linalg.norm. Return a scalar tensor.
+    Example: norma_linf(tensor([3., -4.])) returns 4.
     """
     # TODO
     raise NotImplementedError
 
 
 def distanza_euclidea(u, v):
-    """Calcola la distanza L2 tra u e v.
+    """Compute the L2 distance between u and v.
 
-    Ricorda la regola: prima la differenza, poi la norma della
-    differenza. Puoi riusare la tua norma_l2.
-    Esempio: distanza_euclidea([1., 1.], [4., 5.]) restituisce 5.
+    Remember the rule: first the difference, then the norm of the
+    difference. You can reuse your norma_l2.
+    Example: distanza_euclidea([1., 1.], [4., 5.]) returns 5.
     """
     # TODO
     raise NotImplementedError
 
 
 def normalizza_colonne(X):
-    """Standardizza ogni colonna di X: sottrai la media, dividi per la std.
+    """Standardize every column of X: subtract the mean, divide by the std.
 
-    X e' una matrice (righe = esempi, colonne = feature). Ogni colonna
-    del risultato deve avere media 0 e deviazione standard 1.
-    Suggerimento: X.mean(dim=0) e X.std(dim=0) lavorano per colonna.
+    X is a matrix (rows = examples, columns = features). Every column
+    of the result must have mean 0 and standard deviation 1.
+    Hint: X.mean(dim=0) and X.std(dim=0) work column by column.
     """
     # TODO
     raise NotImplementedError
 
 
 def cosine_sim(u, v):
-    """Calcola la similarita' coseno tra u e v.
+    """Compute the cosine similarity between u and v.
 
-    Formula: prodotto scalare diviso per il prodotto delle due norme L2.
-    Non usare F.cosine_similarity: costruiscila con torch.dot e la tua
-    norma_l2. Restituisci un tensor scalare.
-    Esempio: cosine_sim([1., 0.], [0., 1.]) restituisce 0.
+    Formula: dot product divided by the product of the two L2 norms.
+    Do not use F.cosine_similarity: build it from torch.dot and your
+    norma_l2. Return a scalar tensor.
+    Example: cosine_sim([1., 0.], [0., 1.]) returns 0.
     """
     # TODO
     raise NotImplementedError

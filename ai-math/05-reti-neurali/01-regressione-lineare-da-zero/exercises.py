@@ -1,56 +1,56 @@
-"""Esercizi sulla lezione 01: regressione lineare da zero.
+"""Exercises for lesson 01: linear regression from scratch.
 
-Completa le funzioni marcate con # TODO.
-Poi esegui `pytest` da questa cartella.
-La difficolta' cresce man mano che scendi nel file.
+Complete the functions marked with # TODO.
+Then run `pytest` from this folder.
+The difficulty grows as you go down the file.
 """
 
 import torch
 
 
 def forward(X, w, b):
-    """Il passo forward: le predizioni del modello lineare.
+    """The forward pass: the linear model's predictions.
 
-    Una matmul piu' il bias: X @ w + b. Restituisci il vettore delle
-    predizioni, una per riga di X.
+    A matmul plus the bias: X @ w + b. Return the vector of
+    predictions, one per row of X.
     """
     # TODO
     raise NotImplementedError
 
 
 def mse(preds, y):
-    """Il punteggio di errore: mean squared error.
+    """The error score: mean squared error.
 
-    La media dei quadrati degli errori: mean((preds - y)^2).
-    Restituisci un tensor scalare.
+    The mean of the squared errors: mean((preds - y)^2).
+    Return a scalar tensor.
     """
     # TODO
     raise NotImplementedError
 
 
 def passo_di_training(X, y, w, b, lr):
-    """Un giro completo del training loop: forward, loss, backward, update.
+    """One complete turn of the training loop: forward, loss, backward, update.
 
-    w e b arrivano SENZA requires_grad. Passi:
-    1. clonali con requires_grad_(True)
-    2. forward e loss (riusa le tue forward e mse)
+    w and b arrive WITHOUT requires_grad. Steps:
+    1. clone them with requires_grad_(True)
+    2. forward and loss (reuse your forward and mse)
     3. backward
-    4. calcola i nuovi w e b con la regola del gradient descent,
-       staccandoli dal grafo con .detach()
-    Restituisci la tupla (w_nuovo, b_nuovo, loss_valore) dove
-    loss_valore e' un float (la loss PRIMA dell'update).
+    4. compute the new w and b with the gradient descent rule,
+       detaching them from the graph with .detach()
+    Return the tuple (w_new, b_new, loss_value) where
+    loss_value is a float (the loss BEFORE the update).
     """
     # TODO
     raise NotImplementedError
 
 
 def allena(X, y, lr, epoche):
-    """Il training loop completo: ripeti passo_di_training per ogni epoca.
+    """The complete training loop: repeat passo_di_training for each epoch.
 
-    Parti da w = zeri (una componente per colonna di X) e b = zero.
-    Registra la loss di ogni epoca in una lista.
-    Restituisci la tupla (w, b, storia_loss).
-    Su dati sensati la storia deve scendere: se sale, il lr e' folle.
+    Start from w = zeros (one component per column of X) and b = zero.
+    Record the loss of every epoch in a list.
+    Return the tuple (w, b, loss_history).
+    On sensible data the history must go down: if it goes up, the lr is insane.
     """
     # TODO
     raise NotImplementedError

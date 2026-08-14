@@ -1,49 +1,50 @@
 ---
-title: "05 · Reti neurali"
+title: "05 · Neural networks"
 parent: "AI Math"
 nav_order: 5
 permalink: /docs/ai-math/05-reti-neurali/
 ---
 
-# Modulo 05 · Reti neurali dalla matematica
+# Module 05 · Neural networks from the math
 
-La sintesi. Ogni pezzo costruito nei moduli precedenti (matrici, gradienti, chain
-rule, likelihood, cross entropy, gradient descent, Adam) si incastra qui, e alla
-fine del modulo avrai scritto a mano: una regressione lineare che impara, un
-classificatore, una rete neurale vera senza `nn.Module`, backpropagation verificata
-anello per anello, e la matematica dell'attention che fa funzionare i transformer.
+The synthesis. Every piece built in the previous modules (matrices, gradients,
+chain rule, likelihood, cross entropy, gradient descent, Adam) clicks together
+here, and by the end of the module you'll have written by hand: a linear regression
+that learns, a classifier, a real neural network without `nn.Module`,
+backpropagation verified link by link, and the attention math that makes
+transformers work.
 
-Nessuna magia rimasta: solo matmul, pendenze e sorprese medie.
+No magic left: just matmuls, slopes, and average surprises.
 
-![Mappa di decisione dell'MLP sul problema XOR: una rete a un hidden layer piega lo spazio](figures/xor_map.png)
+![Decision map of the MLP on the XOR problem: a one-hidden-layer network bends space](figures/xor_map.png)
 
-## Lezioni
+## Lessons
 
-| Lezione | Argomento | Cosa saprai fare alla fine |
+| Lesson | Topic | What you'll be able to do |
 |---|---|---|
-| [01 · Regressione lineare da zero](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/05-reti-neurali/01-regressione-lineare-da-zero) | Il ciclo di training completo | Addestrare il primo modello vero sulle 5 case |
-| [02 · Regressione logistica](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/05-reti-neurali/02-regressione-logistica) | Sigmoid, binary cross entropy | Costruire un classificatore e leggerne le probabilità |
-| [03 · MLP da zero senza nn](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/05-reti-neurali/03-mlp-da-zero-senza-nn) | Hidden layer, ReLU, XOR | Costruire una rete che risolve un problema impossibile per i modelli lineari |
-| [04 · Autograd sotto il cofano](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/05-reti-neurali/04-autograd-sotto-il-cofano) | Il grafo di calcolo, backprop a mano | Rifare il lavoro di `backward()` a mano e verificarlo al decimale |
-| [05 · Attention e transformer](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/05-reti-neurali/05-attention-e-transformer) | Query, key, value, softmax, maschera causale | Calcolare a mano il meccanismo che fa funzionare gli LLM |
+| [01 · Linear regression from scratch](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/05-reti-neurali/01-regressione-lineare-da-zero) | The full training loop | Train your first real model on the 5-house dataset |
+| [02 · Logistic regression](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/05-reti-neurali/02-regressione-logistica) | Sigmoid, binary cross entropy | Build a classifier and read its probabilities |
+| [03 · MLP from scratch, no nn](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/05-reti-neurali/03-mlp-da-zero-senza-nn) | Hidden layer, ReLU, XOR | Build a network that solves a problem impossible for linear models |
+| [04 · Autograd under the hood](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/05-reti-neurali/04-autograd-sotto-il-cofano) | The compute graph, backprop by hand | Redo the work of `backward()` by hand and verify it to the decimal |
+| [05 · Attention and transformers](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/05-reti-neurali/05-attention-e-transformer) | Query, key, value, softmax, causal mask | Compute by hand the mechanism that makes LLMs work |
 
-Le lezioni sono una scala: ogni gradino usa il precedente.
+The lessons are a ladder: every rung uses the one before it.
 
-![Heatmap dei pesi di attention con maschera causale: ogni token guarda solo indietro](figures/attention_heatmap.png)
+![Heatmap of attention weights with a causal mask: every token looks only backward](figures/attention_heatmap.png)
 
-## Riferimenti ai libri
+## Book references
 
-- **Understanding Deep Learning** (Prince), il testo principale del modulo:
-  capitolo 2 (supervised learning) per la lezione 01, capitolo 5 (loss functions)
-  per la 02, capitoli 3–4 (shallow e deep networks) per la 03, capitolo 7
-  (gradients and initialization) per la 04, capitolo 12 (transformers) per la 05.
-- **Mathematics for Machine Learning**: capitolo 9 (linear regression) per la
-  lezione 01; capitolo 5, sezione 5.6 (backpropagation) per la lezione 04.
+- **Understanding Deep Learning** (Prince), the module's main text: chapter 2
+  (supervised learning) for lesson 01, chapter 5 (loss functions) for 02, chapters
+  3–4 (shallow and deep networks) for 03, chapter 7 (gradients and initialization)
+  for 04, chapter 12 (transformers) for 05.
+- **Mathematics for Machine Learning**: chapter 9 (linear regression) for lesson
+  01; chapter 5, section 5.6 (backpropagation) for lesson 04.
 
-## Il ponte verso il resto del percorso
+## The bridge to the rest of the path
 
-L'attention che calcoli a mano nella lezione 05 è la stessa che il
-[capitolo ML](../../how-machines-learn/) racconta a parole e che i moduli LLM del
-repo ([GPT from scratch](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/gpu-engineering-lab))
-implementano in grande. Da qui in poi, un paper sui transformer è solo notazione
-nuova su matematica che hai già eseguito nel debugger.
+The attention you compute by hand in lesson 05 is the same one the
+[ML chapter](../../how-machines-learn/) tells in words and the repo's LLM modules
+([GPT from scratch](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/gpu-engineering-lab))
+implement at scale. From here on, a transformer paper is just new notation over
+math you've already stepped through in a debugger.

@@ -1,6 +1,6 @@
-"""Test per gli esercizi della lezione 04: matrix calculus e Jacobiane.
+"""Tests for the exercises of lesson 04: matrix calculus and Jacobians.
 
-Esegui `pytest` da questa cartella. Deterministici: seed fissato.
+Run `pytest` from this folder. Deterministic: fixed seed.
 """
 
 import torch

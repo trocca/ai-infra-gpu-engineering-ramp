@@ -1,6 +1,6 @@
-"""Test per gli esercizi della lezione 03: momentum e Adam.
+"""Tests for the exercises of lesson 03: momentum and Adam.
 
-Esegui `pytest` da questa cartella. Deterministici: nessun numero casuale.
+Run `pytest` from this folder. Deterministic: no random numbers.
 """
 
 import torch
@@ -78,7 +78,7 @@ def test_passo_adam_come_torch_molti_passi():
         grad = p.grad.clone()
         opt.step()
         w, m, v = exercises.passo_adam(w, m, v, grad, t, lr=0.05)
-        assert torch.allclose(w, p.detach(), atol=1e-5), f"divergenza al passo {t}"
+        assert torch.allclose(w, p.detach(), atol=1e-5), f"divergence at step {t}"
 
 
 def test_allena_con_adam_trova_il_fondo():

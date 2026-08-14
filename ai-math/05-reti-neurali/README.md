@@ -1,36 +1,36 @@
-# Modulo 05: reti neurali dalla matematica
+# Module 05: neural networks from the math up
 
-La sintesi. Ogni pezzo costruito nei moduli precedenti (matrici, gradienti, chain rule, likelihood, cross entropy, gradient descent, Adam) si incastra qui, e alla fine del modulo avrai scritto a mano: una regressione lineare che impara, un classificatore, una rete neurale vera senza `nn.Module`, backpropagation verificata anello per anello, e la matematica dell'attention che fa funzionare i transformer.
+The synthesis. Every piece built in the previous modules (matrices, gradients, chain rule, likelihood, cross entropy, gradient descent, Adam) clicks into place here, and by the end of the module you will have written by hand: a linear regression that learns, a classifier, a real neural network without `nn.Module`, backpropagation verified link by link, and the attention math that makes transformers work.
 
-Nessuna magia rimasta: solo matmul, pendenze e sorprese medie.
+No magic left: just matmuls, slopes, and average surprises.
 
-## Lezioni
+## Lessons
 
-| Cartella | Argomento | Cosa saprai fare alla fine |
+| Lesson | Topic | What you'll be able to do |
 |---|---|---|
-| `01-regressione-lineare-da-zero` | Il ciclo di training completo | Addestrare il primo modello vero sulle 5 case |
-| `02-regressione-logistica` | Sigmoid, binary cross entropy | Costruire un classificatore e leggerne le probabilità |
-| `03-mlp-da-zero-senza-nn` | Hidden layer, ReLU, XOR | Costruire una rete che risolve un problema impossibile per i modelli lineari |
-| `04-autograd-sotto-il-cofano` | Il grafo di calcolo, backprop a mano | Rifare il lavoro di backward() a mano e verificarlo al decimale |
-| `05-attention-e-transformer` | Query, key, value, softmax, maschera causale | Calcolare a mano il meccanismo che fa funzionare gli LLM |
+| [01-regressione-lineare-da-zero](01-regressione-lineare-da-zero/) | The complete training loop | Train your first real model on the 5-house dataset |
+| [02-regressione-logistica](02-regressione-logistica/) | Sigmoid, binary cross entropy | Build a classifier and read its probabilities |
+| [03-mlp-da-zero-senza-nn](03-mlp-da-zero-senza-nn/) | Hidden layers, ReLU, XOR | Build a network that solves a problem impossible for linear models |
+| [04-autograd-sotto-il-cofano](04-autograd-sotto-il-cofano/) | The computation graph, backprop by hand | Redo backward()'s work by hand and verify it to the decimal |
+| [05-attention-e-transformer](05-attention-e-transformer/) | Query, key, value, softmax, causal mask | Compute by hand the mechanism that makes LLMs work |
 
-Le lezioni vanno fatte in ordine: sono una scala, e ogni gradino usa il precedente.
+The lessons must be done in order: they are a ladder, and each rung stands on the one below.
 
-## Riferimenti ai libri
+## Book references
 
-* **Understanding Deep Learning** (Prince), il testo principale di questo modulo:
-  * Capitolo 2 (supervised learning) per la lezione 01.
-  * Capitolo 5 (loss functions) per la lezione 02.
-  * Capitoli 3 e 4 (shallow e deep networks) per la lezione 03.
-  * Capitolo 7 (gradients and initialization) per la lezione 04.
-  * Capitolo 12 (transformers) per la lezione 05.
-* **Mathematics for Machine Learning** (Deisenroth, Faisal, Ong), di supporto:
-  * Capitolo 9 (linear regression) per la lezione 01, capitolo 5 sezione 5.6 (backpropagation) per la lezione 04.
+* **Understanding Deep Learning** (Prince), the main text for this module:
+  * Chapter 2 (supervised learning) for lesson 01.
+  * Chapter 5 (loss functions) for lesson 02.
+  * Chapters 3 and 4 (shallow and deep networks) for lesson 03.
+  * Chapter 7 (gradients and initialization) for lesson 04.
+  * Chapter 12 (transformers) for lesson 05.
+* **Mathematics for Machine Learning** (Deisenroth, Faisal, Ong), as support:
+  * Chapter 9 (linear regression) for lesson 01, chapter 5 section 5.6 (backpropagation) for lesson 04.
 
-## Tempo stimato
+## Estimated time
 
-Circa 3 settimane a 4 o 5 ore a settimana. Le lezioni 04 e 05 sono il traguardo del percorso: prenditi il tempo di eseguirle nel debugger, riga per riga.
+About 3 weeks at 4 or 5 hours a week. Lessons 04 and 05 are the finish line of the whole journey: take the time to step through them in the debugger, line by line.
 
-## Il filo conduttore
+## The common thread
 
-Le 5 case aprono il modulo: il modello lineare che nel modulo 01 era una matmul, nel 02 una pendenza e nel 04 una discesa, qui diventa un training loop completo, e poi un classificatore. Dalla lezione 03 in poi si sale: XOR, backprop, attention. Alla fine, quando leggerai "multi head self attention" in un paper, saprai che è la matmul del modulo 01 con un vestito elegante.
+The 5-house dataset opens the module: the linear model that was a matmul in module 01, a slope in module 02, and a descent in module 04 becomes a complete training loop here, and then a classifier. From lesson 03 onward the climb begins: XOR, backprop, attention. At the end, when you read "multi head self attention" in a paper, you'll know it's the matmul from module 01 in fancy clothes.

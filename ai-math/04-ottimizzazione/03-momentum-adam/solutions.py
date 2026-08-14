@@ -1,25 +1,25 @@
-"""Soluzioni complete degli esercizi della lezione 03: momentum e Adam.
+"""Complete solutions to the exercises of lesson 03: momentum and Adam.
 
-Guardale solo dopo aver provato sul serio con exercises.py.
+Look at them only after a serious attempt at exercises.py.
 """
 
 import torch
 
 
 def passo_momentum(w, v, grad, lr, beta):
-    """Applica un passo di gradient descent con momentum."""
+    """Apply one gradient descent step with momentum."""
     v_nuovo = beta * v + grad
     w_nuovo = w - lr * v_nuovo
     return w_nuovo, v_nuovo
 
 
 def velocita_a_regime(lr, beta):
-    """Calcola il passo effettivo a regime con gradiente costante 1."""
+    """Compute the effective steady-state step with constant gradient 1."""
     return lr / (1 - beta)
 
 
 def passo_adam(w, m, v, grad, t, lr=0.001, beta1=0.9, beta2=0.999, eps=1e-8):
-    """Applica un passo di Adam. t e' il numero del passo, da 1 in su."""
+    """Apply one Adam step. t is the step number, starting from 1."""
     m_nuovo = beta1 * m + (1 - beta1) * grad
     v_nuovo = beta2 * v + (1 - beta2) * grad**2
     m_hat = m_nuovo / (1 - beta1**t)
@@ -29,7 +29,7 @@ def passo_adam(w, m, v, grad, t, lr=0.001, beta1=0.9, beta2=0.999, eps=1e-8):
 
 
 def allena_con_adam(f, w0, lr, passi):
-    """Minimizza f partendo da w0 usando il TUO passo_adam."""
+    """Minimize f starting from w0 using YOUR passo_adam."""
     w = w0.clone()
     m = torch.zeros_like(w0)
     v = torch.zeros_like(w0)

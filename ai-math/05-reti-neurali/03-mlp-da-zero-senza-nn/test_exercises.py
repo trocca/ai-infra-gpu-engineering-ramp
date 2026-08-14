@@ -1,6 +1,6 @@
-"""Test per gli esercizi della lezione 03: MLP da zero, senza nn.
+"""Tests for the lesson 03 exercises: an MLP from scratch, no nn.
 
-Esegui `pytest` da questa cartella. Deterministici: seed fissato.
+Run `pytest` from this folder. Deterministic: fixed seed.
 """
 
 import torch
@@ -64,5 +64,5 @@ def test_xor_a_mano_tabella_esatta():
     W1, b1, W2, b2 = exercises.xor_a_mano()
     out = exercises.forward_mlp(X_XOR, W1, b1, W2, b2)
     assert torch.allclose(out, Y_XOR, atol=1e-6), (
-        "la rete costruita a mano deve riprodurre XOR esattamente"
+        "the hand-built network must reproduce XOR exactly"
     )

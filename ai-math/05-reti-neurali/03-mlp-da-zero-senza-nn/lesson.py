@@ -20,7 +20,7 @@ X = torch.tensor([[0.0, 0.0], [0.0, 1.0], [1.0, 0.0], [1.0, 1.0]])
 y = torch.tensor([0.0, 1.0, 1.0, 0.0])
 
 print("=" * 60)
-print("STEP 1: the hand built XOR network from SPIEGAZIONE")
+print("STEP 1: the hand built XOR network from EXPLANATION.md")
 print("=" * 60)
 
 # Weights chosen by reasoning, not training. Hidden neuron 1 computes

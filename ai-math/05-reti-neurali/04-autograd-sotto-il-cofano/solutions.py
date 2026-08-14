@@ -1,23 +1,23 @@
-"""Soluzioni complete degli esercizi della lezione 04: autograd sotto il cofano.
+"""Complete solutions for the lesson 04 exercises: autograd under the hood.
 
-Guardale solo dopo aver provato sul serio con exercises.py.
+Look at these only after a serious attempt at exercises.py.
 """
 
 import torch
 
 
 def grad_locale_prodotto(a, b):
-    """Le derivate locali del prodotto f = a * b."""
+    """The local derivatives of the product f = a * b."""
     return float(b), float(a)
 
 
 def grad_attraverso_relu(z, grad_in_arrivo):
-    """Propaga il gradiente attraverso la ReLU."""
+    """Propagate the gradient through the ReLU."""
     return grad_in_arrivo * (z > 0).float()
 
 
 def backprop_lineare(x, w, b, t):
-    """Backprop A MANO sul modello scalare: loss = (w*x + b - t)^2."""
+    """Backprop BY HAND on the scalar model: loss = (w*x + b - t)^2."""
     out = w * x + b
     err = out - t
     dloss_dout = 2 * err
@@ -27,7 +27,7 @@ def backprop_lineare(x, w, b, t):
 
 
 def backprop_due_strati(x, w1, w2, t):
-    """Backprop A MANO su due strati scalari SENZA attivazione."""
+    """Backprop BY HAND on two scalar layers WITHOUT activation."""
     h = w1 * x
     out = w2 * h
     err = out - t

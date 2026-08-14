@@ -1,70 +1,72 @@
 # math-for-ai
 
-Un percorso personale per ricostruire la matematica che sta dietro le reti neurali moderne. Niente dimostrazioni astratte. Ogni concetto arriva in coppia: una spiegazione semplice in italiano e uno script PyTorch che puoi eseguire riga per riga, anche dentro un debugger.
+A hands-on path to rebuild the mathematics behind modern neural networks. No abstract proofs. Every concept comes as a pair: a plain-language explanation and a PyTorch script you can run line by line — even inside a debugger.
 
-L'idea di fondo: se puoi mettere un breakpoint su un numero, quel numero non ti fa più paura.
+The core idea: **if you can put a breakpoint on a number, that number can't scare you anymore.**
 
-## A chi serve
+## Who this is for
 
-A chi viene dal mondo del software (debugging, sistemi, codice) e vuole ripartire dalle basi della matematica. Non serve nessun prerequisito oltre la matematica delle superiori. Ogni simbolo viene spiegato a parole la prima volta che appare.
+Anyone coming from the software world (debugging, systems, code) who wants to rebuild the foundations of the math. No prerequisites beyond high-school mathematics. Every symbol is explained in words the first time it appears.
 
-## La mappa del percorso
+## The map
 
-| Modulo | Argomento | Lezioni |
+| Module | Topic | Lessons |
 |---|---|---|
-| `01-linear-algebra` | Vettori, matrici, matmul, norme, autovalori, SVD | 4 |
-| `02-calcolo` | Derivate, gradienti, chain rule, Jacobiani | 4 |
-| `03-probabilita` | Variabili casuali, verosimiglianza, entropia, KL | 3 |
-| `04-ottimizzazione` | Gradient descent, SGD, momentum, Adam | 4 |
-| `05-reti-neurali` | Da regressione lineare ad attention, tutto da zero | 5 |
+| [01-linear-algebra](01-linear-algebra/) | Vectors, matrices, matmul, norms, eigenvalues, SVD | 4 |
+| [02-calcolo](02-calcolo/) | Derivatives, gradients, chain rule, Jacobians | 4 |
+| [03-probabilita](03-probabilita/) | Random variables, likelihood, entropy, KL | 3 |
+| [04-ottimizzazione](04-ottimizzazione/) | Gradient descent, SGD, momentum, Adam | 4 |
+| [05-reti-neurali](05-reti-neurali/) | From linear regression to attention, all from scratch | 5 |
 
-Tutti i moduli sono completi: 20 lezioni, ognuna con spiegazione, script eseguibile, esercizi e test. Tempo stimato per l'intero percorso: 10 o 12 settimane a 4 o 5 ore a settimana.
+All modules are complete: 20 lessons, each with an explanation, a runnable script, exercises, and tests. Estimated time for the whole path: 10–12 weeks at 4–5 hours per week.
 
-I moduli vanno in ordine. Ognuno usa i concetti del precedente. Alcuni esempi ritornano lungo tutto il percorso, in particolare un piccolo dataset di 5 case (metri quadri, stanze, prezzo) che rivedrai in ogni modulo sotto una luce diversa.
+The modules build on each other — do them in order. Some examples return throughout the path, in particular a small dataset of 5 houses (square meters, rooms, price) that you will revisit in every module under a different light.
 
-## Come si usa una lezione
+Guided pages with figures for every module are on the site: [AI Math](https://trocca.github.io/ai-infra-gpu-engineering-ramp/docs/ai-math/).
 
-Ogni cartella di lezione contiene sempre gli stessi cinque file. Il flusso di lavoro è questo:
+## How to work through a lesson
 
-1. Leggi `SPIEGAZIONE.md`. Contiene l'intuizione, la definizione in parole semplici e un esempio numerico fatto a mano.
-2. Esegui `python lesson.py`. Lo script rifà gli stessi passi della spiegazione, stampando ogni valore intermedio. Ancora meglio: aprilo nel debugger e mettici dei breakpoint.
-3. Apri `exercises.py` e completa le funzioni marcate con `# TODO`. Le docstring spiegano cosa deve fare ogni funzione.
-4. Esegui `pytest` dalla cartella della lezione. Quando tutti i test passano, la lezione è fatta.
-5. `solutions.py` contiene le soluzioni complete. Guardalo solo dopo aver provato sul serio, oppure per confrontare il tuo approccio con quello proposto.
+Every lesson folder contains the same five files. The workflow:
 
-Alcune lezioni salvano grafici nella sottocartella `figures/`. Non serve un display: i grafici vengono scritti su file PNG.
+1. Read `EXPLANATION.md`. It contains the intuition, the definition in plain words, and a numeric example worked by hand.
+2. Run `python lesson.py`. The script redoes the same steps as the explanation, printing every intermediate value. Even better: open it in a debugger and set breakpoints.
+3. Open `exercises.py` and complete the functions marked with `# TODO`. The docstrings explain what each function must do.
+4. Run `pytest` from the lesson folder. When all tests pass, the lesson is done.
+5. `solutions.py` contains the full solutions. Look at it only after a serious attempt, or to compare your approach with the proposed one.
+
+Some lessons save plots into a `figures/` subfolder. No display needed: the plots are written to PNG files.
 
 ## Setup
 
-Serve Python 3.10 o superiore.
+Python 3.10 or newer is required.
 
 ```
 python -m venv .venv
-.venv\Scripts\activate      # su Windows
+.venv\Scripts\activate      # on Windows
 pip install -r requirements.txt
 ```
 
-Nota su PyTorch: per questo percorso basta la versione CPU. Se vuoi quella più leggera:
+Note on PyTorch: the CPU build is all this path needs. For the lighter install:
 
 ```
 pip install torch --index-url https://download.pytorch.org/whl/cpu
 ```
 
-Verifica rapida che tutto funzioni:
+Quick check that everything works:
 
 ```
 python -c "import torch; print(torch.__version__)"
 ```
 
-## Testi di riferimento
+## Reference books
 
-Il percorso è ancorato a testi gratuiti e legali. Ogni modulo cita capitolo e sezione precisi.
+The path is anchored to free and legal texts. Each module cites exact chapters and sections.
 
-* Deisenroth, Faisal, Ong, **Mathematics for Machine Learning**: la spina dorsale di tutto il percorso. Gratis su [mml-book.github.io](https://mml-book.github.io).
-* Strang, **Introduction to Linear Algebra** e le lezioni video **MIT 18.06**: supporto per il modulo 01. Le lezioni sono su [MIT OpenCourseWare](https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/).
-* Parr, Howard, **The Matrix Calculus You Need For Deep Learning**: supporto per il modulo 02. Gratis su [arxiv.org/abs/1802.01528](https://arxiv.org/abs/1802.01528).
-* Blitzstein, Hwang, **Introduction to Probability** (Harvard Stat 110): supporto per il modulo 03. Gratis su [projects.iq.harvard.edu/stat110](https://projects.iq.harvard.edu/stat110).
-* Boyd, Vandenberghe, **Convex Optimization** (solo i primi capitoli): supporto per il modulo 04. Gratis su [web.stanford.edu/~boyd/cvxbook](https://web.stanford.edu/~boyd/cvxbook/).
-* Prince, **Understanding Deep Learning**: testo principale per il modulo 05. Gratis su [udlbook.github.io](https://udlbook.github.io/udlbook/).
+* Deisenroth, Faisal, Ong, **Mathematics for Machine Learning**: the backbone of the whole path. Free at [mml-book.github.io](https://mml-book.github.io).
+* Strang, **Introduction to Linear Algebra** and the **MIT 18.06** video lectures: support for module 01. The lectures are on [MIT OpenCourseWare](https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/).
+* Parr, Howard, **The Matrix Calculus You Need For Deep Learning**: support for module 02. Free at [arxiv.org/abs/1802.01528](https://arxiv.org/abs/1802.01528).
+* Blitzstein, Hwang, **Introduction to Probability** (Harvard Stat 110): support for module 03. Free at [projects.iq.harvard.edu/stat110](https://projects.iq.harvard.edu/stat110).
+* Boyd, Vandenberghe, **Convex Optimization** (early chapters only): support for module 04. Free at [web.stanford.edu/~boyd/cvxbook](https://web.stanford.edu/~boyd/cvxbook/).
+* Prince, **Understanding Deep Learning**: main text for module 05. Free at [udlbook.github.io](https://udlbook.github.io/udlbook/).
 
-Leggere i libri non è obbligatorio. Sono lì per quando vuoi andare più a fondo su un tema.
+Reading the books is not mandatory. They are there for when you want to go deeper on a topic.

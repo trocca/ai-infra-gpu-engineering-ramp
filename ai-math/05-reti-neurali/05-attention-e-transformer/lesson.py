@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 torch.manual_seed(0)
 
 print("=" * 60)
-print("STEP 1: the 2 token hand example from SPIEGAZIONE")
+print("STEP 1: the 2 token hand example from EXPLANATION.md")
 print("=" * 60)
 
 q = torch.tensor([1.0, 0.0])

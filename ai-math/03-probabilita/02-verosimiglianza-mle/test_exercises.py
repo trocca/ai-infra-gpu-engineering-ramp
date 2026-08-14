@@ -1,6 +1,6 @@
-"""Test per gli esercizi della lezione 02: verosimiglianza e MLE.
+"""Tests for the lesson 02 exercises: likelihood and MLE.
 
-Esegui `pytest` da questa cartella. Deterministici: seed fissati.
+Run `pytest` from this folder. Deterministic: seeds are fixed.
 """
 
 import torch
@@ -19,8 +19,8 @@ def test_likelihood_moneta_ordina_le_ipotesi():
     l_05 = exercises.likelihood_moneta(0.5, FLIPS)
     l_07 = exercises.likelihood_moneta(0.7, FLIPS)
     l_09 = exercises.likelihood_moneta(0.9, FLIPS)
-    assert l_07 > l_05, "p=0.7 deve essere piu' plausibile di p=0.5"
-    assert l_07 > l_09, "p=0.7 deve essere piu' plausibile di p=0.9"
+    assert l_07 > l_05, "p=0.7 must be more plausible than p=0.5"
+    assert l_07 > l_09, "p=0.7 must be more plausible than p=0.9"
 
 
 def test_log_likelihood_coerente_col_log():

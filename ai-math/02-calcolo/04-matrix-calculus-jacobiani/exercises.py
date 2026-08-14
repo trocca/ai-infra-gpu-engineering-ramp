@@ -1,53 +1,53 @@
-"""Esercizi sulla lezione 04: matrix calculus e Jacobiane.
+"""Exercises for lesson 04: matrix calculus and Jacobians.
 
-Completa le funzioni marcate con # TODO.
-Poi esegui `pytest` da questa cartella.
-La difficolta' cresce man mano che scendi nel file.
+Complete the functions marked with # TODO.
+Then run `pytest` from this folder.
+The difficulty grows as you move down the file.
 """
 
 import torch
 
 
 def jacobiana_a_mano(punto):
-    """Scrivi la Jacobiana ESATTA di f(x, y) = [x^2, x*y] nel punto.
+    """Write the EXACT Jacobian of f(x, y) = [x^2, x*y] at the point.
 
-    Niente autograd: usa le formule della SPIEGAZIONE.
-    punto e' un tensor [x, y]. Restituisci la matrice 2x2:
-    riga 0: [2x, 0], riga 1: [y, x].
+    No autograd: use the formulas from EXPLANATION.md.
+    punto is a tensor [x, y]. Return the 2x2 matrix:
+    row 0: [2x, 0], row 1: [y, x].
     """
     # TODO
     raise NotImplementedError
 
 
 def jacobiana_finita(f, punto, h=1e-4):
-    """Costruisci la Jacobiana di f per differenze finite.
+    """Build the Jacobian of f by finite differences.
 
-    f prende un tensor 1D di dimensione n e restituisce un tensor 1D
-    di dimensione m. Riempi la matrice una COLONNA alla volta: sposta
-    l'ingresso j di h, guarda come si muovono tutte le uscite, dividi
-    per h. Restituisci una matrice m x n.
-    Suggerimento: chiama f(punto) una volta per scoprire m.
+    f takes a 1D tensor of size n and returns a 1D tensor
+    of size m. Fill the matrix one COLUMN at a time: nudge
+    input j by h, watch how all the outputs move, divide
+    by h. Return an m x n matrix.
+    Hint: call f(punto) once to find out m.
     """
     # TODO
     raise NotImplementedError
 
 
 def jacobiana_autograd(f, punto):
-    """Calcola la Jacobiana con torch.
+    """Compute the Jacobian with torch.
 
-    Una riga sola: usa torch.autograd.functional.jacobian.
+    A single line: use torch.autograd.functional.jacobian.
     """
     # TODO
     raise NotImplementedError
 
 
 def gradiente_mse(w, X, y):
-    """Calcola il gradiente della MSE rispetto al vettore dei pesi w.
+    """Compute the gradient of the MSE with respect to the weight vector w.
 
-    Il modello e' preds = X @ w, la loss e' mean((preds - y)^2).
-    Usa autograd: clona w con requires_grad, forward, backward,
-    restituisci il tensor gradiente. Deve avere la stessa forma di w.
-    Il test confronta anche con la formula chiusa 2/n * X.T @ (X@w - y).
+    The model is preds = X @ w, the loss is mean((preds - y)^2).
+    Use autograd: clone w with requires_grad, forward, backward,
+    return the gradient tensor. It must have the same shape as w.
+    The test also compares against the closed form 2/n * X.T @ (X@w - y).
     """
     # TODO
     raise NotImplementedError

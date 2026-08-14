@@ -1,33 +1,33 @@
-# Modulo 01: algebra lineare
+# Module 01: linear algebra
 
-L'algebra lineare è il linguaggio dei dati. Un dataset è una matrice. Un esempio è un vettore. Una rete neurale, sotto il cofano, è quasi solo moltiplicazione di matrici. Questo modulo costruisce quel linguaggio pezzo per pezzo.
+Linear algebra is the language of data. A dataset is a matrix. An example is a vector. A neural network, under the hood, is almost nothing but matrix multiplication. This module builds that language piece by piece.
 
-## Lezioni
+## Lessons
 
-| Cartella | Argomento | Cosa saprai fare alla fine |
+| Lesson | Topic | What you'll be able to do |
 |---|---|---|
-| `01-vettori` | Vettori, somma, prodotto scalare | Descrivere un dato come lista di numeri e fare una predizione con un prodotto scalare |
-| `02-matrici-e-matmul` | Matrici, trasposta, matmul | Fare predizioni su tutto il dataset in un colpo solo con `X @ w` |
-| `03-norme-e-distanze` | Norme L1, L2, L infinito, distanze, coseno | Misurare quanto due dati sono simili, e capire perché serve normalizzare |
-| `04-autovalori-svd` | Autovalori, autovettori, SVD | Trovare le direzioni importanti di una matrice e comprimerla |
+| [01-vettori](01-vettori/) | Vectors, addition, dot product | Describe a data point as a list of numbers and make a prediction with a dot product |
+| [02-matrici-e-matmul](02-matrici-e-matmul/) | Matrices, transpose, matmul | Make predictions on the whole dataset in one shot with `X @ w` |
+| [03-norme-e-distanze](03-norme-e-distanze/) | L1, L2, L-infinity norms, distances, cosine | Measure how similar two data points are, and understand why normalization matters |
+| [04-autovalori-svd](04-autovalori-svd/) | Eigenvalues, eigenvectors, SVD | Find the important directions of a matrix and compress it |
 
-Le lezioni vanno fatte in ordine: ognuna usa i concetti della precedente.
+Do the lessons in order: each one builds on the concepts of the previous one.
 
-## Riferimenti ai libri
+## Book references
 
-* **Mathematics for Machine Learning** (Deisenroth, Faisal, Ong), il testo principale:
-  * Capitolo 2, Linear Algebra: sezioni 2.1 fino a 2.4 per le lezioni 01 e 02.
-  * Capitolo 3, Analytic Geometry: sezioni 3.1 fino a 3.4 per la lezione 03.
-  * Capitolo 4, Matrix Decompositions: sezioni 4.2, 4.4 e 4.5 per la lezione 04.
-* **Introduction to Linear Algebra** (Strang), di supporto:
-  * Capitolo 1 per i vettori, capitolo 2 per le matrici, capitoli 6 e 7 per autovalori e SVD.
-* **MIT 18.06** (video lezioni di Strang), di supporto:
-  * Lezione 1 per iniziare, lezione 3 per la moltiplicazione tra matrici, lezione 21 per gli autovalori, lezione 29 per la SVD.
+* **Mathematics for Machine Learning** (Deisenroth, Faisal, Ong), the main text:
+  * Chapter 2, Linear Algebra: sections 2.1 through 2.4 for lessons 01 and 02.
+  * Chapter 3, Analytic Geometry: sections 3.1 through 3.4 for lesson 03.
+  * Chapter 4, Matrix Decompositions: sections 4.2, 4.4 and 4.5 for lesson 04.
+* **Introduction to Linear Algebra** (Strang), supporting text:
+  * Chapter 1 for vectors, chapter 2 for matrices, chapters 6 and 7 for eigenvalues and the SVD.
+* **MIT 18.06** (Strang's video lectures), supporting material:
+  * Lecture 1 to get started, lecture 3 for matrix multiplication, lecture 21 for eigenvalues, lecture 29 for the SVD.
 
-## Tempo stimato
+## Estimated time
 
-Circa 2 settimane a un ritmo di 4 o 5 ore a settimana. Le prime due lezioni sono veloci. Le ultime due meritano più calma, in particolare la SVD.
+About 2 weeks at a pace of 4 to 5 hours per week. The first two lessons go quickly. The last two deserve more time, especially the SVD.
 
-## Il filo conduttore
+## The common thread
 
-In questo modulo compare per la prima volta il dataset delle 5 case: per ogni casa conosciamo metri quadri, numero di stanze e prezzo. Qui lo useremo come matrice. Nei moduli successivi ci calcoleremo sopra derivate, faremo gradient descent e ci addestreremo una rete neurale. Stesso dato, strumenti sempre più potenti.
+This module is where the 5-house dataset first appears: for each house we know square meters, number of rooms, and price. Here we'll use it as a matrix. In later modules we'll take derivatives on it, run gradient descent on it, and train a neural network on it. Same data, increasingly powerful tools.

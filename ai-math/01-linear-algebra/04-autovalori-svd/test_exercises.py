@@ -1,6 +1,6 @@
-"""Test per gli esercizi della lezione 04: autovalori e SVD.
+"""Tests for the lesson 04 exercises: eigenvalues and SVD.
 
-Esegui `pytest` da questa cartella. Deterministici: seed fissato.
+Run `pytest` from this folder. Deterministic: fixed seed.
 """
 
 import torch

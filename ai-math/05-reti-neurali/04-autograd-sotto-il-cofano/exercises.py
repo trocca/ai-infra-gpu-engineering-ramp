@@ -1,62 +1,62 @@
-"""Esercizi sulla lezione 04: autograd sotto il cofano.
+"""Exercises for lesson 04: autograd under the hood.
 
-Completa le funzioni marcate con # TODO.
-Poi esegui `pytest` da questa cartella.
-La difficolta' cresce man mano che scendi nel file.
+Complete the functions marked with # TODO.
+Then run `pytest` from this folder.
+The difficulty grows as you go down the file.
 """
 
 import torch
 
 
 def grad_locale_prodotto(a, b):
-    """Le derivate locali del prodotto f = a * b.
+    """The local derivatives of the product f = a * b.
 
-    Regola del prodotto, la piu' usata di tutto il backward: la
-    derivata rispetto a un fattore e' L'ALTRO fattore.
-    a e b sono float. Restituisci la tupla (df/da, df/db) come float.
+    The product rule, the most used rule in all of backward: the
+    derivative with respect to one factor is THE OTHER factor.
+    a and b are floats. Return the tuple (df/da, df/db) as floats.
     """
     # TODO
     raise NotImplementedError
 
 
 def grad_attraverso_relu(z, grad_in_arrivo):
-    """Propaga il gradiente attraverso la ReLU.
+    """Propagate the gradient through the ReLU.
 
-    z e' il valore PRIMA della ReLU (tensor), grad_in_arrivo e' il
-    gradiente che arriva dall'alto (tensor, stessa forma).
-    Regola: dove z > 0 la ReLU e' un filo dritto (il gradiente passa
-    intatto), dove z <= 0 la ReLU ha tagliato (il gradiente muore: 0).
-    Restituisci il gradiente propagato.
+    z is the value BEFORE the ReLU (tensor), grad_in_arrivo is the
+    gradient arriving from above (tensor, same shape).
+    Rule: where z > 0 the ReLU is a straight wire (the gradient passes
+    through untouched), where z <= 0 the ReLU cut it off (the gradient dies: 0).
+    Return the propagated gradient.
     """
     # TODO
     raise NotImplementedError
 
 
 def backprop_lineare(x, w, b, t):
-    """Backprop A MANO sul modello scalare: loss = (w*x + b - t)^2.
+    """Backprop BY HAND on the scalar model: loss = (w*x + b - t)^2.
 
-    Tutti gli argomenti sono float. La catena, come in SPIEGAZIONE:
+    All arguments are floats. The chain, as in EXPLANATION.md:
     out = w*x + b, err = out - t, loss = err^2.
-    Derivate: dloss/derr = 2*err, poi derr/dout = 1,
+    Derivatives: dloss/derr = 2*err, then derr/dout = 1,
     dout/dw = x, dout/db = 1.
-    Restituisci la tupla (dloss_dw, dloss_db) come float. Niente
-    autograd: il test la usa per controllarti.
+    Return the tuple (dloss_dw, dloss_db) as floats. No
+    autograd: the test uses it to check you.
     """
     # TODO
     raise NotImplementedError
 
 
 def backprop_due_strati(x, w1, w2, t):
-    """Backprop A MANO su due strati scalari SENZA attivazione.
+    """Backprop BY HAND on two scalar layers WITHOUT activation.
 
-    Modello: h = w1 * x, out = w2 * h, loss = (out - t)^2.
-    Tutti float. Calcola prima il forward (h, out, err), poi scendi:
+    Model: h = w1 * x, out = w2 * h, loss = (out - t)^2.
+    All floats. Compute the forward first (h, out, err), then descend:
     dloss/dout = 2*err
-    dloss/dw2 = dloss/dout * h        (regola del prodotto)
-    dloss/dh  = dloss/dout * w2       (il gradiente continua a scendere)
+    dloss/dw2 = dloss/dout * h        (product rule)
+    dloss/dh  = dloss/dout * w2       (the gradient keeps descending)
     dloss/dw1 = dloss/dh * x
-    Restituisci la tupla (dloss_dw1, dloss_dw2) come float.
-    Questo e' il backward di una "rete" a due strati, nudo e crudo.
+    Return the tuple (dloss_dw1, dloss_dw2) as floats.
+    This is the backward pass of a two layer "network", stripped bare.
     """
     # TODO
     raise NotImplementedError

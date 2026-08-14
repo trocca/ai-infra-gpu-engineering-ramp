@@ -1,6 +1,6 @@
-"""Test per gli esercizi della lezione 02: regressione logistica.
+"""Tests for the lesson 02 exercises: logistic regression.
 
-Esegui `pytest` da questa cartella. Deterministici: nessun numero casuale.
+Run `pytest` from this folder. Deterministic: no random numbers.
 """
 
 import torch
@@ -72,5 +72,5 @@ def test_allena_logistica_impara():
     w, b, storia = exercises.allena_logistica(X, Y, lr=0.5, epoche=400)
     assert storia[-1] < storia[0]
     predizioni = exercises.classifica(X, w, b)
-    assert torch.equal(predizioni, Y), "sul dataset giocattolo deve fare 5 su 5"
+    assert torch.equal(predizioni, Y), "on the toy dataset it must score 5 out of 5"
     assert not w.requires_grad

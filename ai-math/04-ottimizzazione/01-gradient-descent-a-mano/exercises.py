@@ -1,57 +1,57 @@
-"""Esercizi sulla lezione 01: gradient descent a mano.
+"""Exercises for lesson 01: gradient descent by hand.
 
-Completa le funzioni marcate con # TODO.
-Poi esegui `pytest` da questa cartella.
-La difficolta' cresce man mano che scendi nel file.
+Complete the functions marked with # TODO.
+Then run `pytest` from this folder.
+The difficulty grows as you go down the file.
 """
 
 import torch
 
 
 def passo_gd(w, grad, lr):
-    """Applica un singolo passo di gradient descent.
+    """Apply a single gradient descent step.
 
-    La regola di aggiornamento: w nuovo = w - lr * grad.
-    w e grad possono essere float o tensor della stessa forma.
-    Restituisci il nuovo w.
+    The update rule: new w = w - lr * grad.
+    w and grad may be floats or tensors of the same shape.
+    Return the new w.
     """
     # TODO
     raise NotImplementedError
 
 
 def gd_su_parabola(w0, lr, passi):
-    """Esegui gradient descent sulla parabola loss(w) = (w - 3)^2.
+    """Run gradient descent on the parabola loss(w) = (w - 3)^2.
 
-    Il gradiente esatto e' 2 * (w - 3): scrivilo a mano, niente
-    autograd. Parti da w0 (float) e applica la regola per il numero
-    di passi richiesto. Restituisci il w finale come float.
-    Con lr = 0.25 e abbastanza passi deve avvicinarsi a 3.
+    The exact gradient is 2 * (w - 3): write it by hand, no
+    autograd. Start from w0 (a float) and apply the rule for the
+    requested number of steps. Return the final w as a float.
+    With lr = 0.25 and enough steps it must get close to 3.
     """
     # TODO
     raise NotImplementedError
 
 
 def gd_autograd(f, w0, lr, passi):
-    """Gradient descent generico su una funzione qualsiasi, con autograd.
+    """Generic gradient descent on any function, with autograd.
 
-    f prende un tensor e restituisce un tensor scalare. w0 e' il tensor
-    di partenza (senza requires_grad). Il ciclo per ogni passo:
-    1. clona il punto corrente con requires_grad_(True)
-    2. calcola f e chiama backward
-    3. aggiorna: nuovo punto = punto - lr * gradiente (usa .detach())
-    Restituisci il punto finale (tensor senza requires_grad).
+    f takes a tensor and returns a scalar tensor. w0 is the starting
+    tensor (without requires_grad). The loop for each step:
+    1. clone the current point with requires_grad_(True)
+    2. compute f and call backward
+    3. update: new point = point - lr * gradient (use .detach())
+    Return the final point (a tensor without requires_grad).
     """
     # TODO
     raise NotImplementedError
 
 
 def gd_con_storia(f, w0, lr, passi):
-    """Come gd_autograd, ma registra anche la storia della loss.
+    """Like gd_autograd, but also record the loss history.
 
-    Restituisci una tupla (punto_finale, storia) dove storia e' la
-    lista dei valori di f (float) a ogni passo, PRIMA di aggiornare.
-    La storia e' quello che si guarda per capire se il training va:
-    deve scendere. Se sale, il learning rate e' troppo grande.
+    Return a tuple (final_point, history) where history is the list
+    of f values (floats) at every step, BEFORE updating.
+    The history is what you watch to tell whether training is working:
+    it must go down. If it goes up, the learning rate is too large.
     """
     # TODO
     raise NotImplementedError

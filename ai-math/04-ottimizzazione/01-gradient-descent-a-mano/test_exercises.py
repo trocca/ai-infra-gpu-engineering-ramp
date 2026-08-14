@@ -1,6 +1,6 @@
-"""Test per gli esercizi della lezione 01: gradient descent a mano.
+"""Tests for the exercises of lesson 01: gradient descent by hand.
 
-Esegui `pytest` da questa cartella. Deterministici: nessun numero casuale.
+Run `pytest` from this folder. Deterministic: no random numbers.
 """
 
 import torch
@@ -25,7 +25,7 @@ def test_passo_gd_tensor():
 
 
 def test_gd_su_parabola_primi_passi():
-    # From the SPIEGAZIONE: after 2 steps with lr 0.25, w = 2.25
+    # From EXPLANATION.md: after 2 steps with lr 0.25, w = 2.25
     out = exercises.gd_su_parabola(0.0, 0.25, 2)
     assert abs(out - 2.25) < 1e-6
 
@@ -37,7 +37,7 @@ def test_gd_su_parabola_convergenza():
 
 def test_gd_su_parabola_divergenza():
     out = exercises.gd_su_parabola(0.0, 1.1, 20)
-    assert abs(out - 3.0) > 10, "con lr 1.1 deve divergere"
+    assert abs(out - 3.0) > 10, "with lr 1.1 it must diverge"
 
 
 def test_gd_autograd_ciotola():
@@ -49,7 +49,7 @@ def test_gd_autograd_ciotola():
 def test_gd_autograd_non_modifica_partenza():
     w0 = torch.tensor([4.0, -2.0])
     exercises.gd_autograd(f_ciotola, w0, 0.1, 5)
-    assert torch.equal(w0, torch.tensor([4.0, -2.0])), "w0 non va modificato"
+    assert torch.equal(w0, torch.tensor([4.0, -2.0])), "w0 must not be modified"
 
 
 def test_gd_con_storia_decrescente():

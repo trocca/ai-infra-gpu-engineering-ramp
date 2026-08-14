@@ -1,6 +1,6 @@
-"""Test per gli esercizi della lezione 05: attention e transformer.
+"""Tests for the lesson 05 exercises: attention and transformers.
 
-Esegui `pytest` da questa cartella. Deterministici: seed fissato.
+Run `pytest` from this folder. Deterministic: fixed seed.
 """
 
 import torch
@@ -25,7 +25,7 @@ def test_softmax_per_righe():
 def test_softmax_per_righe_stabile():
     M = torch.tensor([[1000.0, 999.0], [-1000.0, -1000.0]])
     out = exercises.softmax_per_righe(M)
-    assert torch.isfinite(out).all(), "overflow: manca il trucco del massimo per riga?"
+    assert torch.isfinite(out).all(), "overflow: missing the per-row maximum trick?"
 
 
 def test_punteggi_attenzione():

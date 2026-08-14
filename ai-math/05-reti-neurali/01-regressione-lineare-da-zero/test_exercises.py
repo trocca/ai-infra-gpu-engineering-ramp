@@ -1,6 +1,6 @@
-"""Test per gli esercizi della lezione 01: regressione lineare da zero.
+"""Tests for the lesson 01 exercises: linear regression from scratch.
 
-Esegui `pytest` da questa cartella. Deterministici: nessun numero casuale.
+Run `pytest` from this folder. Deterministic: no random numbers.
 """
 
 import torch

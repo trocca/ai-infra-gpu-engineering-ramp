@@ -1,33 +1,33 @@
-"""Soluzioni complete degli esercizi della lezione 02: regressione logistica.
+"""Complete solutions for the lesson 02 exercises: logistic regression.
 
-Guardale solo dopo aver provato sul serio con exercises.py.
+Look at these only after a serious attempt at exercises.py.
 """
 
 import torch
 
 
 def sigmoid_a_mano(z):
-    """La funzione di schiacciamento: 1 / (1 + e^(-z))."""
+    """The squashing function: 1 / (1 + e^(-z))."""
     return 1 / (1 + torch.exp(-torch.as_tensor(z)))
 
 
 def bce_a_mano(p, target):
-    """La binary cross entropy media."""
+    """The average binary cross entropy."""
     return -(target * torch.log(p) + (1 - target) * torch.log(1 - p)).mean()
 
 
 def probabilita_case(X, w, b):
-    """La pipeline del classificatore: punteggio lineare, poi sigmoid."""
+    """The classifier pipeline: linear score, then sigmoid."""
     return sigmoid_a_mano(X @ w + b)
 
 
 def classifica(X, w, b, soglia=0.5):
-    """Trasforma le probabilita' in decisioni 0/1."""
+    """Turn probabilities into 0/1 decisions."""
     return (probabilita_case(X, w, b) > soglia).float()
 
 
 def allena_logistica(X, y, lr, epoche):
-    """Il training loop del classificatore."""
+    """The classifier's training loop."""
     w = torch.zeros(X.shape[1], requires_grad=True)
     b = torch.zeros(1, requires_grad=True)
     storia = []

@@ -1,34 +1,34 @@
-"""Soluzioni complete degli esercizi della lezione 01: variabili casuali.
+"""Complete solutions for the lesson 01 exercises: random variables.
 
-Guardale solo dopo aver provato sul serio con exercises.py.
+Look at them only after giving exercises.py a serious try.
 """
 
 import torch
 
 
 def valore_atteso(valori, probabilita):
-    """Calcola il valore atteso E[X] di una variabile casuale discreta."""
+    """Compute the expected value E[X] of a discrete random variable."""
     return (valori * probabilita).sum()
 
 
 def varianza(valori, probabilita):
-    """Calcola la varianza di una variabile casuale discreta."""
+    """Compute the variance of a discrete random variable."""
     mu = valore_atteso(valori, probabilita)
     return ((valori - mu) ** 2 * probabilita).sum()
 
 
 def simula_moneta(p, n, seed):
-    """Simula n lanci di una moneta truccata Bernoulli(p)."""
+    """Simulate n flips of a biased Bernoulli(p) coin."""
     torch.manual_seed(seed)
     return torch.distributions.Bernoulli(probs=p).sample((n,))
 
 
 def probabilita_empirica(campioni, valore):
-    """Stima la probabilita' di un valore dalla frequenza nei campioni."""
+    """Estimate the probability of a value from its frequency in the samples."""
     return (campioni == valore).float().mean()
 
 
 def entro_k_sigma(campioni, mu, sigma, k):
-    """Calcola la frazione di campioni dentro mu piu' o meno k sigma."""
+    """Compute the fraction of samples within mu plus or minus k sigma."""
     dentro = (campioni > mu - k * sigma) & (campioni < mu + k * sigma)
     return dentro.float().mean()

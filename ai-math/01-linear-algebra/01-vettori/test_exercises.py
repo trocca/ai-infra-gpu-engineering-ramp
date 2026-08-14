@@ -1,6 +1,6 @@
-"""Test per gli esercizi della lezione 01: vettori.
+"""Tests for the lesson 01 exercises: vectors.
 
-Esegui `pytest` da questa cartella. Deterministici: nessun numero casuale.
+Run `pytest` from this folder. Deterministic: no random numbers.
 """
 
 import torch

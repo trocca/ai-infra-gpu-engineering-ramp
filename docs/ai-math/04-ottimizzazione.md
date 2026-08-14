@@ -1,48 +1,47 @@
 ---
-title: "04 · Ottimizzazione"
+title: "04 · Optimization"
 parent: "AI Math"
 nav_order: 4
 permalink: /docs/ai-math/04-ottimizzazione/
 ---
 
-# Modulo 04 · Ottimizzazione
+# Module 04 · Optimization
 
-Qui tutto quello che hai costruito si mette in moto. Sai misurare l'errore (la
-loss), sai calcolare la pendenza (il gradiente). Ottimizzare vuol dire usare quelle
-pendenze per scendere verso l'errore minimo, un passo alla volta. È il motore
-dell'addestramento di qualunque rete neurale, da un modello a due pesi a un LLM.
+Here everything you've built starts moving. You can measure the error (the loss),
+you can compute the slope (the gradient). Optimizing means using those slopes to
+descend toward the minimum error, one step at a time. It is the engine behind
+training any neural network, from a two-weight model to an LLM.
 
-La metafora che accompagna tutto il modulo: una pallina che rotola giù per una valle
-nella nebbia. Non vede la valle intera, sente solo la pendenza sotto di sé. Eppure,
-passo dopo passo, trova il fondo.
+The metaphor that runs through the whole module: a ball rolling down a valley in
+the fog. It can't see the whole valley — it only feels the slope under itself. And
+yet, step after step, it finds the bottom.
 
-![La superficie di loss e le traiettorie degli optimizer che scendono verso il minimo](figures/loss_landscape.png)
+![The loss surface and the optimizer trajectories descending toward the minimum](figures/loss_landscape.png)
 
-## Lezioni
+## Lessons
 
-| Lezione | Argomento | Cosa saprai fare alla fine |
+| Lesson | Topic | What you'll be able to do |
 |---|---|---|
-| [01 · Gradient descent a mano](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/04-ottimizzazione/01-gradient-descent-a-mano) | Gradient descent, learning rate | Scrivere il ciclo di discesa a mano e scegliere il passo giusto |
-| [02 · SGD e minibatch](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/04-ottimizzazione/02-sgd-minibatch) | SGD, minibatch, epoche | Addestrare su dati a pezzi, capendo il rumore che ne deriva |
-| [03 · Momentum e Adam](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/04-ottimizzazione/03-momentum-adam) | Momentum, Adam | Implementare i due optimizer più usati e verificarli contro `torch.optim` |
-| [04 · Loss landscape](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/04-ottimizzazione/04-loss-landscape) | Superfici di loss, traiettorie | Disegnare la valle intera e guardare la pallina scendere |
+| [01 · Gradient descent by hand](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/04-ottimizzazione/01-gradient-descent-a-mano) | Gradient descent, learning rate | Write the descent loop by hand and pick the right step size |
+| [02 · SGD and minibatches](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/04-ottimizzazione/02-sgd-minibatch) | SGD, minibatches, epochs | Train on data in chunks, understanding the noise that comes with it |
+| [03 · Momentum and Adam](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/04-ottimizzazione/03-momentum-adam) | Momentum, Adam | Implement the two most-used optimizers and verify them against `torch.optim` |
+| [04 · Loss landscape](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/04-ottimizzazione/04-loss-landscape) | Loss surfaces, trajectories | Draw the whole valley and watch the ball roll down |
 
-La lezione 03 è verifica pura in codice: il tuo Adam scritto a mano deve produrre,
-passo per passo, gli stessi numeri di `torch.optim.Adam`.
+Lesson 03 is pure verification in code: your hand-written Adam must produce, step
+by step, the same numbers as `torch.optim.Adam`.
 
-![Confronto fra optimizer: gradient descent, momentum e Adam sulla stessa valle](figures/optimizers.png)
+![Optimizer comparison: gradient descent, momentum and Adam on the same valley](figures/optimizers.png)
 
-## Riferimenti ai libri
+## Book references
 
-- **Mathematics for Machine Learning**: capitolo 7 (Continuous Optimization) —
-  sezione 7.1 per gradient descent, momentum e SGD; sezione 7.3 per la convessità.
-- **Understanding Deep Learning** (Prince): capitolo 6 (Fitting Models).
-- **Convex Optimization** (Boyd, Vandenberghe): capitoli 2–3, solo per curiosità.
+- **Mathematics for Machine Learning**: chapter 7 (Continuous Optimization) —
+  section 7.1 for gradient descent, momentum and SGD; section 7.3 for convexity.
+- **Understanding Deep Learning** (Prince): chapter 6 (Fitting Models).
+- **Convex Optimization** (Boyd, Vandenberghe): chapters 2–3, for the curious only.
 
-## Il ponte verso il resto del percorso
+## The bridge to the rest of the path
 
-Il ciclo di training che scrivi qui a mano è lo stesso che il
-[C++ ↔ CUDA track](../../track/) accelera: SGD sui minibatch è il motivo per cui
-l'addestramento è fatto di matmul ripetute, e la
-[reduction](../../track/04-reduction/) che ottimizzi lì è la somma che calcola la
-loss qui.
+The training loop you write here by hand is the same one the
+[C++ ↔ CUDA track](../../track/) accelerates: SGD over minibatches is why training
+is made of repeated matmuls, and the [reduction](../../track/04-reduction/) you
+optimize there is the sum that computes the loss here.

@@ -1,6 +1,6 @@
-"""Test per gli esercizi della lezione 03: la chain rule.
+"""Tests for the exercises of lesson 03: the chain rule.
 
-Esegui `pytest` da questa cartella. Deterministici: nessun numero casuale.
+Run `pytest` from this folder. Deterministic: no random numbers.
 """
 
 import torch

@@ -28,8 +28,7 @@ training across GPUs — every lesson backed by runnable code you can measure yo
 - **Want the math to stop being magic?** The [AI Math track](ai-math/) rebuilds the
   mathematics behind neural networks — vectors to attention — with every concept
   verified by runnable PyTorch code and pytest. Extra-curricular, but a must for
-  anyone drilling into the internals; it pairs naturally with the main track
-  (in Italian).
+  anyone drilling into the internals; it pairs naturally with the main track.
 
 ## The path, in four stages
 

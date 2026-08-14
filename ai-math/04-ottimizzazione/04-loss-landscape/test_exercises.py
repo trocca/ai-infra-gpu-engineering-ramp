@@ -1,6 +1,6 @@
-"""Test per gli esercizi della lezione 04: il loss landscape.
+"""Tests for the exercises of lesson 04: the loss landscape.
 
-Esegui `pytest` da questa cartella. Deterministici: nessun numero casuale.
+Run `pytest` from this folder. Deterministic: no random numbers.
 """
 
 import torch

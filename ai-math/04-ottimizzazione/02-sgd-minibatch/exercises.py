@@ -1,55 +1,56 @@
-"""Esercizi sulla lezione 02: SGD e minibatch.
+"""Exercises for lesson 02: SGD and minibatches.
 
-Completa le funzioni marcate con # TODO.
-Poi esegui `pytest` da questa cartella.
-La difficolta' cresce man mano che scendi nel file.
+Complete the functions marked with # TODO.
+Then run `pytest` from this folder.
+The difficulty grows as you go down the file.
 """
 
 import torch
 
 
 def dividi_in_minibatch(X, y, batch_size):
-    """Taglia il dataset in minibatch consecutivi, senza mescolare.
+    """Cut the dataset into consecutive minibatches, without shuffling.
 
-    Restituisci una lista di tuple (Xb, yb), nell'ordine originale.
-    L'ultimo batch puo' essere piu' corto se la divisione non e' esatta.
-    Esempio: 5 esempi con batch_size 2 danno batch di taglia 2, 2, 1.
+    Return a list of (Xb, yb) tuples, in the original order.
+    The last batch may be shorter if the division is not exact.
+    Example: 5 examples with batch_size 2 give batches of size 2, 2, 1.
     """
     # TODO: slice X and y in steps of batch_size
     raise NotImplementedError
 
 
 def mescola_dataset(X, y, seed):
-    """Rimescola X e y CON LA STESSA permutazione, in modo riproducibile.
+    """Shuffle X and y WITH THE SAME permutation, reproducibly.
 
-    Fissa il seed con torch.manual_seed(seed), genera una permutazione
-    con torch.randperm, e applicala sia a X sia a y. Se X e y non
-    restassero allineati, ogni casa finirebbe col prezzo di un'altra.
-    Restituisci la tupla (X_mescolato, y_mescolato).
+    Fix the seed with torch.manual_seed(seed), generate a permutation
+    with torch.randperm, and apply it to both X and y. If X and y
+    didn't stay aligned, every house would end up with another
+    house's price. Return the tuple (X_shuffled, y_shuffled).
     """
     # TODO
     raise NotImplementedError
 
 
 def gradiente_minibatch(w, b, Xb, yb):
-    """Calcola il gradiente della MSE sul solo minibatch, con autograd.
+    """Compute the gradient of the MSE on the minibatch alone, with autograd.
 
-    Il modello e' preds = Xb @ w + b, la loss e' mean((preds - yb)^2).
-    w e b arrivano senza requires_grad: clonali con requires_grad_(True),
-    calcola la loss, backward, e restituisci la tupla (grad_w, grad_b).
+    The model is preds = Xb @ w + b, the loss is mean((preds - yb)^2).
+    w and b arrive without requires_grad: clone them with
+    requires_grad_(True), compute the loss, backward, and return the
+    tuple (grad_w, grad_b).
     """
     # TODO
     raise NotImplementedError
 
 
 def epoca_sgd(w, b, X, y, lr, batch_size, seed):
-    """Esegui UNA epoca completa di SGD e restituisci (w, b) aggiornati.
+    """Run ONE full epoch of SGD and return the updated (w, b).
 
-    Passi: mescola il dataset (riusa mescola_dataset con il seed),
-    taglialo in minibatch (riusa dividi_in_minibatch), e per ogni
-    minibatch calcola il gradiente (riusa gradiente_minibatch) e
-    aggiorna w e b con la regola del gradient descent.
-    Restituisci (w, b) finali come tensor senza requires_grad.
+    Steps: shuffle the dataset (reuse mescola_dataset with the seed),
+    cut it into minibatches (reuse dividi_in_minibatch), and for each
+    minibatch compute the gradient (reuse gradiente_minibatch) and
+    update w and b with the gradient descent rule.
+    Return the final (w, b) as tensors without requires_grad.
     """
     # TODO
     raise NotImplementedError

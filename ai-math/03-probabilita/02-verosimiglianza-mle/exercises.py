@@ -1,68 +1,68 @@
-"""Esercizi sulla lezione 02: verosimiglianza e MLE.
+"""Exercises for lesson 02: likelihood and MLE.
 
-Completa le funzioni marcate con # TODO.
-Poi esegui `pytest` da questa cartella.
-La difficolta' cresce man mano che scendi nel file.
+Complete the functions marked with # TODO.
+Then run `pytest` from this folder.
+The difficulty grows as you go down the file.
 """
 
 import torch
 
 
 def likelihood_moneta(p, lanci):
-    """Calcola la likelihood della sequenza di lanci per il parametro p.
+    """Compute the likelihood of the sequence of flips for parameter p.
 
-    lanci e' un tensor di 0 e 1 (1 = testa). Se k e' il numero di teste
-    e n il totale, la likelihood e' p^k * (1-p)^(n-k).
-    p puo' essere un float o un tensor. Restituisci un tensor scalare.
+    lanci is a tensor of 0s and 1s (1 = heads). If k is the number of
+    heads and n the total, the likelihood is p^k * (1-p)^(n-k).
+    p can be a float or a tensor. Return a scalar tensor.
     """
     # TODO
     raise NotImplementedError
 
 
 def log_likelihood_moneta(p, lanci):
-    """Calcola il logaritmo della likelihood della moneta.
+    """Compute the logarithm of the coin's likelihood.
 
-    Usa direttamente la formula in forma di somma:
+    Use the sum form of the formula directly:
     k * log(p) + (n - k) * log(1 - p).
-    Non calcolare prima la likelihood e poi il log: il punto della
-    forma logaritmica e' evitare i numeri piccolissimi.
+    Do not compute the likelihood first and then take the log: the whole
+    point of the log form is to avoid the tiny numbers.
     """
     # TODO
     raise NotImplementedError
 
 
 def mle_moneta(lanci):
-    """Restituisci la stima di massima verosimiglianza per la moneta.
+    """Return the maximum likelihood estimate for the coin.
 
-    Per la Bernoulli la risposta ha una formula chiusa: la frequenza
-    osservata, teste diviso lanci totali. Restituisci un tensor scalare.
+    For the Bernoulli the answer has a closed formula: the observed
+    frequency, heads divided by total flips. Return a scalar tensor.
     """
     # TODO
     raise NotImplementedError
 
 
 def mle_su_griglia(lanci, griglia):
-    """Trova la MLE provando tutti i valori di p nella griglia.
+    """Find the MLE by trying every value of p in the grid.
 
-    griglia e' un tensor di candidati p. Calcola la log likelihood per
-    ogni candidato (riusa log_likelihood_moneta) e restituisci il
-    candidato con il valore piu' alto.
-    Il risultato deve coincidere (quasi) con mle_moneta: due strade,
-    stessa risposta.
+    griglia is a tensor of candidate p values. Compute the log likelihood
+    for each candidate (reuse log_likelihood_moneta) and return the
+    candidate with the highest value.
+    The result must (almost) coincide with mle_moneta: two roads,
+    same answer.
     """
     # TODO
     raise NotImplementedError
 
 
 def nll_gaussiana(mu, dati, sigma):
-    """Calcola la negative log likelihood di Normal(mu, sigma) sui dati.
+    """Compute the negative log likelihood of Normal(mu, sigma) on the data.
 
-    Formula (costanti incluse, cosi' il test e' preciso):
+    Formula (constants included, so the test is precise):
     nll = n * log(sigma * sqrt(2*pi)) + sum((dati - mu)^2) / (2*sigma^2)
-    dove n e' il numero di dati. Usa torch.log, torch.sqrt e
-    torch.tensor(torch.pi) dove serve. Restituisci un tensor scalare.
-    Minimizzare questa funzione rispetto a mu equivale a minimizzare la
-    somma dei quadrati: ecco da dove viene la MSE.
+    where n is the number of data points. Use torch.log, torch.sqrt and
+    torch.tensor(torch.pi) where needed. Return a scalar tensor.
+    Minimizing this function with respect to mu is equivalent to
+    minimizing the sum of squares: this is where MSE comes from.
     """
     # TODO
     raise NotImplementedError

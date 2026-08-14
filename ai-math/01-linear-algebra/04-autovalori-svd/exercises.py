@@ -1,73 +1,73 @@
-"""Esercizi sulla lezione 04: autovalori, autovettori e SVD.
+"""Exercises for lesson 04: eigenvalues, eigenvectors and SVD.
 
-Completa le funzioni marcate con # TODO.
-Poi esegui `pytest` da questa cartella.
-La difficolta' cresce man mano che scendi nel file.
+Complete the functions marked with # TODO.
+Then run `pytest` from this folder.
+The difficulty grows as you move down the file.
 """
 
 import torch
 
 
 def applica_matrice(A, v):
-    """Applica la matrice A al vettore v, cioe' calcola A @ v.
+    """Apply the matrix A to the vector v, i.e. compute A @ v.
 
-    Riscaldamento: e' una riga sola, ma e' l'operazione al centro di
-    tutta la lezione.
+    Warm-up: it's a single line, but it's the operation at the heart
+    of this whole lesson.
     """
     # TODO
     raise NotImplementedError
 
 
 def e_autovettore(A, v, lam):
-    """Verifica se v e' un autovettore di A con autovalore lam.
+    """Check whether v is an eigenvector of A with eigenvalue lam.
 
-    Deve valere A @ v = lam * v. Confronta i due lati con
-    torch.allclose (usa atol=1e-5) e restituisci True o False.
+    It must hold that A @ v = lam * v. Compare the two sides with
+    torch.allclose (use atol=1e-5) and return True or False.
     """
     # TODO
     raise NotImplementedError
 
 
 def quoziente_rayleigh(A, v):
-    """Calcola il quoziente di Rayleigh: (v . (A @ v)) / (v . v).
+    """Compute the Rayleigh quotient: (v . (A @ v)) / (v . v).
 
-    Se v e' un autovettore, questo numero e' esattamente il suo
-    autovalore. Se non lo e', e' una stima. Restituisci un tensor
-    scalare. Usa torch.dot e l'operatore @.
+    If v is an eigenvector, this number is exactly its eigenvalue.
+    If it isn't, it's an estimate. Return a scalar tensor.
+    Use torch.dot and the @ operator.
     """
     # TODO
     raise NotImplementedError
 
 
 def ricostruisci_da_eigh(eigvals, Q):
-    """Ricostruisci la matrice originale dai pezzi di torch.linalg.eigh.
+    """Rebuild the original matrix from the pieces of torch.linalg.eigh.
 
-    eigvals e' il vettore degli autovalori, Q la matrice con gli
-    autovettori nelle colonne. La formula e' Q @ diag(eigvals) @ Q.T.
-    Suggerimento: torch.diag trasforma un vettore in matrice diagonale.
+    eigvals is the vector of eigenvalues, Q the matrix with the
+    eigenvectors in its columns. The formula is Q @ diag(eigvals) @ Q.T.
+    Hint: torch.diag turns a vector into a diagonal matrix.
     """
     # TODO
     raise NotImplementedError
 
 
 def ricostruisci_da_svd(U, S, Vh):
-    """Ricostruisci la matrice originale dai tre pezzi della SVD.
+    """Rebuild the original matrix from the three pieces of the SVD.
 
-    U, S, Vh sono l'output di torch.linalg.svd(X, full_matrices=False).
-    La formula e' U @ diag(S) @ Vh.
+    U, S, Vh are the output of torch.linalg.svd(X, full_matrices=False).
+    The formula is U @ diag(S) @ Vh.
     """
     # TODO
     raise NotImplementedError
 
 
 def approssima_rango_k(X, k):
-    """Restituisci la migliore approssimazione di rango k di X via SVD.
+    """Return the best rank-k approximation of X via SVD.
 
-    Passi: calcola la SVD compatta di X, poi tieni solo le prime k
-    colonne di U, i primi k valori di S e le prime k righe di Vh, e
-    ricombina con la stessa formula della ricostruzione.
-    Con k uguale al rango pieno deve restituire X (a meno di errori di
-    arrotondamento).
+    Steps: compute the compact SVD of X, then keep only the first k
+    columns of U, the first k values of S and the first k rows of Vh,
+    and recombine with the same formula as the reconstruction.
+    With k equal to the full rank it must return X (up to rounding
+    errors).
     """
     # TODO: torch.linalg.svd(X, full_matrices=False), then slice and rebuild
     raise NotImplementedError

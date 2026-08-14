@@ -1,6 +1,6 @@
-"""Test per gli esercizi della lezione 01: variabili casuali.
+"""Tests for the lesson 01 exercises: random variables.
 
-Esegui `pytest` da questa cartella. Deterministici: seed fissati.
+Run `pytest` from this folder. Deterministic: seeds are fixed.
 """
 
 import torch
@@ -34,7 +34,7 @@ def test_varianza_costante_e_zero():
 def test_simula_moneta_deterministica():
     a = exercises.simula_moneta(0.7, 100, seed=42)
     b = exercises.simula_moneta(0.7, 100, seed=42)
-    assert torch.equal(a, b), "stesso seed deve dare stessi lanci"
+    assert torch.equal(a, b), "same seed must give the same flips"
     assert a.shape == (100,)
     assert set(a.unique().tolist()).issubset({0.0, 1.0})
 

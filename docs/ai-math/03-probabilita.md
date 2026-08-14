@@ -1,42 +1,42 @@
 ---
-title: "03 · Probabilità"
+title: "03 · Probability"
 parent: "AI Math"
 nav_order: 3
 permalink: /docs/ai-math/03-probabilita/
 ---
 
-# Modulo 03 · Probabilità
+# Module 03 · Probability
 
-I dati veri sono rumorosi, i modelli veri sono incerti. La probabilità è il
-linguaggio per ragionare bene sull'incertezza. In questo modulo scoprirai anche un
-segreto del deep learning: quasi tutte le loss che si usano davvero (MSE, cross
-entropy) non sono inventate, sono conseguenze dirette di idee probabilistiche.
+Real data is noisy, real models are uncertain. Probability is the language for
+reasoning well about uncertainty. In this module you'll also discover one of deep
+learning's secrets: nearly all the losses actually used in practice (MSE, cross
+entropy) are not invented — they are direct consequences of probabilistic ideas.
 
-![Entropia di una moneta al variare della probabilità di testa: massima incertezza a 0,5](figures/entropia_moneta.png)
+![Entropy of a coin as the probability of heads varies: maximum uncertainty at 0.5](figures/entropia_moneta.png)
 
-## Lezioni
+## Lessons
 
-| Lezione | Argomento | Cosa saprai fare alla fine |
+| Lesson | Topic | What you'll be able to do |
 |---|---|---|
-| [01 · Variabili casuali e distribuzioni](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/03-probabilita/01-variabili-casuali-distribuzioni) | Variabili casuali, distribuzioni, valore atteso | Simulare processi casuali e prevedere il loro comportamento medio |
-| [02 · Verosimiglianza e MLE](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/03-probabilita/02-verosimiglianza-mle) | Likelihood, log likelihood, MLE | Stimare parametri dai dati massimizzando la verosimiglianza |
-| [03 · Entropia, KL, cross entropy](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/03-probabilita/03-entropia-kl-cross-entropy) | Sorpresa, entropia, KL, cross entropy | Capire da dove viene davvero la loss di classificazione |
+| [01 · Random variables and distributions](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/03-probabilita/01-variabili-casuali-distribuzioni) | Random variables, distributions, expected value | Simulate random processes and predict their average behavior |
+| [02 · Likelihood and MLE](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/03-probabilita/02-verosimiglianza-mle) | Likelihood, log likelihood, MLE | Estimate parameters from data by maximizing the likelihood |
+| [03 · Entropy, KL, cross entropy](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/03-probabilita/03-entropia-kl-cross-entropy) | Surprise, entropy, KL, cross entropy | Understand where the classification loss really comes from |
 
-La lezione 03 chiude il cerchio: la cross entropy che troverai in ogni rete neurale
-è l'incontro tra la likelihood della lezione 02 e l'entropia.
+Lesson 03 closes the circle: the cross entropy you'll find in every neural network
+is where the likelihood of lesson 02 meets entropy.
 
-## Riferimenti ai libri
+## Book references
 
-- **Mathematics for Machine Learning**: capitolo 6 (Probability and Distributions),
-  sezioni 6.1–6.2 per la lezione 01, 6.4 per valore atteso e varianza, 6.5 per la
-  gaussiana; capitolo 8, sezione 8.3 per la maximum likelihood.
-- **Introduction to Probability** (Blitzstein, Hwang): capitoli 3–5 di supporto.
-- **Understanding Deep Learning** (Prince): capitolo 5 (Loss Functions), il ponte
-  tra probabilità e loss.
+- **Mathematics for Machine Learning**: chapter 6 (Probability and Distributions),
+  sections 6.1–6.2 for lesson 01, 6.4 for expected value and variance, 6.5 for the
+  Gaussian; chapter 8, section 8.3 for maximum likelihood.
+- **Introduction to Probability** (Blitzstein, Hwang): chapters 3–5 as support.
+- **Understanding Deep Learning** (Prince): chapter 5 (Loss Functions), the bridge
+  between probability and losses.
 
-## Il filo conduttore
+## The common thread
 
-Il punteggio di errore cambia faccia: nella lezione 02 scoprirai che minimizzare la
-MSE del modello delle case equivale a massimizzare una verosimiglianza gaussiana. E
-nella lezione 03 vedrai che la loss di classificazione è la sorpresa media del
-modello davanti alla verità. Le loss non si inventano: si derivano.
+The error score changes face: in lesson 02 you'll discover that minimizing the MSE
+of the house model is the same as maximizing a Gaussian likelihood. And in lesson
+03 you'll see that the classification loss is the model's average surprise when
+confronted with the truth. Losses aren't invented: they're derived.

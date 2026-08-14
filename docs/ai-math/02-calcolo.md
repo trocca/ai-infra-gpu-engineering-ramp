@@ -1,42 +1,42 @@
 ---
-title: "02 · Calcolo"
+title: "02 · Calculus"
 parent: "AI Math"
 nav_order: 2
 permalink: /docs/ai-math/02-calcolo/
 ---
 
-# Modulo 02 · Calcolo
+# Module 02 · Calculus
 
-Il calcolo differenziale risponde a una sola domanda, ripetuta in mille forme: se
-muovo questa manopola di un pelo, quanto cambia il risultato? Quella "sensibilità"
-si chiama derivata. Le reti neurali imparano esattamente così: misurano quanto ogni
-peso fa cambiare l'errore, e girano le manopole nella direzione giusta.
+Differential calculus answers a single question, repeated in a thousand forms: if I
+nudge this knob a tiny bit, how much does the result change? That "sensitivity" is
+called the derivative. Neural networks learn exactly this way: they measure how much
+each weight moves the error, and turn the knobs in the right direction.
 
-![Campo di gradienti: in ogni punto la freccia indica la direzione di salita più ripida](figures/campo_gradienti.png)
+![Gradient field: at every point the arrow points in the direction of steepest ascent](figures/campo_gradienti.png)
 
-## Lezioni
+## Lessons
 
-| Lezione | Argomento | Cosa saprai fare alla fine |
+| Lesson | Topic | What you'll be able to do |
 |---|---|---|
-| [01 · Derivata come pendenza](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/02-calcolo/01-derivata-come-pendenza) | Derivata, differenze finite, autograd | Calcolare la pendenza di una funzione in tre modi diversi e verificare che coincidono |
-| [02 · Derivate parziali e gradiente](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/02-calcolo/02-derivate-parziali-gradiente) | Derivate parziali, gradiente | Misurare la pendenza rispetto a ogni manopola, e leggere ∇ senza paura |
-| [03 · Chain rule](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/02-calcolo/03-chain-rule) | Regola della catena | Derivare funzioni composte moltiplicando le pendenze anello per anello |
-| [04 · Matrix calculus e Jacobiane](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/02-calcolo/04-matrix-calculus-jacobiani) | Jacobiane, gradienti di vettori | Gestire le forme delle derivate quando input e output sono vettori |
+| [01 · The derivative as a slope](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/02-calcolo/01-derivata-come-pendenza) | Derivative, finite differences, autograd | Compute the slope of a function in three different ways and verify they agree |
+| [02 · Partial derivatives and the gradient](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/02-calcolo/02-derivate-parziali-gradiente) | Partial derivatives, gradient | Measure the slope with respect to every knob, and read ∇ without fear |
+| [03 · Chain rule](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/02-calcolo/03-chain-rule) | The chain rule | Differentiate composed functions by multiplying slopes link by link |
+| [04 · Matrix calculus and Jacobians](https://github.com/trocca/ai-infra-gpu-engineering-ramp/tree/main/ai-math/02-calcolo/04-matrix-calculus-jacobiani) | Jacobians, gradients of vectors | Handle the shapes of derivatives when inputs and outputs are vectors |
 
-La lezione 03 è la più importante del modulo: se la chain rule ti è chiara,
-backpropagation (modulo 05) sarà una formalità.
+Lesson 03 is the most important of the module: if the chain rule is clear to you,
+backpropagation (module 05) will be a formality.
 
-## Riferimenti ai libri
+## Book references
 
-- **Mathematics for Machine Learning**: capitolo 5 (Vector Calculus) — sezione 5.1
-  per la lezione 01, sezione 5.2 per le lezioni 02 e 03, sezione 5.3 per la lezione
-  04, sezione 5.6 come anteprima di backpropagation.
-- **The Matrix Calculus You Need For Deep Learning** (Parr, Howard): derivate
-  parziali, chain rule e Jacobiana raccontate per chi fa deep learning.
+- **Mathematics for Machine Learning**: chapter 5 (Vector Calculus) — section 5.1
+  for lesson 01, section 5.2 for lessons 02 and 03, section 5.3 for lesson 04,
+  section 5.6 as a preview of backpropagation.
+- **The Matrix Calculus You Need For Deep Learning** (Parr, Howard): partial
+  derivatives, chain rule and the Jacobian told for deep learning practitioners.
 
-## Il filo conduttore
+## The common thread
 
-Il dataset delle 5 case torna qui con un ruolo nuovo: la loss — il punteggio di
-errore del modello — vista come funzione di un peso. Nella lezione 01 scoprirai che
-è una parabola, e che la sua pendenza ti dice da che parte correggere il peso. È il
-seme del gradient descent del [modulo 04](../04-ottimizzazione/).
+The 5-house dataset returns here in a new role: the loss — the model's error
+score — seen as a function of one weight. In lesson 01 you'll discover it is a
+parabola, and that its slope tells you which way to correct the weight. It is the
+seed of gradient descent in [module 04](../04-ottimizzazione/).

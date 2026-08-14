@@ -1,7 +1,7 @@
 """Lesson 01: vectors.
 
 Run with: python lesson.py
-Mirrors SPIEGAZIONE.md step by step. Every intermediate value is printed
+Mirrors EXPLANATION.md step by step. Every intermediate value is printed
 on purpose: follow the numbers, or set breakpoints and inspect the tensors.
 """
 
@@ -38,7 +38,7 @@ print("=" * 60)
 
 # Sum: element by element, same position with same position.
 s = u + v
-print(f"u + v = {s}   (expected [3, 4], computed by hand in SPIEGAZIONE)")
+print(f"u + v = {s}   (expected [3, 4], computed by hand in EXPLANATION)")
 
 # Scalar multiplication: every element times the same number.
 d = 2 * u
@@ -93,7 +93,7 @@ print("house (vector)      prediction = x . w + b      real price   error")
 for i in range(len(houses)):
     x = houses[i]  # one house = one vector
     pred = torch.dot(x, w) + b
-    err = pred - prices[i]  # the error score, "punteggio di errore"
+    err = pred - prices[i]  # the error score
     print(
         f"{x.tolist()}     {x[0].item():5.0f}*2 + {x[1].item():.0f}*10 + 20 = {pred.item():5.1f}"
         f"      {prices[i].item():5.1f}      {err.item():+6.1f}"

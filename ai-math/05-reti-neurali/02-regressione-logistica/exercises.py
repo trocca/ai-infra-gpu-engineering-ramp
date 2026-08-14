@@ -1,62 +1,62 @@
-"""Esercizi sulla lezione 02: regressione logistica.
+"""Exercises for lesson 02: logistic regression.
 
-Completa le funzioni marcate con # TODO.
-Poi esegui `pytest` da questa cartella.
-La difficolta' cresce man mano che scendi nel file.
+Complete the functions marked with # TODO.
+Then run `pytest` from this folder.
+The difficulty grows as you go down the file.
 """
 
 import torch
 
 
 def sigmoid_a_mano(z):
-    """La funzione di schiacciamento: 1 / (1 + e^(-z)).
+    """The squashing function: 1 / (1 + e^(-z)).
 
-    Non usare torch.sigmoid. Deve funzionare sia su scalari sia su
-    tensor (le operazioni di torch lo fanno gia' da sole).
+    Do not use torch.sigmoid. It must work both on scalars and on
+    tensors (torch operations already handle that for you).
     """
     # TODO
     raise NotImplementedError
 
 
 def bce_a_mano(p, target):
-    """La binary cross entropy media.
+    """The average binary cross entropy.
 
-    p sono le probabilita' del modello (tra 0 e 1), target le verita'
-    (0 o 1). Formula per esempio: -[t*log(p) + (1-t)*log(1-p)], poi
-    media su tutti gli esempi. Non usare F.binary_cross_entropy.
-    Restituisci un tensor scalare.
+    p are the model's probabilities (between 0 and 1), target the truths
+    (0 or 1). Per-example formula: -[t*log(p) + (1-t)*log(1-p)], then
+    average over all examples. Do not use F.binary_cross_entropy.
+    Return a scalar tensor.
     """
     # TODO
     raise NotImplementedError
 
 
 def probabilita_case(X, w, b):
-    """La pipeline del classificatore: punteggio lineare, poi sigmoid.
+    """The classifier pipeline: linear score, then sigmoid.
 
-    Restituisci il vettore delle probabilita' P(classe 1), una per riga
-    di X. Riusa la tua sigmoid_a_mano.
+    Return the vector of probabilities P(class 1), one per row
+    of X. Reuse your sigmoid_a_mano.
     """
     # TODO
     raise NotImplementedError
 
 
 def classifica(X, w, b, soglia=0.5):
-    """Trasforma le probabilita' in decisioni 0/1.
+    """Turn probabilities into 0/1 decisions.
 
-    Probabilita' sopra la soglia: classe 1, altrimenti 0.
-    Restituisci un tensor di 0.0 e 1.0 (usa .float()).
+    Probability above the threshold: class 1, otherwise 0.
+    Return a tensor of 0.0 and 1.0 (use .float()).
     """
     # TODO
     raise NotImplementedError
 
 
 def allena_logistica(X, y, lr, epoche):
-    """Il training loop del classificatore.
+    """The classifier's training loop.
 
-    Identico a quello della lezione 01, con due differenze: il forward
-    passa dalla sigmoid (riusa probabilita_case) e la loss e' la BCE
-    (riusa bce_a_mano). Parti da w e b a zero.
-    Restituisci la tupla (w, b, storia_loss).
+    Identical to the one from lesson 01, with two differences: the forward
+    goes through the sigmoid (reuse probabilita_case) and the loss is the BCE
+    (reuse bce_a_mano). Start from w and b at zero.
+    Return the tuple (w, b, loss_history).
     """
     # TODO
     raise NotImplementedError

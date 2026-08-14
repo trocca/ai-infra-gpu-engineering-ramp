@@ -1,20 +1,20 @@
-"""Soluzioni complete degli esercizi della lezione 02: derivate parziali.
+"""Complete solutions to the exercises of lesson 02: partial derivatives.
 
-Guardale solo dopo aver provato sul serio con exercises.py.
+Look at them only after a serious attempt at exercises.py.
 """
 
 import torch
 
 
 def parziale_finita(f, punto, indice, h=1e-4):
-    """Calcola la derivata parziale di f rispetto a una sola variabile."""
+    """Compute the partial derivative of f with respect to a single variable."""
     spostato = punto.clone()
     spostato[indice] += h
     return ((f(spostato) - f(punto)) / h).item()
 
 
 def gradiente_autograd(f, punto):
-    """Calcola il gradiente completo di f nel punto dato, con autograd."""
+    """Compute the full gradient of f at the given point, with autograd."""
     p = punto.clone().requires_grad_(True)
     out = f(p)
     out.backward()
@@ -22,11 +22,11 @@ def gradiente_autograd(f, punto):
 
 
 def gradiente_ciotola(punto):
-    """Restituisci il gradiente ESATTO di f(x, y) = x^2 + y^2 nel punto."""
+    """Return the EXACT gradient of f(x, y) = x^2 + y^2 at the point."""
     return 2 * punto
 
 
 def passo_in_discesa(f, punto, lr):
-    """Fai un passo nella direzione di discesa piu' ripida."""
+    """Take one step in the direction of steepest descent."""
     grad = gradiente_autograd(f, punto)
     return (punto - lr * grad).detach()

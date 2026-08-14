@@ -1,63 +1,63 @@
-"""Esercizi sulla lezione 01: vettori.
+"""Exercises for lesson 01: vectors.
 
-Completa le funzioni marcate con # TODO.
-Poi esegui `pytest` da questa cartella: quando tutti i test passano, hai finito.
-La difficolta' cresce man mano che scendi nel file.
+Complete the functions marked with # TODO.
+Then run `pytest` from this folder: when all tests pass, you're done.
+The difficulty grows as you move down the file.
 """
 
 import torch
 
 
 def crea_vettore(numeri):
-    """Crea un tensor PyTorch a partire da una lista di numeri Python.
+    """Create a PyTorch tensor from a list of Python numbers.
 
-    Il tensor deve avere dtype torch.float32.
-    Esempio: crea_vettore([1, 2, 3]) restituisce tensor([1., 2., 3.]).
+    The tensor must have dtype torch.float32.
+    Example: crea_vettore([1, 2, 3]) returns tensor([1., 2., 3.]).
     """
     # TODO: use torch.tensor with an explicit dtype
     raise NotImplementedError
 
 
 def scala_vettore(v, c):
-    """Moltiplica il vettore v per lo scalare c.
+    """Multiply the vector v by the scalar c.
 
-    Esempio: scala_vettore(tensor([2., 1.]), 3) restituisce tensor([6., 3.]).
+    Example: scala_vettore(tensor([2., 1.]), 3) returns tensor([6., 3.]).
     """
     # TODO
     raise NotImplementedError
 
 
 def combinazione_lineare(u, v, a, b):
-    """Restituisci la combinazione lineare a*u + b*v.
+    """Return the linear combination a*u + b*v.
 
-    Una combinazione lineare e' la somma di vettori, ognuno scalato dal
-    proprio peso. E' l'operazione che una rete neurale fa in continuazione.
-    Esempio: combinazione_lineare([1., 0.], [0., 1.], 2, 3) restituisce [2., 3.].
+    A linear combination is a sum of vectors, each scaled by its own
+    weight. It's the operation a neural network performs all the time.
+    Example: combinazione_lineare([1., 0.], [0., 1.], 2, 3) returns [2., 3.].
     """
     # TODO
     raise NotImplementedError
 
 
 def dot_manuale(u, v):
-    """Calcola il prodotto scalare tra u e v con un ciclo for esplicito.
+    """Compute the dot product of u and v with an explicit for loop.
 
-    Non usare torch.dot ne' l'operatore @. Il punto dell'esercizio e'
-    scrivere a mano il ciclo: moltiplica posizione per posizione e somma.
-    Restituisci un float Python (usa .item() alla fine).
-    Esempio: dot_manuale(tensor([2., 1.]), tensor([1., 3.])) restituisce 5.0.
+    Do not use torch.dot or the @ operator. The whole point of the
+    exercise is writing the loop by hand: multiply position by position
+    and sum. Return a Python float (use .item() at the end).
+    Example: dot_manuale(tensor([2., 1.]), tensor([1., 3.])) returns 5.0.
     """
     # TODO: accumulate the products in a loop, then return a Python float
     raise NotImplementedError
 
 
 def predici_prezzo(x, w, b):
-    """Predici il prezzo di una casa con un modello lineare.
+    """Predict the price of a house with a linear model.
 
-    x e' il vettore della casa (metri quadri, stanze), w il vettore dei
-    pesi, b il bias (un numero). La predizione e' il prodotto scalare
-    tra x e w, piu' b. Restituisci un tensor scalare (va bene il
-    risultato diretto delle operazioni torch, senza .item()).
-    Esempio: predici_prezzo([50., 2.], [2., 10.], 20.) restituisce 140.
+    x is the house vector (square meters, rooms), w is the weight
+    vector, b is the bias (a single number). The prediction is the dot
+    product of x and w, plus b. Return a scalar tensor (the direct
+    result of the torch operations is fine, no .item() needed).
+    Example: predici_prezzo([50., 2.], [2., 10.], 20.) returns 140.
     """
     # TODO: this time torch.dot is allowed
     raise NotImplementedError

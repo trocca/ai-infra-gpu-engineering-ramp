@@ -1,6 +1,6 @@
-"""Test per gli esercizi della lezione 03: norme e distanze.
+"""Tests for the lesson 03 exercises: norms and distances.
 
-Esegui `pytest` da questa cartella. Deterministici: seed fissato.
+Run `pytest` from this folder. Deterministic: fixed seed.
 """
 
 import torch

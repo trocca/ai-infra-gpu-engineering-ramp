@@ -1,6 +1,6 @@
-"""Soluzioni complete degli esercizi della lezione 04: Jacobiane.
+"""Complete solutions to the exercises of lesson 04: Jacobians.
 
-Guardale solo dopo aver provato sul serio con exercises.py.
+Look at them only after a serious attempt at exercises.py.
 """
 
 import torch
@@ -8,7 +8,7 @@ from torch.autograd.functional import jacobian
 
 
 def jacobiana_a_mano(punto):
-    """Scrivi la Jacobiana ESATTA di f(x, y) = [x^2, x*y] nel punto."""
+    """Write the EXACT Jacobian of f(x, y) = [x^2, x*y] at the point."""
     x, y = punto[0], punto[1]
     return torch.stack(
         [
@@ -19,7 +19,7 @@ def jacobiana_a_mano(punto):
 
 
 def jacobiana_finita(f, punto, h=1e-4):
-    """Costruisci la Jacobiana di f per differenze finite."""
+    """Build the Jacobian of f by finite differences."""
     base = f(punto)
     m, n = len(base), len(punto)
     J = torch.zeros(m, n)
@@ -31,12 +31,12 @@ def jacobiana_finita(f, punto, h=1e-4):
 
 
 def jacobiana_autograd(f, punto):
-    """Calcola la Jacobiana con torch."""
+    """Compute the Jacobian with torch."""
     return jacobian(f, punto)
 
 
 def gradiente_mse(w, X, y):
-    """Calcola il gradiente della MSE rispetto al vettore dei pesi w."""
+    """Compute the gradient of the MSE with respect to the weight vector w."""
     wt = w.clone().requires_grad_(True)
     preds = X @ wt
     loss = ((preds - y) ** 2).mean()

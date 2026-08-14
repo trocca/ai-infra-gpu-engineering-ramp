@@ -67,7 +67,7 @@ prices = torch.tensor([150.0, 200.0, 250.0, 300.0, 350.0])
 
 def loss_fn(w):
     """Mean squared error: the average of squared prediction errors.
-    This is the 'punteggio di errore' of the model with weight w."""
+    This is the error score of the model with weight w."""
     preds = w * sqm100
     return ((preds - prices) ** 2).mean()
 

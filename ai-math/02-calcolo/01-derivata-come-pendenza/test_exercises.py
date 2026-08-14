@@ -1,6 +1,6 @@
-"""Test per gli esercizi della lezione 01: derivata come pendenza.
+"""Tests for the exercises of lesson 01: derivative as a slope.
 
-Esegui `pytest` da questa cartella. Deterministici: nessun numero casuale.
+Run `pytest` from this folder. Deterministic: no random numbers.
 """
 
 import torch

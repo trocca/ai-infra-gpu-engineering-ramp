@@ -1,23 +1,23 @@
-"""Soluzioni complete degli esercizi della lezione 01: regressione lineare.
+"""Complete solutions for the lesson 01 exercises: linear regression.
 
-Guardale solo dopo aver provato sul serio con exercises.py.
+Look at these only after a serious attempt at exercises.py.
 """
 
 import torch
 
 
 def forward(X, w, b):
-    """Il passo forward: le predizioni del modello lineare."""
+    """The forward pass: the linear model's predictions."""
     return X @ w + b
 
 
 def mse(preds, y):
-    """Il punteggio di errore: mean squared error."""
+    """The error score: mean squared error."""
     return ((preds - y) ** 2).mean()
 
 
 def passo_di_training(X, y, w, b, lr):
-    """Un giro completo del training loop: forward, loss, backward, update."""
+    """One complete turn of the training loop: forward, loss, backward, update."""
     wt = w.clone().requires_grad_(True)
     bt = b.clone().requires_grad_(True)
     loss = mse(forward(X, wt, bt), y)
@@ -28,7 +28,7 @@ def passo_di_training(X, y, w, b, lr):
 
 
 def allena(X, y, lr, epoche):
-    """Il training loop completo: ripeti passo_di_training per ogni epoca."""
+    """The complete training loop: repeat passo_di_training for each epoch."""
     w = torch.zeros(X.shape[1])
     b = torch.zeros(1)
     storia = []

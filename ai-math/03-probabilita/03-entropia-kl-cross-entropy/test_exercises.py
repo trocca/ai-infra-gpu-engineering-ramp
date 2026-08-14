@@ -1,6 +1,6 @@
-"""Test per gli esercizi della lezione 03: entropia, KL e cross entropy.
+"""Tests for the lesson 03 exercises: entropy, KL and cross entropy.
 
-Esegui `pytest` da questa cartella. Deterministici: nessun numero casuale.
+Run `pytest` from this folder. Deterministic: no random numbers.
 """
 
 import torch
@@ -65,7 +65,7 @@ def test_softmax_a_mano_logits_enormi():
     # Without the max trick, exp(1000) overflows to inf.
     logits = torch.tensor([1000.0, 999.0])
     out = exercises.softmax_a_mano(logits)
-    assert torch.isfinite(out).all(), "overflow: manca il trucco del massimo?"
+    assert torch.isfinite(out).all(), "overflow: missing the max trick?"
     assert torch.allclose(out, F.softmax(logits, dim=0), atol=1e-6)
 
 

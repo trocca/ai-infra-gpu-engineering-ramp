@@ -1,13 +1,13 @@
-"""Soluzioni complete degli esercizi della lezione 02: matrici e matmul.
+"""Complete solutions for the lesson 02 exercises: matrices and matmul.
 
-Guardale solo dopo aver provato sul serio con exercises.py.
+Look at these only after a genuine attempt at exercises.py.
 """
 
 import torch
 
 
 def estrai_diagonale(A):
-    """Restituisci la diagonale della matrice quadrata A come vettore."""
+    """Return the diagonal of the square matrix A as a vector."""
     n = A.shape[0]
     out = torch.zeros(n)
     for i in range(n):
@@ -16,7 +16,7 @@ def estrai_diagonale(A):
 
 
 def trasposta_manuale(A):
-    """Restituisci la trasposta di A senza usare A.T ne' torch.transpose."""
+    """Return the transpose of A without using A.T or torch.transpose."""
     rows, cols = A.shape
     out = torch.zeros(cols, rows)
     for i in range(rows):
@@ -26,12 +26,12 @@ def trasposta_manuale(A):
 
 
 def predizioni_case(X, w, b):
-    """Calcola le predizioni per tutte le case in un colpo solo."""
+    """Compute the predictions for all the houses in one shot."""
     return X @ w + b
 
 
 def matrice_identita(n):
-    """Costruisci la matrice identita' n x n senza usare torch.eye."""
+    """Build the n x n identity matrix without using torch.eye."""
     out = torch.zeros(n, n)
     for i in range(n):
         out[i, i] = 1.0
@@ -39,7 +39,7 @@ def matrice_identita(n):
 
 
 def matmul_manuale(A, B):
-    """Moltiplica A per B con tre cicli for espliciti."""
+    """Multiply A by B with three explicit for loops."""
     m, n = A.shape
     n2, p = B.shape
     assert n == n2, "inner dimensions must match"

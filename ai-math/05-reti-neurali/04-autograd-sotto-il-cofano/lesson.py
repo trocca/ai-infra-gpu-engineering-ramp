@@ -11,7 +11,7 @@ import torch
 torch.manual_seed(0)
 
 print("=" * 60)
-print("STEP 1: the scalar chain, by hand (numbers from SPIEGAZIONE)")
+print("STEP 1: the scalar chain, by hand (numbers from EXPLANATION.md)")
 print("=" * 60)
 
 x, t = 2.0, 10.0
