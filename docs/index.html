@@ -3,642 +3,70 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How Machines Learn from Data</title>
-<meta name="description" content="A taught chapter on machine learning foundations: the model lifecycle, features and feature engineering, precise vocabulary for algorithms, the learning paradigms and the axes that cut across them, training versus inference model by model, and the modern LLM workflow.">
-<style>
-  :root{
-    --ink:#22303c; --ink-soft:#5b6470; --ink-faint:#8a93a0;
-    --serif:Georgia,"Times New Roman",serif;
-    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    --mono:ui-monospace,Menlo,Consolas,"Cascadia Mono",monospace;
-    --card:#fffdfa; --card-edge:#ece2d4;
-    --teal:#0f766e; --teal-soft:#d9f2e9; --teal-edge:#9fdcc8;
-    --navy:#152632; --navy-text:#d9e5ec;
-    --peach:#ffe9da; --peach-edge:#ffcdaa; --burnt:#9a3412;
-    --mint:#effaf3;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    margin:0; font-family:var(--sans); color:var(--ink); font-size:16px; line-height:1.6;
-    background:linear-gradient(165deg,#fce8dc 0%,#fdf3e7 34%,#f3f7ec 68%,#e9f5ee 100%);
-    background-attachment:fixed;
-  }
-  .wrap{max-width:880px; margin:0 auto; padding:56px 22px 80px}
-
-  .eyebrow{color:var(--teal); font-weight:700; letter-spacing:.14em; font-size:12.5px; text-transform:uppercase}
-  h1{font-family:var(--serif); font-size:clamp(34px,6vw,46px); line-height:1.12; margin:.35em 0 .4em; color:#1d1710}
-  .lede{color:var(--ink-soft); font-size:17.5px; max-width:62ch}
-
-  /* Part = h2, Section = h3, card title = h4 */
-  .parthead{margin:3.4em 0 1.2em; padding-top:1.5em; border-top:2px solid #e0d3bf}
-  .parthead .pnum{color:var(--burnt); font-weight:700; letter-spacing:.14em; font-size:12px; text-transform:uppercase}
-  h2{font-family:var(--serif); font-size:clamp(27px,4.2vw,33px); line-height:1.2; color:#1d1710; margin:.18em 0 .25em}
-  .parthead p{color:var(--ink-soft); font-size:15px; max-width:62ch; margin:.4em 0 0}
-  h3{font-family:var(--serif); font-size:clamp(21px,3.2vw,24px); color:#25313d; margin:2em 0 .7em}
-  h4{font-size:17px; margin:1.3em 0 .45em}
-  p{margin:.5em 0}
-  a{color:var(--teal)}
-
-  .card{
-    background:var(--card); border:1.5px solid var(--card-edge); border-radius:14px;
-    padding:22px 24px; margin:14px 0;
-    box-shadow:0 1px 3px rgba(90,60,20,.06),0 8px 24px -18px rgba(90,60,20,.25);
-  }
-  .card.center{text-align:center}
-  .card h4{margin-top:.1em}
-  .muted{color:var(--ink-soft); font-size:14.5px}
-  .tiny{color:var(--ink-faint); font-size:13px}
-
-  .icon{font-size:30px; line-height:1}
-  .flow-arrow{text-align:center; color:#e08a4f; font-size:22px; margin:2px 0}
-
-  /* retraining loop */
-  .loopback{
-    border:1.5px dashed #e0a878; background:#fff6ef; border-radius:12px;
-    padding:14px 18px; margin:14px 0; font-size:14.5px; color:#7a4218; text-align:center;
-  }
-  .loopback b{color:#8a3d0f}
-  .loop-arrow{text-align:center; color:#e08a4f; font-size:20px; letter-spacing:.2em; margin:2px 0}
-
-  /* table of contents */
-  .toc{
-    background:rgba(255,253,250,.72); border:1.5px solid var(--card-edge); border-radius:14px;
-    padding:20px 24px; margin:26px 0 8px;
-  }
-  .toc h4{margin:0 0 .7em; font-family:var(--serif); font-size:16px; color:#25313d}
-  .toc ol{margin:0; padding-left:0; list-style:none; counter-reset:part}
-  .toc > ol > li{margin:0 0 10px; font-size:14.5px}
-  .toc > ol > li > span{font-weight:700; color:#324150}
-  .toc ul{margin:.3em 0 0; padding-left:0; list-style:none; display:flex; flex-wrap:wrap; gap:6px 14px}
-  .toc ul li{font-size:13.5px; color:var(--ink-soft)}
-
-  .badge{
-    display:inline-block; background:var(--teal-soft); color:#0b6b52; border-radius:999px;
-    padding:4px 14px; font-size:11.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
-  }
-  .badge.orange{background:#ffe4d1; color:var(--burnt)}
-  .badge.violet{background:#ede9fe; color:#5b21b6}
-
-  .chips{display:flex; flex-wrap:wrap; gap:9px; margin:12px 0 4px}
-  .chip{
-    border:1.5px solid var(--teal-edge); background:var(--mint); color:#0c5c49;
-    border-radius:999px; padding:5px 14px; font-size:13.5px; font-weight:600; white-space:nowrap;
-  }
-  .chip.dashed{border-style:dashed}
-  .chip.plain{border-color:#d9cbb8; background:#fbf6ee; color:#6b5b43}
-
-  .datapanel{
-    background:var(--navy); color:var(--navy-text); border-radius:14px;
-    padding:20px 22px; font-family:var(--mono); font-size:13.5px; line-height:1.75;
-    overflow-x:auto; margin:14px 0; white-space:pre;
-  }
-  .datapanel .hl{color:#8ee6c3; font-weight:700}
-  .formula{
-    background:var(--peach); border:1px solid var(--peach-edge); border-radius:10px;
-    padding:14px 18px; font-family:var(--mono); font-size:14.5px; color:#5c3317;
-    overflow-x:auto; margin:12px 0; line-height:1.8;
-  }
-  .callout{
-    border-left:5px solid #ea7c3c; background:#fff0e2; border-radius:0 10px 10px 0;
-    padding:12px 18px; margin:16px 0; font-size:14.5px; color:#6b3410;
-  }
-  .callout b{color:#8a3d0f}
-  .callout.teal{border-left-color:#0f766e; background:var(--mint); color:#0b4f40}
-  .callout.teal b{color:#0b6b52}
-
-  .answer{
-    background:var(--navy); color:#eaf3f7; border-radius:14px; padding:18px 22px; margin:16px 0;
-  }
-  .answer .verdict{font-family:var(--serif); font-size:26px; color:#8ee6c3; display:block; margin-bottom:.15em}
-  .answer p{color:#c3d4de; font-size:14.5px; margin:.3em 0 0}
-
-  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px}
-  .grid3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px}
-  @media (max-width:740px){ .grid2,.grid3{grid-template-columns:1fr} }
-
-  .paradigm{border-top:5px solid var(--teal)}
-  .paradigm.orange{border-top-color:#ea7c3c}
-  .paradigm.violet{border-top-color:#8b5cf6}
-
-  .axis{border-left:5px solid #8b5cf6}
-  .axis .q{
-    display:inline-block; background:#ede9fe; color:#5b21b6; border-radius:6px;
-    padding:2px 10px; font-size:11.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
-  }
-
-  .tablewrap{overflow-x:auto; margin:14px 0; border:1.5px solid var(--card-edge); border-radius:12px; background:var(--card)}
-  table{border-collapse:collapse; width:100%; font-size:14px; min-width:640px}
-  th{
-    text-align:left; font-size:12px; letter-spacing:.07em; text-transform:uppercase;
-    color:#7a6a52; background:#f8f1e6; padding:11px 14px; border-bottom:2px solid var(--card-edge);
-  }
-  td{padding:11px 14px; border-bottom:1px solid #f0e8db; vertical-align:top}
-  tr:last-child td{border-bottom:none}
-  td b{color:#324150}
-  .mono{font-family:var(--mono); font-size:13px}
-
-  .steps{display:flex; align-items:stretch; gap:0; flex-wrap:wrap}
-  .step{
-    flex:1 1 150px; background:var(--card); border:1.5px solid var(--card-edge); border-radius:12px;
-    padding:16px 14px; text-align:center; margin:6px 0;
-  }
-  .step .n{
-    display:inline-block; width:26px; height:26px; border-radius:50%; background:var(--teal);
-    color:#fff; font-weight:700; font-size:14px; line-height:26px; margin-bottom:8px;
-  }
-  .step-arrow{align-self:center; color:#e08a4f; font-size:20px; padding:0 6px}
-  @media (max-width:740px){
-    .steps{flex-direction:column}
-    .step-arrow{transform:rotate(90deg); text-align:center; padding:2px 0}
-  }
-
-  .stack{display:flex; flex-direction:column; gap:8px; margin:14px 0}
-  .layer{
-    border-radius:10px; padding:11px 16px; font-size:14px; border:1.5px solid;
-  }
-  .layer .lbl{font-weight:700; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase}
-  .l1{background:#effaf3; border-color:var(--teal-edge); color:#0b5c49}
-  .l2{background:#fff0e2; border-color:var(--peach-edge); color:#7a3d12}
-  .l3{background:#ede9fe; border-color:#c9b8f5; color:#5b21b6}
-  .l4{background:#f8f1e6; border-color:#e0d3bf; color:#6b5b43}
-
-  .kv{display:grid; grid-template-columns:210px 1fr; gap:8px 16px; font-size:14.5px}
-  .kv dt{font-weight:700; color:#324150}
-  .kv dd{margin:0; color:var(--ink-soft)}
-  @media (max-width:600px){ .kv{grid-template-columns:1fr} .kv dd{margin-bottom:8px} }
-
-  footer{margin-top:64px; padding-top:22px; border-top:1.5px solid #e3d8c6; font-size:14px; color:var(--ink-soft)}
-</style>
+<title>AI Infra & GPU Engineering Ramp</title>
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
 <div class="wrap">
+<nav class="sitenav">
+  <a class="brand" href="">AI Infra &amp; GPU Ramp</a>
+  <a href="" class="here">Home</a>
+  <a href="how-machines-learn/">ML Foundations</a>
+  <a href="track/">C++&hairsp;&harr;&hairsp;CUDA Track</a>
+  <a href="glossary/">Glossary</a>
+  <a href="https://github.com/trocca/ai-infra-gpu-engineering-ramp">GitHub</a>
+</nav>
+<div class="eyebrow">My AI Journey &middot; a documented learning ramp</div>
+<h1>AI Infrastructure &amp; GPU Engineering</h1>
+<p class="lede">A self-paced path from &ldquo;what is a feature?&rdquo; to writing CUDA kernels and
+sharding training across GPUs — with every lesson backed by runnable code you can measure yourself.</p>
 
-<header>
-  <div class="eyebrow">My AI Journey &middot; Machine Learning Foundations</div>
-  <h1>How machines learn from data</h1>
-  <p class="lede">A taught chapter, in six parts: the lifecycle a model lives through, how raw facts become
-  features, the vocabulary that keeps &ldquo;algorithm&rdquo; from meaning four things at once, the paradigms
-  and the axes that cut across them, what training and inference actually do model by model, and how a modern
-  LLM stacks nearly all of it into one pipeline.</p>
-
-  <nav class="toc" aria-label="Contents">
-    <h4>What&rsquo;s ahead</h4>
-    <ol>
-      <li><span>Part I &middot; Orientation</span>
-        <ul><li>1. The lifecycle of a model</li></ul></li>
-      <li><span>Part II &middot; From raw data to features</span>
-        <ul><li>2. What is a feature?</li><li>3. Feature engineering</li><li>4. Feature scaling</li></ul></li>
-      <li><span>Part III &middot; Naming things precisely</span>
-        <ul><li>5. Family, algorithm, model</li><li>6. Is training the same algorithm as querying?</li></ul></li>
-      <li><span>Part IV &middot; The learning paradigms</span>
-        <ul><li>7. The two primary paradigms</li><li>8. Three more learning signals</li><li>9. Four orthogonal axes</li><li>10. Paradigms compose</li></ul></li>
-      <li><span>Part V &middot; Training vs. inference in practice</span>
-        <ul><li>11. Model by model</li><li>12. Polynomial regression</li><li>13. The two K&rsquo;s</li></ul></li>
-      <li><span>Part VI &middot; Putting it together</span>
-        <ul><li>14. Unsupervised feeding supervised</li><li>15. The modern LLM workflow</li></ul></li>
-    </ol>
-  </nav>
-</header>
-
-<main>
-
-<!-- ============================================================ PART I -->
-<div class="parthead">
-  <div class="pnum">Part I</div>
-  <h2>Orientation</h2>
-  <p>Before any single technique makes sense, you need the shape of the whole thing: what happens when,
-  and what comes back around.</p>
+<h2>Start here</h2>
+<div class="grid2">
+  <div class="card"><h3>&#127793; New to machine learning?</h3>
+    <p class="muted">Read <a href="how-machines-learn/">How Machines Learn from Data</a> first:
+    features, training vs inference, the learning paradigms, and the modern LLM workflow — no code required.</p></div>
+  <div class="card"><h3>&#9889; Here for the systems side?</h3>
+    <p class="muted">Jump into the <a href="track/">C++&nbsp;&harr;&nbsp;CUDA dual track</a>: the same
+    operation implemented on both stacks, confronted module by module. Keep the
+    <a href="glossary/">glossary</a> in a tab.</p></div>
 </div>
 
-<section aria-labelledby="s1">
-  <h3 id="s1">1. The lifecycle of a model</h3>
+<h2>The path, in four stages</h2>
+<p class="muted">Do the stages in order; inside a stage, do modules in order. Each lesson states its
+prerequisite and an honest time estimate — the hours assume you run the labs, not just read.</p>
+<div class="card stage "><h3>Stage A — Foundations of parallel execution</h3><p class="goal">after this stage you can explain why the same loop runs 100× faster on a GPU, and measure it</p><ol><li><a href="track/01-execution-model/">01 · Execution model</a> <span class="tiny">~2h</span></li>
+<li><a href="track/02-memory-hierarchy/">02 · Memory hierarchy</a> <span class="tiny">~3h</span></li>
+<li><a href="track/03-data-parallel-saxpy/">03 · Data parallelism: SAXPY</a> <span class="tiny">~2h</span></li></ol></div>
+<div class="card stage b"><h3>Stage B — Parallel algorithms</h3><p class="goal">after this stage you can build the three algorithmic shapes 90% of kernels reduce to</p><ol><li><a href="track/04-reduction/">04 · Reduction</a> <span class="tiny">~3h</span></li>
+<li><a href="track/05-scan-histogram/">05 · Scan & histogram</a> <span class="tiny">~4h</span></li>
+<li><a href="track/06-matmul-tiling/">06 · Matmul & tiling</a> <span class="tiny">~4h</span></li></ol></div>
+<div class="card stage c"><h3>Stage C — Systems craft</h3><p class="goal">after this stage you overlap, synchronize and profile like it's a habit</p><ol><li><a href="track/07-async-overlap/">07 · Asynchrony & overlap</a> <span class="tiny">~3h</span></li>
+<li><a href="track/08-sync-atomics-memory-model/">08 · Sync, atomics, memory model</a> <span class="tiny">~3h</span></li>
+<li><a href="track/09-profiling-roofline/">09 · Profiling & roofline</a> <span class="tiny">~3h</span></li></ol></div>
+<div class="card stage d"><h3>Stage D — The frontier</h3><p class="goal">after this stage you read FlashAttention and CUTLASS as engineering, not magic</p><ol><li><a href="track/10-advanced-gpu/">10 · Advanced GPU</a> <span class="tiny">~5h</span></li>
+<li><a href="track/11-multi-device/">11 · Multi-device</a> <span class="tiny">~4h</span></li>
+<li><a href="track/12-capstone-pytorch-extension/">12 · Capstone: PyTorch extension</a> <span class="tiny">~6h</span></li></ol></div>
 
-  <div class="card center"><div class="icon">🗂️</div><h4>Raw data</h4><p class="muted">facts, measurements, text, images</p></div>
-  <div class="flow-arrow">↓</div>
-  <div class="card center"><div class="icon">🧩</div><h4>Features</h4><p class="muted">signals the model can actually use</p></div>
-  <div class="flow-arrow">↓</div>
-  <div class="card center"><div class="icon">🏋️</div><h4>Training</h4><p class="muted">learn parameters or structure from examples</p></div>
-  <div class="flow-arrow">↓</div>
-  <div class="card center"><div class="icon">📦</div><h4>Trained model</h4><p class="muted">the learned parameters, frozen and saved</p></div>
-  <div class="flow-arrow">↓</div>
-  <div class="card center"><div class="icon">🎯</div><h4>Inference</h4><p class="muted">predict from new, unseen input</p></div>
+<h2>How to study each lesson</h2>
+<div class="card"><ol>
+<li>Read the lesson page (concept + the CPU-vs-GPU confrontation table).</li>
+<li>Build and run the <b>cpp/</b> lab, then the <b>cuda/</b> lab — links to the exact source files are on every page.</li>
+<li>Answer the exercises <i>in writing</i> in your own NOTES.md. The questions are chosen so the answers differ between the stacks — that delta is the lesson.</li>
+<li>Only then read the companion book chapters listed at the bottom of the lesson.</li>
+</ol></div>
 
-  <div class="loop-arrow">&#8630; &nbsp; &#8630; &nbsp; &#8630;</div>
-  <div class="loopback">
-    <b>&#8635; Retraining &mdash; the stage that makes this a loop, not a line.</b><br>
-    New data arrives, the world drifts, requirements change. The <i>training</i> algorithm runs again, from the
-    top, producing a new trained model that replaces the old one. A deployed model is never finished; it is
-    only current.
-  </div>
-
-  <p class="muted">Three stages, then, not two: <b>training</b> learns from examples, <b>inference</b> answers
-  queries, and <b>retraining</b> repeats training as reality moves. Everything in this chapter sits somewhere
-  on that loop &mdash; Part II on the arrow into training, Part V on the difference between the training and
-  inference boxes, Part VI on how a real system chains several loops together.</p>
-</section>
-
-<!-- ============================================================ PART II -->
-<div class="parthead">
-  <div class="pnum">Part II</div>
-  <h2>From raw data to features</h2>
-  <p>A model never sees the world. It sees the columns you hand it. This part is about making those
-  columns say something.</p>
-</div>
-
-<section aria-labelledby="s2">
-  <h3 id="s2">2. What is a feature?</h3>
-
-  <div class="datapanel">size_m&#178; | bedrooms | age | city    | price
-90      | 3        | 12  | Berlin  | &euro;550k
-60      | 1        | 35  | Leipzig | &euro;220k
-
-<span class="hl">FEATURES &#8593;</span>                    <span class="hl">TARGET &#8593;</span></div>
-
-  <div class="card">
-    <h4>One usable input signal</h4>
-    <p class="muted">A feature is usually one dataset column: numerical (<span class="mono">size_m&#178;</span>),
-    categorical (<span class="mono">city</span>), Boolean, text-derived, image-derived, or engineered from other
-    columns. The <b>target</b> is the answer a supervised model learns to predict&mdash;here, <span class="mono">price</span>.
-    A row of features plus its target is one <b>training example</b>.</p>
-  </div>
-</section>
-
-<section aria-labelledby="s3">
-  <h3 id="s3">3. Feature engineering: making the pattern explicit</h3>
-
-  <div class="card">
-    <span class="badge">Feature engineering</span>
-    <h4>Turn raw facts into clearer signals</h4>
-    <div class="chips">
-      <span class="chip dashed">birth date</span><span class="step-arrow">&rarr;</span><span class="chip">age</span>
-      <span class="chip dashed">debt &divide; income</span><span class="step-arrow">&rarr;</span><span class="chip">debt ratio</span>
-      <span class="chip dashed">timestamp</span><span class="step-arrow">&rarr;</span><span class="chip">rush hour?</span>
-    </div>
-    <p class="muted">The model sees exactly what you feed it. A derived feature that states the pattern directly
-    (age instead of birth date) makes the pattern learnable with less data and a simpler model. The information
-    was always there &mdash; engineering moves it from implicit to explicit.</p>
-  </div>
-</section>
-
-<section aria-labelledby="s4">
-  <h3 id="s4">4. Feature scaling: comparable units</h3>
-
-  <div class="card">
-    <span class="badge">Feature scaling</span>
-    <h4>Put numeric features on comparable scales</h4>
-    <div class="formula">standardize: x&prime; = (x &minus; mean) / standard&nbsp;deviation
-min&ndash;max:    x&prime; = (x &minus; min) / (max &minus; min)</div>
-    <p class="muted"><b>Needs scaling:</b> KNN, K-means, SVM, neural networks, PCA, regularized regression
-    &mdash; anything built on distances, dot products or shared penalty strength.<br>
-    <b>Usually doesn&rsquo;t:</b> decision trees, random forests, gradient boosting &mdash; trees split on
-    thresholds one feature at a time, so a feature&rsquo;s scale never mixes with another&rsquo;s.</p>
-  </div>
-
-  <div class="callout"><b>Avoid data leakage:</b> fit feature engineering and scalers on <b>training data only</b>;
-  apply the fitted transformations, unchanged, to validation, test, and future data. If the scaler has seen the
-  test set&rsquo;s mean, your evaluation is quietly cheating. This rule returns in &sect;14, where it bites harder.</div>
-</section>
-
-<!-- ============================================================ PART III -->
-<div class="parthead">
-  <div class="pnum">Part III</div>
-  <h2>Naming things precisely</h2>
-  <p>Casual usage lets &ldquo;linear regression&rdquo; mean a family, a fitting procedure, a set of coefficients,
-  and a prediction rule &mdash; all in one sentence. Separating those four is most of the conceptual work.</p>
-</div>
-
-<section aria-labelledby="s5">
-  <h3 id="s5">5. Model family, training algorithm, trained model</h3>
-  <div class="card">
-    <dl class="kv">
-      <dt>Model family</dt><dd>the <i>shape</i> of hypothesis you allow: &ldquo;a line&rdquo;, &ldquo;a depth-5 tree&rdquo;, &ldquo;a 3-layer network&rdquo;. Defines what is learnable.</dd>
-      <dt>Training algorithm</dt><dd>the procedure that picks one member of the family using data: gradient descent, ordinary least squares, tree splitting, Lloyd&rsquo;s iterations.</dd>
-      <dt>Trained model</dt><dd>the chosen member&mdash;concrete parameter values (weights, split points, centroids), frozen after training. The artifact you save.</dd>
-      <dt>Inference algorithm</dt><dd>how the trained model answers a query: a matmul forward pass, a walk from root to leaf, nearest-centroid lookup.</dd>
-      <dt>Computational procedure</dt><dd>how the math actually runs on hardware: vectorized loops, GPU kernels, distributed workers. Same model, many possible procedures.</dd>
-    </dl>
-  </div>
-
-  <div class="tablewrap"><table>
-    <thead><tr><th>Component</th><th>For linear regression</th></tr></thead>
-    <tbody>
-      <tr><td><b>Model family</b></td><td>linear functions of the input</td></tr>
-      <tr><td><b>Training algorithm</b></td><td>ordinary least squares, <i>or</i> gradient descent &mdash; same family, different procedures</td></tr>
-      <tr><td><b>Trained model</b></td><td><span class="mono">&#375; = 5 + 2x</span> &mdash; the coefficients, and nothing else</td></tr>
-      <tr><td><b>Inference algorithm</b></td><td>substitute a new <span class="mono">x</span> into that equation: one dot product</td></tr>
-      <tr><td><b>Computational procedure</b></td><td>a BLAS call, on a CPU or a GPU</td></tr>
-    </tbody>
-  </table></div>
-
-  <div class="callout teal"><b>&ldquo;Procedure&rdquo; and &ldquo;algorithm&rdquo; are the same word</b> whenever they
-  denote a defined sequence of computational steps &mdash; a training algorithm <i>is</i> a training procedure.
-  The one term above that means something else is <b>computational procedure</b>, reserved here for the
-  hardware-level realization: how the arithmetic is scheduled, vectorized and distributed, not what it computes.</div>
-
-  <p class="tiny">Note what the table exposes: calling linear regression &ldquo;an algorithm&rdquo; is loose speech.
-  It is a <i>family</i>, fittable by more than one algorithm, and the thing you deploy is a third object again.</p>
-</section>
-
-<section aria-labelledby="s6">
-  <h3 id="s6">6. Is training the same algorithm as querying?</h3>
-
-  <div class="answer">
-    <span class="verdict">No.</span>
-    <p>The named method is the model <i>family</i>. Training and inference are two different procedures that
-    happen to share that name. Training learns parameters from examples; inference applies the frozen parameters
-    to new input. They run different arithmetic, at different times, at wildly different cost.</p>
-  </div>
-
-  <div class="tablewrap"><table>
-    <thead><tr><th>Family</th><th>Training algorithm</th><th>Inference algorithm</th></tr></thead>
-    <tbody>
-      <tr><td><b>Linear regression</b></td><td>least squares / gradient descent finds the coefficients</td><td>one weighted sum</td></tr>
-      <tr><td><b>Decision tree</b></td><td>search for the splits that best purify the leaves</td><td>follow the already-learned branches</td></tr>
-      <tr><td><b>Neural network</b></td><td>forward pass + loss + backpropagation + optimizer step</td><td>forward pass only</td></tr>
-      <tr><td><b>KNN</b></td><td><i>almost nothing</i> &mdash; store the examples</td><td>compute distances, find the K nearest, vote</td></tr>
-    </tbody>
-  </table></div>
-
-  <p class="muted">The neural network row is the clearest case: inference is a strict <i>subset</i> of training.
-  The forward pass is common to both; loss, gradients and the optimizer exist only during training and are gone
-  at serving time. KNN is the pathological opposite &mdash; nearly all of its work moves to query time. That
-  inversion gets its own treatment in &sect;11.</p>
-
-  <div class="callout"><b>&ldquo;Query&rdquo; is ambiguous &mdash; two different operations answer to it:</b><br>
-  <b>Inference</b> (also called <i>prediction</i>): ask a trained model to produce an output for new input.
-  This is the sense used throughout this chapter.<br>
-  <b>Retrieval</b>: search stored data &mdash; a database, a vector index &mdash; and return matching records,
-  possibly to feed them to a model afterwards. No model parameters are involved.<br>
-  In machine learning, the unambiguous term for querying a trained model is <b>inference</b>.</div>
-</section>
-
-<!-- ============================================================ PART IV -->
-<div class="parthead">
-  <div class="pnum">Part IV</div>
-  <h2>The learning paradigms</h2>
-  <p>Textbooks list these as one flat set. They are not one set &mdash; some answer &ldquo;what signal does the
-  model learn from?&rdquo; and others answer &ldquo;which examples, when, from where?&rdquo;. Sorting them onto
-  the right question is the point of this part.</p>
-</div>
-
-<section aria-labelledby="s7">
-  <h3 id="s7">7. The two primary paradigms</h3>
-
-  <div class="card paradigm orange">
-    <h4>🏷️ Supervised learning</h4>
-    <p class="muted">Inputs come with known targets. The model learns to predict a <b>number</b> (regression)
-    or a <b>class</b> (classification). <b>Example:</b> predict a house&rsquo;s price from its size, age and city.</p>
-    <div class="chips">
-      <span class="chip">linear regression</span><span class="chip">polynomial regression</span>
-      <span class="chip">ridge / lasso</span><span class="chip">logistic regression</span>
-      <span class="chip">KNN</span><span class="chip">decision tree</span><span class="chip">random forest</span>
-      <span class="chip">gradient boosting</span><span class="chip">SVM</span><span class="chip">Naive Bayes</span>
-      <span class="chip">neural networks</span>
-    </div>
-  </div>
-
-  <div class="card paradigm">
-    <h4>🧭 Unsupervised learning</h4>
-    <p class="muted">Inputs come <b>without</b> targets. The model finds structure: groups, directions of
-    variation, density, outliers. <b>Example:</b> group similar customers with no idea in advance what the
-    groups will be.</p>
-    <div class="chips">
-      <span class="chip">K-means</span><span class="chip">hierarchical clustering</span>
-      <span class="chip">DBSCAN</span><span class="chip">PCA</span><span class="chip">t-SNE / UMAP</span>
-      <span class="chip">autoencoders</span><span class="chip">isolation forest</span>
-    </div>
-  </div>
-
-  <div class="tablewrap"><table>
-    <thead><tr><th>Paradigm</th><th>Data / feedback</th><th>What it learns</th><th>Example</th></tr></thead>
-    <tbody>
-      <tr><td><b>Supervised</b></td><td>inputs with correct labels</td><td>predict an outcome</td><td>predict house price</td></tr>
-      <tr><td><b>Unsupervised</b></td><td>inputs without labels</td><td>discover structure</td><td>group similar customers</td></tr>
-    </tbody>
-  </table></div>
-</section>
-
-<section aria-labelledby="s8">
-  <h3 id="s8">8. Three more ways to get a learning signal</h3>
-  <p class="muted">These sit on the same question as &sect;7 &mdash; <i>what does the model learn from?</i> &mdash;
-  and so they are genuine siblings of supervised and unsupervised learning.</p>
-
-  <div class="grid3">
-    <div class="card"><h4>🌗 Semi-supervised</h4><p class="muted">A few labeled examples plus many unlabeled ones.
-      Labels are expensive; structure in the unlabeled mass helps place the boundary.<br>
-      <b>Example:</b> classify images when only some are labeled.</p></div>
-    <div class="card"><h4>🪞 Self-supervised</h4><p class="muted">The data labels itself: hide a part, predict it.
-      Supervised machinery, no human labels.<br>
-      <b>Example:</b> predict the next word in a sentence.</p></div>
-    <div class="card"><h4>🕹️ Reinforcement</h4><p class="muted">An agent acts, the environment scores it with
-      rewards. Learns a <b>policy</b> maximizing long-run reward.<br>
-      <b>Example:</b> train a game-playing agent.</p></div>
-  </div>
-
-  <div class="tablewrap"><table>
-    <thead><tr><th>Paradigm</th><th>Data / feedback</th><th>What it learns</th><th>Example</th></tr></thead>
-    <tbody>
-      <tr><td><b>Semi-supervised</b></td><td>a few labels + much unlabeled data</td><td>predict, using both kinds</td><td>classify partially labeled images</td></tr>
-      <tr><td><b>Self-supervised</b></td><td>labels generated from the data itself</td><td>useful representations</td><td>predict the next word</td></tr>
-      <tr><td><b>Reinforcement</b></td><td>rewards or penalties from actions</td><td>a strategy for choosing actions</td><td>train a game-playing agent</td></tr>
-    </tbody>
-  </table></div>
-</section>
-
-<section aria-labelledby="s9">
-  <h3 id="s9">9. Four axes that cut across all of the above</h3>
-
-  <div class="callout"><b>The distinction most lists get wrong.</b> Active, online, transfer and federated
-  learning are <i>not</i> alternatives to supervised or unsupervised learning. Each answers a different question
-  entirely &mdash; and each can be combined with any paradigm from &sect;7 and &sect;8.</div>
-
-  <div class="card axis">
-    <span class="q">Which examples?</span>
-    <h4>✋ Active learning</h4>
-    <p class="muted">The model chooses which examples a human should label next &mdash; the ones it is most
-    unsure about. Same supervised objective, fewer labels for the same accuracy.<br>
-    <b>Example:</b> ask a radiologist to label only the ambiguous scans.</p>
-  </div>
-
-  <div class="card axis">
-    <span class="q">When is it updated?</span>
-    <h4>🌊 Online learning</h4>
-    <p class="muted">Data arrives as a stream; the model updates incrementally, one example or mini-batch at a
-    time, and adapts as the world drifts. Contrast with batch training on a frozen dataset. This is &sect;1&rsquo;s
-    retraining loop, run continuously instead of occasionally.<br>
-    <b>Example:</b> adapt a fraud detector to new transaction patterns.</p>
-  </div>
-
-  <div class="card axis">
-    <span class="q">Where does knowledge start?</span>
-    <h4>🎒 Transfer learning</h4>
-    <p class="muted">Begin from a model already trained on a broad task, then fine-tune on your narrow one.
-    Training does not start from random weights but from learned representations.<br>
-    <b>Example:</b> fine-tune a general image model for medical scans.</p>
-  </div>
-
-  <div class="card axis">
-    <span class="q">Where does training run?</span>
-    <h4>🤝 Federated learning</h4>
-    <p class="muted">Training happens where the data lives &mdash; phones, hospitals &mdash; and only weight
-    updates travel. Raw data never leaves the device. A deployment topology, not a learning signal.<br>
-    <b>Example:</b> train a keyboard model across millions of phones.</p>
-  </div>
-</section>
-
-<section aria-labelledby="s10">
-  <h3 id="s10">10. Paradigms compose</h3>
-
-  <div class="card">
-    <p class="muted">Because &sect;7&ndash;&sect;8 and &sect;9 answer different questions, a single real system
-    normally occupies several at once. There is no contradiction in stacking them:</p>
-    <div class="stack">
-      <div class="layer l1"><span class="lbl">Signal</span> &nbsp;self-supervised pretraining on raw text</div>
-      <div class="layer l2"><span class="lbl">Starting point</span> &nbsp;+ transfer learning &mdash; each stage begins from the last stage&rsquo;s weights</div>
-      <div class="layer l3"><span class="lbl">Signal</span> &nbsp;+ supervised fine-tuning on curated examples</div>
-      <div class="layer l4"><span class="lbl">Update cadence</span> &nbsp;+ online updates as new data arrives</div>
-    </div>
-    <p class="muted">Four labels, one model, no conflict &mdash; because they describe the signal, the starting
-    point, the signal again, and the cadence. &sect;15 walks through exactly this stack as it is actually built.</p>
-  </div>
-</section>
-
-<!-- ============================================================ PART V -->
-<div class="parthead">
-  <div class="pnum">Part V</div>
-  <h2>Training vs. inference in practice</h2>
-  <p>&sect;6 answered the question in principle. Here is the same split carried through every model family
-  you are likely to meet &mdash; including the two that break the pattern.</p>
-</div>
-
-<section aria-labelledby="s11">
-  <h3 id="s11">11. Model by model</h3>
-  <div class="tablewrap"><table>
-    <thead><tr><th>Model</th><th>Training does&hellip;</th><th>Inference does&hellip;</th></tr></thead>
-    <tbody>
-      <tr><td><b>Linear regression</b></td><td>find coefficients minimizing squared error</td><td>one weighted sum per prediction</td></tr>
-      <tr><td><b>Logistic regression</b></td><td>find coefficients minimizing cross-entropy</td><td>weighted sum &rarr; sigmoid &rarr; probability</td></tr>
-      <tr><td><b>Decision tree</b></td><td>greedily choose splits that purify the leaves</td><td>walk root&rarr;leaf following the input&rsquo;s answers</td></tr>
-      <tr><td><b>Random forest</b></td><td>train many trees on bootstrapped rows / random feature subsets</td><td>run every tree, average (or vote)</td></tr>
-      <tr><td><b>Neural network</b></td><td>forward + loss + backprop + optimizer step, millions of times</td><td>forward pass only&mdash;matmuls with frozen weights</td></tr>
-      <tr><td><b>K-means</b></td><td>alternate: assign points to nearest centroid / move centroids to the mean</td><td>assign a new point to its nearest centroid</td></tr>
-      <tr><td><b>PCA</b></td><td>find the directions of greatest variance (eigenvectors)</td><td>project a new point onto those directions</td></tr>
-      <tr><td><b>KNN</b></td><td><i>nothing</i>&mdash;just store the data (&ldquo;lazy learner&rdquo;)</td><td>find the K nearest stored points, vote / average</td></tr>
-      <tr><td><b>DBSCAN</b></td><td>grow clusters from density-connected points; flag outliers</td><td>no native predict; typically re-run or assign to nearest cluster</td></tr>
-    </tbody>
-  </table></div>
-
-  <div class="grid2">
-    <div class="card"><h4>The usual asymmetry</h4><p class="muted">Training is iterative and expensive; inference
-    is a single cheap pass. This is why a model can cost millions to train and fractions of a cent to query.</p></div>
-    <div class="card"><h4>The two exceptions</h4><p class="muted"><b>KNN</b> inverts the trade &mdash; free training,
-    costly queries. <b>DBSCAN</b> has no natural inference step at all: it clusters a dataset, it does not
-    produce a predictor for new points.</p></div>
-  </div>
-</section>
-
-<section aria-labelledby="s12">
-  <h3 id="s12">12. Spotlight: polynomial regression</h3>
-  <div class="card">
-    <div class="formula">&#375; = w&#8320; + w&#8321;x + w&#8322;x&#178; + w&#8323;x&#179; + &hellip; + w&#8342;x&#7501;</div>
-    <p class="muted">Still <b>supervised</b> (there is a target) and&mdash;surprisingly&mdash;still <b>linear
-    regression</b>: the function is linear <i>in the weights</i> w. The curve comes from the features, not the model.
-    It is Part II and Part III meeting in one example.</p>
-    <div class="steps">
-      <div class="step"><span class="n">1</span><br><b>Engineer features</b><br><span class="muted">from x build x&#178;, x&#179;, &hellip;</span></div>
-      <div class="step-arrow">&rarr;</div>
-      <div class="step"><span class="n">2</span><br><b>Linear regression</b><br><span class="muted">on the expanded columns</span></div>
-      <div class="step-arrow">&rarr;</div>
-      <div class="step"><span class="n">3</span><br><b>Curved fit</b><br><span class="muted">a &ldquo;line&rdquo; in a bigger space</span></div>
-    </div>
-    <p class="tiny">That is why it is often described as <i>polynomial feature engineering + plain linear regression</i>&mdash;
-    and why scikit-learn implements it literally as <span class="mono">PolynomialFeatures</span> &rarr; <span class="mono">LinearRegression</span>.</p>
-  </div>
-</section>
-
-<section aria-labelledby="s13">
-  <h3 id="s13">13. The two K&rsquo;s are different K&rsquo;s</h3>
-  <div class="grid2">
-    <div class="card">
-      <h4>K in <b>KNN</b> = neighbors consulted</h4>
-      <p class="muted">Supervised. To classify a new point, look at its <b>K nearest labeled points</b> and let them
-      vote. K=1: trust the single closest example. K=15: smoother, more democratic boundary.</p>
-    </div>
-    <div class="card">
-      <h4>K in <b>K-means</b> = clusters requested</h4>
-      <p class="muted">Unsupervised. You declare up front &ldquo;organize this data into <b>K groups</b>&rdquo;; the
-      algorithm places K centroids and carves the data around them. K is the number of buckets, not neighbors.</p>
-    </div>
-  </div>
-  <p class="tiny">Same letter, unrelated meanings: one sizes a <i>jury</i>, the other counts <i>buckets</i>.</p>
-</section>
-
-<!-- ============================================================ PART VI -->
-<div class="parthead">
-  <div class="pnum">Part VI</div>
-  <h2>Putting it together</h2>
-  <p>Two cases where the pieces stop being separate topics: an unsupervised model feeding a supervised one,
-  and the pipeline behind every large language model.</p>
-</div>
-
-<section aria-labelledby="s14">
-  <h3 id="s14">14. Unsupervised models can build features for supervised ones</h3>
-  <div class="card">
-    <div class="steps">
-      <div class="step"><span class="n">1</span><br><b>K-means / PCA</b><br><span class="muted">fit on training rows</span></div>
-      <div class="step-arrow">&rarr;</div>
-      <div class="step"><span class="n">2</span><br><b>New columns</b><br><span class="muted">cluster id &middot; distance to centroid &middot; top components</span></div>
-      <div class="step-arrow">&rarr;</div>
-      <div class="step"><span class="n">3</span><br><b>Supervised model</b><br><span class="muted">trains on original + new features</span></div>
-    </div>
-    <p class="muted">A customer&rsquo;s cluster membership (&ldquo;segment 3&rdquo;) or a row&rsquo;s first few principal
-    components are often stronger signals than the raw columns they summarize. The unsupervised stage is acting as
-    <b>automated feature engineering</b> &mdash; &sect;3, performed by a model instead of by you.</p>
-  </div>
-  <div class="callout"><b>Same leakage rule as scalers:</b> fit the K-means / PCA stage on <b>training data only</b>,
-  then apply the frozen transformation to validation and test rows. An unsupervised step that has &ldquo;seen&rdquo;
-  the test set leaks information exactly like a scaler would.</div>
-</section>
-
-<section aria-labelledby="s15">
-  <h3 id="s15">15. The modern AI workflow (how LLMs are actually built)</h3>
-  <div class="steps">
-    <div class="step"><span class="n">1</span><br><b>Self-supervised pretraining</b><br><span class="muted">predict the next token on internet-scale text; no human labels</span></div>
-    <div class="step-arrow">&rarr;</div>
-    <div class="step"><span class="n">2</span><br><b>Supervised fine-tuning</b><br><span class="muted">small, curated set of prompt&rarr;good-answer pairs</span></div>
-    <div class="step-arrow">&rarr;</div>
-    <div class="step"><span class="n">3</span><br><b>Preference / reward learning</b><br><span class="muted">humans rank answers; RLHF / DPO shape behavior</span></div>
-    <div class="step-arrow">&rarr;</div>
-    <div class="step"><span class="n">4</span><br><b>Inference</b><br><span class="muted">frozen weights serve millions of forward passes</span></div>
-  </div>
-
-  <div class="loopback">
-    <b>&#8635; And back around.</b> New data, new preferences, new failure reports feed the next training run &mdash;
-    &sect;1&rsquo;s retraining loop at industrial scale. Deployed models are versioned, not finished.
-  </div>
-
-  <div class="card">
-    <p class="muted">Every paradigm in Part IV shows up in this one pipeline: <b>self-supervised</b> pretraining does the
-    heavy lifting, <b>supervised</b> fine-tuning aims it, <b>reinforcement</b>-style preference learning polishes it, and
-    <b>transfer learning</b> is the whole premise&mdash;each stage starts from the previous stage&rsquo;s weights.
-    Inference is then pure forward passes: the training machinery (loss, gradients, optimizer) is gone, exactly as
-    &sect;6 predicted.</p>
-  </div>
-
-  <div class="callout teal"><b>Where this chapter goes next.</b> Everything above treats &ldquo;training&rdquo; as a
-  single box. Opening that box &mdash; how the forward pass, the gradients and the optimizer are actually scheduled
-  across cores, GPUs and machines &mdash; is the <i>computational procedure</i> row of &sect;5, and the subject of the
-  next chapters.</div>
-</section>
-
-</main>
-
-<footer>
-  Part of <a href="https://github.com/trocca/ai-infra-gpu-engineering-ramp">ai-infra-gpu-engineering-ramp</a> &mdash;
-  my documented AI learning journey. Next chapters: PyTorch foundations &middot; the C++&nbsp;&harr;&nbsp;CUDA dual track.
+<h2>Reference shelf</h2>
+<ul>
+<li><a href="https://nanotron-ultrascale-playbook.static.hf.space/">The Ultra-Scale Playbook</a> — free; the parallelism textbook.</li>
+<li><i>AI Systems Performance Engineering</i> (Fregly, O&rsquo;Reilly 2025) — spread across the track as per-lesson companion reading.</li>
+<li><i>Mathematics for Machine Learning</i> (Deisenroth, Faisal, Ong) — free PDF from the authors; ch. 5 (gradients) pairs with the ML foundations chapter.</li>
+</ul>
+<footer class="site">
+  Part of <a href="https://github.com/trocca/ai-infra-gpu-engineering-ramp">ai-infra-gpu-engineering-ramp</a>
+  — a documented AI infrastructure learning journey. Site rebuilt from the repo's markdown by
+  <a href="https://github.com/trocca/ai-infra-gpu-engineering-ramp/blob/main/tools/build_site.py">tools/build_site.py</a>.
 </footer>
-
 </div>
 </body>
 </html>
