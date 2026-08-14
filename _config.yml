@@ -17,11 +17,19 @@ heading_anchors: true
 
 # Apply the theme layout to every page with front matter (files without front
 # matter — the root index.html, docs/how-machines-learn/ — stay static).
+# Everything outside docs/ is built and searchable but stays OUT of the nav:
+# only the curated docs/ pages form the sidebar.
 defaults:
   - scope:
       path: ""
     values:
       layout: default
+      nav_exclude: true
+  - scope:
+      path: "docs"
+    values:
+      layout: default
+      nav_exclude: false
 
 aux_links:
   "GitHub repo":
@@ -29,7 +37,7 @@ aux_links:
 
 nav_external_links:
   - title: ML Foundations chapter
-    url: /ai-infra-gpu-engineering-ramp/docs/how-machines-learn/
+    url: https://trocca.github.io/ai-infra-gpu-engineering-ramp/docs/how-machines-learn/
     hide_icon: true
 
 # Keep Jekyll away from sources and local files — only docs/ pages are built.
