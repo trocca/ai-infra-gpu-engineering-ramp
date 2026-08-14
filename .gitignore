@@ -15,6 +15,10 @@ __pycache__/
 venv/
 .ipynb_checkpoints/
 
+# Local reading copies of third-party books — link to official sources, never re-host
+/*.pdf
+*.epub
+
 # ML artifacts — keep heavyweight weights/checkpoints out of git
 *.pt
 *.pth
