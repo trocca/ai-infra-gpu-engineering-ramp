@@ -4,6 +4,8 @@ nav_order: 4
 permalink: /docs/glossary/
 ---
 
+<span class="eyebrow eyebrow-gloss">Reference · keep it in a tab</span>
+
 # Glossary
 
 Every term that made us stop and ask "wait, what does that actually mean?" —

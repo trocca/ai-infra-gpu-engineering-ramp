@@ -1,0 +1,211 @@
+// Custom look for the AI Infra & GPU Ramp site.
+// Loaded by Just the Docs after the theme styles — plain CSS, no theme vars.
+
+// ---- design tokens ----------------------------------------------------
+$ink: #312e81;
+$violet: #7c3aed;
+$violet-deep: #6d28d9;
+$green: #76b900;
+$green-deep: #4d8000;
+$cyan: #0891b2;
+$amber: #d97706;
+$pink: #db2777;
+
+// ---- site chrome ------------------------------------------------------
+.site-title {
+  font-weight: 800;
+  background: linear-gradient(90deg, #7c3aed, #0891b2 55%, #76b900);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.side-bar {
+  background: linear-gradient(180deg, #faf9ff 0%, #f3efff 100%);
+  border-right: 1px solid #e6e1f7;
+}
+
+.nav-list .nav-list-item .nav-list-link:hover,
+.nav-list .nav-list-item .nav-list-link.active {
+  background: linear-gradient(90deg, rgba(124, 58, 237, 0.12), rgba(124, 58, 237, 0));
+  color: $violet-deep;
+  font-weight: 600;
+  border-left: 3px solid $violet;
+  padding-left: calc(1rem - 3px);
+  background-image: linear-gradient(90deg, rgba(124, 58, 237, 0.12), rgba(124, 58, 237, 0));
+}
+
+.search-input { border-radius: 9999px; }
+.search-input:focus { box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.25); }
+
+.btn-primary {
+  background: linear-gradient(135deg, #7c3aed, #5b21b6);
+  border: 0;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+  &:hover { background: linear-gradient(135deg, #6d28d9, #4c1d95); }
+}
+.btn { border-radius: 9999px; }
+
+// ---- content polish ---------------------------------------------------
+.main-content {
+  h1 { letter-spacing: -0.02em; }
+
+  h2 {
+    padding-bottom: 0.2em;
+    border-bottom: 2px solid #ece7fb;
+  }
+
+  table thead th {
+    background: linear-gradient(135deg, #6d28d9, #4f46e5);
+    color: #fff;
+    border: 0;
+  }
+  table tbody tr:nth-child(even) { background: #faf9ff; }
+
+  img {
+    border-radius: 12px;
+    border: 1px solid #e6e1f7;
+    box-shadow: 0 10px 28px rgba(49, 46, 129, 0.14);
+    background: #fff;
+    padding: 6px;
+  }
+
+  blockquote {
+    border-left: 4px solid $violet;
+    background: linear-gradient(90deg, rgba(124, 58, 237, 0.08), rgba(8, 145, 178, 0.05));
+    border-radius: 0 10px 10px 0;
+    padding: 0.7rem 1rem;
+    font-style: italic;
+    color: $ink;
+  }
+}
+
+// ---- hub hero ---------------------------------------------------------
+.hub-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  padding: 2.6rem 2.2rem;
+  margin: 0.5rem 0 2rem;
+  color: #fff;
+  background:
+    radial-gradient(1000px 400px at 110% -20%, rgba(118, 185, 0, 0.55), transparent 60%),
+    radial-gradient(800px 380px at -10% 120%, rgba(8, 145, 178, 0.6), transparent 55%),
+    linear-gradient(135deg, #312e81 0%, #5b21b6 55%, #7c3aed 100%);
+
+  h1 {
+    color: #fff;
+    font-size: 2.3rem !important;
+    font-weight: 800;
+    margin: 0 0 0.6rem;
+    letter-spacing: -0.02em;
+  }
+  p {
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 1.05rem;
+    max-width: 46em;
+    margin-bottom: 1.4rem;
+  }
+}
+
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+.hero-btn {
+  display: inline-block;
+  padding: 0.55rem 1.2rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  &:hover { transform: translateY(-2px); text-decoration: none; }
+}
+.hero-btn-solid {
+  background: #76b900;
+  color: #10250b !important;
+  box-shadow: 0 6px 18px rgba(118, 185, 0, 0.45);
+}
+.hero-btn-ghost {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+// ---- destination cards ------------------------------------------------
+.hub-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+  margin: 1.4rem 0 2.2rem;
+}
+
+.hub-card {
+  display: block;
+  background: #fff;
+  border: 1px solid #e6e1f7;
+  border-top: 5px solid;
+  border-radius: 14px;
+  padding: 1.15rem 1.2rem 1.05rem;
+  text-decoration: none !important;
+  color: inherit;
+  box-shadow: 0 6px 18px rgba(49, 46, 129, 0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(49, 46, 129, 0.16);
+  }
+
+  .hub-card-kicker {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+  }
+  h3 {
+    margin: 0 0 0.4rem !important;
+    font-size: 1.02rem !important;
+    color: #1e1b4b;
+  }
+  p {
+    font-size: 0.82rem;
+    color: #5b5a72;
+    margin: 0 0 0.6rem;
+    line-height: 1.45;
+  }
+  .hub-card-cta { font-size: 0.82rem; font-weight: 700; }
+}
+
+.card-track  { border-top-color: $green;  .hub-card-kicker, .hub-card-cta { color: $green-deep; } }
+.card-math   { border-top-color: $violet; .hub-card-kicker, .hub-card-cta { color: $violet-deep; } }
+.card-ml     { border-top-color: $cyan;   .hub-card-kicker, .hub-card-cta { color: $cyan; } }
+.card-gloss  { border-top-color: $amber;  .hub-card-kicker, .hub-card-cta { color: $amber; } }
+
+// ---- stage bands on the hub ------------------------------------------
+h3.stage-a, h3.stage-b, h3.stage-c, h3.stage-d {
+  border-left: 6px solid;
+  border-radius: 8px;
+  padding: 0.5rem 0.9rem;
+  margin-top: 2rem;
+}
+h3.stage-a { border-color: $green;  background: rgba(118, 185, 0, 0.10); }
+h3.stage-b { border-color: $cyan;   background: rgba(8, 145, 178, 0.10); }
+h3.stage-c { border-color: $violet; background: rgba(124, 58, 237, 0.10); }
+h3.stage-d { border-color: $amber;  background: rgba(217, 119, 6, 0.12); }
+
+// ---- section eyebrows -------------------------------------------------
+.eyebrow {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.85rem;
+  border-radius: 9999px;
+  margin-bottom: 0.4rem;
+}
+.eyebrow-track { background: rgba(118, 185, 0, 0.15); color: $green-deep; }
+.eyebrow-math  { background: rgba(124, 58, 237, 0.13); color: $violet-deep; }
+.eyebrow-ml    { background: rgba(8, 145, 178, 0.13);  color: $cyan; }
+.eyebrow-gloss { background: rgba(217, 119, 6, 0.14);  color: $amber; }

@@ -4,19 +4,48 @@ nav_order: 1
 permalink: /docs/
 ---
 
-# AI Infrastructure & GPU Engineering
-{: .fs-8 }
+<div class="hub-hero">
+  <h1>AI Infrastructure &amp; GPU Engineering</h1>
+  <p>A self-paced path from "what is a feature?" to writing CUDA kernels and sharding
+  training across GPUs — every lesson backed by runnable code you can measure yourself.</p>
+  <div class="hero-actions">
+    <a class="hero-btn hero-btn-solid" href="track/">Start the track</a>
+    <a class="hero-btn hero-btn-ghost" href="ai-math/">AI Math</a>
+    <a class="hero-btn hero-btn-ghost" href="how-machines-learn/">ML foundations</a>
+    <a class="hero-btn hero-btn-ghost" href="glossary/">Glossary</a>
+  </div>
+</div>
 
-A self-paced path from "what is a feature?" to writing CUDA kernels and sharding
-training across GPUs — every lesson backed by runnable code you can measure yourself.
-{: .fs-5 .fw-300 }
-
-[Start the track](track/){: .btn .btn-primary }
-[ML foundations chapter](how-machines-learn/){: .btn }
-[AI Math](ai-math/){: .btn }
-[Glossary](glossary/){: .btn }
-
----
+<div class="hub-cards">
+  <a class="hub-card card-track" href="track/">
+    <div class="hub-card-kicker">Core · 12 modules</div>
+    <h3>C++ ↔ CUDA Dual Track</h3>
+    <p>Every parallel concept implemented twice — CPU stack vs GPU stack — then
+    confronted. The mapping between the two is the skill.</p>
+    <span class="hub-card-cta">Start drilling →</span>
+  </a>
+  <a class="hub-card card-math" href="ai-math/">
+    <div class="hub-card-kicker">Extra-curricular · 20 lessons</div>
+    <h3>AI Math</h3>
+    <p>The math behind neural networks, from vectors to attention — every concept
+    verified with runnable PyTorch and pytest.</p>
+    <span class="hub-card-cta">Put a breakpoint on it →</span>
+  </a>
+  <a class="hub-card card-ml" href="how-machines-learn/">
+    <div class="hub-card-kicker">Foundations · no code</div>
+    <h3>How Machines Learn</h3>
+    <p>Features, training vs inference, the learning paradigms and the modern LLM
+    workflow — the chapter to read first.</p>
+    <span class="hub-card-cta">Read the chapter →</span>
+  </a>
+  <a class="hub-card card-gloss" href="glossary/">
+    <div class="hub-card-kicker">Reference</div>
+    <h3>Glossary</h3>
+    <p>Every term the lessons use — warp, coalescing, occupancy, roofline — defined
+    once, linked everywhere.</p>
+    <span class="hub-card-cta">Keep it in a tab →</span>
+  </a>
+</div>
 
 ## Start here
 
@@ -36,6 +65,7 @@ Do the stages in order; inside a stage, do modules in order. Each lesson states 
 prerequisite and an honest time estimate — the hours assume you *run the labs*, not just read.
 
 ### Stage A — Foundations of parallel execution
+{: .stage-a }
 
 *After this stage you can explain why the same loop runs 100× faster on a GPU, and measure it.*
 
@@ -44,6 +74,7 @@ prerequisite and an honest time estimate — the hours assume you *run the labs*
 1. [03 · Data parallelism: SAXPY](track/03-data-parallel-saxpy/) — ~2h
 
 ### Stage B — Parallel algorithms
+{: .stage-b }
 
 *After this stage you can build the three algorithmic shapes 90% of kernels reduce to.*
 
@@ -52,6 +83,7 @@ prerequisite and an honest time estimate — the hours assume you *run the labs*
 1. [06 · Matmul & tiling](track/06-matmul-tiling/) — ~4h
 
 ### Stage C — Systems craft
+{: .stage-c }
 
 *After this stage you can overlap, synchronize and profile like it's a habit.*
 
@@ -60,6 +92,7 @@ prerequisite and an honest time estimate — the hours assume you *run the labs*
 1. [09 · Profiling & roofline](track/09-profiling-roofline/) — ~3h
 
 ### Stage D — The frontier
+{: .stage-d }
 
 *After this stage you can read FlashAttention and CUTLASS as engineering, not magic.*
 

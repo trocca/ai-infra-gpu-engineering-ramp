@@ -5,6 +5,8 @@ has_children: true
 permalink: /docs/track/
 ---
 
+<span class="eyebrow eyebrow-track">Core track · 12 modules · CPU vs GPU</span>
+
 # C++ ↔ CUDA Dual Track
 
 Two courses run in parallel and are graded against each other. Every module takes

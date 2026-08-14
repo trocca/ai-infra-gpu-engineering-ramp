@@ -11,7 +11,7 @@ description: A documented AI infrastructure & GPU engineering learning journey
 url: "https://trocca.github.io"
 baseurl: "/ai-infra-gpu-engineering-ramp"
 
-color_scheme: light
+color_scheme: ramp
 search_enabled: true
 heading_anchors: true
 

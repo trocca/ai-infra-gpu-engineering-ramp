@@ -5,6 +5,8 @@ has_children: true
 permalink: /docs/ai-math/
 ---
 
+<span class="eyebrow eyebrow-math">Extra-curricular · 20 lessons · verified in code</span>
+
 # AI Math — the mathematics behind neural networks
 {: .fs-8 }
 
