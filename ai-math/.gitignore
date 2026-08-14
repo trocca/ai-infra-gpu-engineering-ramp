@@ -1,0 +1,13 @@
+# The MML book PDF is free to download from mml-book.github.io,
+# but redistributing it is not ours to do. Keep it local only.
+mml-book.pdf
+*.pdf
+
+# Generated figures: every lesson recreates its own with python lesson.py
+figures/
+
+# Python noise
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/

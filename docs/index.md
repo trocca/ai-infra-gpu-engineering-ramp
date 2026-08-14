@@ -13,6 +13,7 @@ training across GPUs — every lesson backed by runnable code you can measure yo
 
 [Start the track](track/){: .btn .btn-primary }
 [ML foundations chapter](how-machines-learn/){: .btn }
+[AI Math](ai-math/){: .btn }
 [Glossary](glossary/){: .btn }
 
 ---
@@ -24,6 +25,11 @@ training across GPUs — every lesson backed by runnable code you can measure yo
   workflow — no code required.
 - **Here for the systems side?** Jump into the [C++ ↔ CUDA dual track](track/) and keep
   the [glossary](glossary/) in a tab.
+- **Want the math to stop being magic?** The [AI Math track](ai-math/) rebuilds the
+  mathematics behind neural networks — vectors to attention — with every concept
+  verified by runnable PyTorch code and pytest. Extra-curricular, but a must for
+  anyone drilling into the internals; it pairs naturally with the main track
+  (in Italian).
 
 ## The path, in four stages
 

@@ -75,6 +75,12 @@ their own device, with no account or database.
 | DRILL | C++ vs CUDA mirror modules for low-level parallelism and performance intuition | [cpp-cuda-track](cpp-cuda-track/README.md) |
 | SHOW | Kubernetes-AI stack demo and interview/pitch material | [k8s-ai-stack-demo](k8s-ai-stack-demo/README.md) |
 
+Extra-curricular but essential for anyone drilling into model internals: the
+**AI Math track** ([ai-math](ai-math/README.md), in Italian) rebuilds the mathematics
+behind neural networks — vectors, gradients, likelihood, optimizers, attention — with
+every concept paired to a runnable PyTorch script, exercises, and pytest verification.
+Guided pages on the site: [AI Math](https://trocca.github.io/ai-infra-gpu-engineering-ramp/docs/ai-math/).
+
 ## 12-Week Path
 
 ```mermaid
