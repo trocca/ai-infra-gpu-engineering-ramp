@@ -24,6 +24,14 @@ where performance matters* — the same bet NVIDIA made with Dynamo's Rust core)
 By Friday you should be able to explain, at a whiteboard, exactly what happens when someone
 calls `loss.backward()` — and read a Rust function without flinching.
 
+**Architecture map — use this before implementing autograd:**
+
+[![Deep neural network showing neurons, dense layers, forward activations, backward gradients, optimizer updates, batches, and epochs](../../../references/demystifying-ai/images/deep_neural_network_training_flows.png)](../../../references/demystifying-ai/images/deep_neural_network_training_flows.png)
+
+The diagram separates values that flow from parameters that stay local. Read the
+[full architecture deep dive](../../../references/demystifying-ai/docs/06-neural-network-and-transformer-architecture.md)
+for the tensor shapes, chain rule, optimizer state, and worked checks behind it.
+
 **What `backward()` actually does — forward ops (solid) build the graph, then gradients flow back in reverse topological order (dashed):**
 
 ```mermaid

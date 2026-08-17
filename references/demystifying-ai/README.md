@@ -52,26 +52,27 @@ Output prediction
 | [03 - Parameters and activations](docs/03-parameters-and-activations.md) | Learned parameter counts, temporary activations, projection and feed-forward matrix sizes. |
 | [04 - Self-attention](docs/04-self-attention.md) | Q/K/V, transpose, scaled dot-product attention, multi-head attention. |
 | [05 - Efficiency techniques](docs/05-efficiency-techniques.md) | Naive attention memory, FlashAttention, structured sparsity, combined low-bit savings. |
+| [06 - From artificial neurons to decoder-only Transformers](docs/06-neural-network-and-transformer-architecture.md) | Coordinated architecture deep dive: dense layers, training mechanics, causal attention, GPT-style blocks, tensor shapes, and mastery exercises. |
 | [Transcript](TRANSCRIPT.md) | Condensed Q&A progression, useful for turning confusions into flashcards. |
 | [Handoff prompt](prompts/continue_project.md) | Original continuation prompt from the exported material. |
 
 ## Visual Assets
 
 <div class="zoomable-diagram" tabindex="0" role="region" aria-label="Scrollable deep neural network training-flow diagram">
-  <a href="images/deep_neural_network_training_flow.png" title="Open the full-resolution diagram">
-    <img src="images/deep_neural_network_training_flow.png" alt="Deep neural network layers, dense layers, neurons, forward and backward passes, batches, epochs, and parameter updates">
+  <a href="images/deep_neural_network_training_flows.png" title="Open the full-resolution diagram">
+    <img src="images/deep_neural_network_training_flows.png" alt="Deep neural network layers, dense layers, neurons, forward and backward passes, batches, epochs, and parameter updates">
   </a>
 </div>
 
-[Open the full-resolution diagram](images/deep_neural_network_training_flow.png) to zoom in or use the scrollbars above to inspect every detail.
+[Open the full-resolution diagram](images/deep_neural_network_training_flows.png) to zoom in or use the scrollbars above to inspect every detail.
 
 <div class="zoomable-diagram" tabindex="0" role="region" aria-label="Scrollable decoder-only Transformer architecture and training-flow diagram">
-  <a href="images/decoder_only_transformer_architecture_training_flow.png" title="Open the full-resolution diagram">
-    <img src="images/decoder_only_transformer_architecture_training_flow.png" alt="Decoder-only Transformer architecture showing tokenization, stacked pre-normalized Transformer blocks, causal self-attention, feed-forward networks, parameter ownership, next-token prediction, and training flows">
+  <a href="images/decoder_only_transformer_architecture_training_flows.png" title="Open the full-resolution diagram">
+    <img src="images/decoder_only_transformer_architecture_training_flows.png" alt="Decoder-only Transformer architecture showing tokenization, stacked pre-normalized Transformer blocks, causal self-attention, feed-forward networks, parameter ownership, next-token prediction, and training flows">
   </a>
 </div>
 
-[Open the full-resolution Transformer diagram](images/decoder_only_transformer_architecture_training_flow.png) to zoom in or use the scrollbars above to inspect every detail.
+[Open the full-resolution Transformer diagram](images/decoder_only_transformer_architecture_training_flows.png) to zoom in or use the scrollbars above to inspect every detail.
 
 ![Embedding stage](images/embedding_stage_dmodel_focus.png)
 
@@ -79,8 +80,8 @@ Output prediction
 
 | Diagram | Use it when |
 |---------|-------------|
-| [Deep neural network: layers and training flows](images/deep_neural_network_training_flow.png) | Week 1 neural-network vocabulary: forward activations, loss, backpropagated gradients, residual connections, and optimizer weight updates. |
-| [Decoder-only Transformer: architecture and training flows](images/decoder_only_transformer_architecture_training_flow.png) | Following the dense-network diagram into tokenization, causal self-attention, MLP sublayers, residual streams, next-token prediction, and block-local parameters. |
+| [Deep neural network: layers and training flows](images/deep_neural_network_training_flows.png) | Week 1 neural-network vocabulary: forward activations, loss, backpropagated gradients, residual connections, optimizer updates, batches, and epochs. |
+| [Decoder-only Transformer: architecture and training flows](images/decoder_only_transformer_architecture_training_flows.png) | Following the dense-network diagram into tokenization, causal self-attention, MLP sublayers, residual streams, next-token prediction, and block-local parameters. |
 | [Embedding stage, `d_model` focus](images/embedding_stage_dmodel_focus.png) | Week 5 token-ID and embedding-table confusion. |
 | [Embedding stage, annotated legend](images/embedding_stage_annotated_legend.png) | Teaching the full text-to-vector path. |
 | [Embedding stage, real-number legend](images/embedding_stage_real_numbers_legend.png) | Repairing `R^(V x d_model)` notation. |

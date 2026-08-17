@@ -17,6 +17,15 @@ local RTX 5090 Laptop GPU (24 GB, Blackwell/sm_120, WSL2):
 - KV-cache inference with temperature / top-k / top-p sampling, benchmarked honestly.
 - A `torch.profiler` breakdown of where a training step actually spends its time.
 
+**Architecture map — inspect this before writing the first block:**
+
+[![Decoder-only causal pre-normalized Transformer with tokenization, embeddings, repeated blocks, attention, MLPs, residual streams, logits, and next-token training](../../../references/demystifying-ai/images/decoder_only_transformer_architecture_training_flows.png)](../../../references/demystifying-ai/images/decoder_only_transformer_architecture_training_flows.png)
+
+This is a representative GPT-style decoder, not every possible Transformer.
+Use the [full architecture deep dive](../../../references/demystifying-ai/docs/06-neural-network-and-transformer-architecture.md)
+to trace exact shapes, distinguish dense projections from token mixing, and connect
+next-token loss to gradients and block-local parameter updates.
+
 **The model you assemble on Days 1–2 — every arrow is code you write:**
 
 ```mermaid
