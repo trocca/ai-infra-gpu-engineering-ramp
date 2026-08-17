@@ -80,6 +80,35 @@ $pink: #db2777;
   }
 }
 
+// Large teaching diagrams retain readable detail inside a keyboard-focusable,
+// two-axis viewport. Clicking the image opens the original for browser zoom.
+.zoomable-diagram {
+  max-height: 80vh;
+  overflow: auto;
+  margin: 1rem 0 0.5rem;
+  border: 1px solid #d8d3ed;
+  border-radius: 12px;
+  background: #f8f7fc;
+  scrollbar-gutter: stable;
+
+  &:focus {
+    outline: 3px solid rgba(124, 58, 237, 0.45);
+    outline-offset: 2px;
+  }
+
+  a { display: block; width: max-content; }
+
+  img {
+    display: block;
+    width: 864px;
+    max-width: none;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
 // ---- hub hero ---------------------------------------------------------
 .hub-hero {
   position: relative;

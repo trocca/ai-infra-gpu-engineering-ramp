@@ -36,7 +36,13 @@ The token ID is not a parameter. It merely selects a row.
 
 ## Parameters versus activations
 
-![Deep neural network layers and training flows](../images/deep_neural_network_training_flow.png)
+<div class="zoomable-diagram" tabindex="0" role="region" aria-label="Scrollable deep neural network training-flow diagram">
+  <a href="../images/deep_neural_network_training_flow.png" title="Open the full-resolution diagram">
+    <img src="../images/deep_neural_network_training_flow.png" alt="Deep neural network layers, dense layers, neurons, forward and backward passes, batches, epochs, and parameter updates">
+  </a>
+</div>
+
+[Open the full-resolution diagram](../images/deep_neural_network_training_flow.png) to zoom in or use the scrollbars above to inspect every detail.
 
 Read the blue path from left to right: each layer uses learned weights to compute
 new activations, ending in a prediction and loss. During training, gradients flow
