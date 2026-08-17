@@ -36,6 +36,13 @@ The token ID is not a parameter. It merely selects a row.
 
 ## Parameters versus activations
 
+![Deep neural network layers and training flows](../images/deep_neural_network_training_flow.png)
+
+Read the blue path from left to right: each layer uses learned weights to compute
+new activations, ending in a prediction and loss. During training, gradients flow
+backward along the orange path; the optimizer uses them to update the weights.
+Residual or skip connections carry activations around one or more transformations.
+
 ### Parameters
 
 Stored in the model and reused for every input:

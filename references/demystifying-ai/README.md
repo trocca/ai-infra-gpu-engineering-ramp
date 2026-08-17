@@ -57,12 +57,15 @@ Output prediction
 
 ## Visual Assets
 
+![Deep neural network layers and training flows](images/deep_neural_network_training_flow.png)
+
 ![Embedding stage](images/embedding_stage_dmodel_focus.png)
 
 ![Self-attention flow](images/self_attention_complete_flow_en.png)
 
 | Diagram | Use it when |
 |---------|-------------|
+| [Deep neural network: layers and training flows](images/deep_neural_network_training_flow.png) | Week 1 neural-network vocabulary: forward activations, loss, backpropagated gradients, residual connections, and optimizer weight updates. |
 | [Embedding stage, `d_model` focus](images/embedding_stage_dmodel_focus.png) | Week 5 token-ID and embedding-table confusion. |
 | [Embedding stage, annotated legend](images/embedding_stage_annotated_legend.png) | Teaching the full text-to-vector path. |
 | [Embedding stage, real-number legend](images/embedding_stage_real_numbers_legend.png) | Repairing `R^(V x d_model)` notation. |

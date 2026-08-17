@@ -23,6 +23,7 @@ This week covers the single heaviest exam domain (38%, ~19 of 50 questions). It 
 
 - (30 min) Enroll in and start the free NVIDIA DLI course **"AI Infrastructure and Operations Fundamentals"** (via nvidia.com/en-us/training/). Complete the intro + "Introduction to AI" modules.
 - (45 min) Nail the hierarchy: AI ⊃ ML ⊃ DL. Supervised vs unsupervised vs reinforcement learning. What a neural network is (layers, weights, activation), what "training a model" actually means (forward pass, loss, backprop, gradient descent, epochs, batches).
+- Diagram walkthrough: trace the [deep neural network training flow](../../../references/demystifying-ai/images/deep_neural_network_training_flow.png) left-to-right for activations, then right-to-left for gradients; identify which values the optimizer updates.
 - (30 min) Generative AI and LLMs at exam depth: transformer (attention), foundation models, fine-tuning vs prompting vs RAG (one sentence each).
 - Visual repair inside this block: skim the [Demystifying AI transcript](../../../references/demystifying-ai/TRANSCRIPT.md) sections on embeddings, parameters, activations, and real-number notation; convert one confusion into a flashcard.
 - (15 min) Common use cases by industry — read NVIDIA's industry solution pages (healthcare imaging, fraud detection in finance, recommenders in retail, autonomous vehicles, conversational AI). The exam asks "which is an example of X" style questions.
