@@ -49,6 +49,21 @@ new activations, ending in a prediction and loss. During training, gradients flo
 backward along the orange path; the optimizer uses them to update the weights.
 Residual or skip connections carry activations around one or more transformations.
 
+### From dense networks to decoder-only Transformers
+
+The same rules apply inside a Transformer: activations move through token
+embeddings and stacked blocks, while each block keeps its own attention,
+feed-forward, and normalization parameters. During training, gradients return to
+every trainable block and the optimizer updates those local parameters.
+
+<div class="zoomable-diagram" tabindex="0" role="region" aria-label="Scrollable decoder-only Transformer architecture and training-flow diagram">
+  <a href="../images/decoder_only_transformer_architecture_training_flow.png" title="Open the full-resolution diagram">
+    <img src="../images/decoder_only_transformer_architecture_training_flow.png" alt="Decoder-only Transformer architecture showing tokenization, stacked pre-normalized Transformer blocks, causal self-attention, feed-forward networks, parameter ownership, next-token prediction, and training flows">
+  </a>
+</div>
+
+[Open the full-resolution Transformer diagram](../images/decoder_only_transformer_architecture_training_flow.png) to zoom in or use the scrollbars above to inspect every detail.
+
 ### Parameters
 
 Stored in the model and reused for every input:

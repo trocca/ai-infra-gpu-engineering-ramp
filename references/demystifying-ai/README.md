@@ -65,6 +65,14 @@ Output prediction
 
 [Open the full-resolution diagram](images/deep_neural_network_training_flow.png) to zoom in or use the scrollbars above to inspect every detail.
 
+<div class="zoomable-diagram" tabindex="0" role="region" aria-label="Scrollable decoder-only Transformer architecture and training-flow diagram">
+  <a href="images/decoder_only_transformer_architecture_training_flow.png" title="Open the full-resolution diagram">
+    <img src="images/decoder_only_transformer_architecture_training_flow.png" alt="Decoder-only Transformer architecture showing tokenization, stacked pre-normalized Transformer blocks, causal self-attention, feed-forward networks, parameter ownership, next-token prediction, and training flows">
+  </a>
+</div>
+
+[Open the full-resolution Transformer diagram](images/decoder_only_transformer_architecture_training_flow.png) to zoom in or use the scrollbars above to inspect every detail.
+
 ![Embedding stage](images/embedding_stage_dmodel_focus.png)
 
 ![Self-attention flow](images/self_attention_complete_flow_en.png)
@@ -72,6 +80,7 @@ Output prediction
 | Diagram | Use it when |
 |---------|-------------|
 | [Deep neural network: layers and training flows](images/deep_neural_network_training_flow.png) | Week 1 neural-network vocabulary: forward activations, loss, backpropagated gradients, residual connections, and optimizer weight updates. |
+| [Decoder-only Transformer: architecture and training flows](images/decoder_only_transformer_architecture_training_flow.png) | Following the dense-network diagram into tokenization, causal self-attention, MLP sublayers, residual streams, next-token prediction, and block-local parameters. |
 | [Embedding stage, `d_model` focus](images/embedding_stage_dmodel_focus.png) | Week 5 token-ID and embedding-table confusion. |
 | [Embedding stage, annotated legend](images/embedding_stage_annotated_legend.png) | Teaching the full text-to-vector path. |
 | [Embedding stage, real-number legend](images/embedding_stage_real_numbers_legend.png) | Repairing `R^(V x d_model)` notation. |
